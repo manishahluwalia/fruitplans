@@ -1,0 +1,48 @@
+<configuration debug="false">
+  <!-- Appender for generic application logs -->
+  <appender name="Server" class="fruit.health.server.logging.LogbackToJulAppender">
+    <layout>
+      <pattern>ServerDev> %d{yyyy-MM-dd;HH:mm:ss.SSS} %logger{36} %.-1level @@ %mdc @@ %msg%n</pattern>
+    </layout>
+  </appender>
+
+  <!-- Appender for audit logs. We don't need a level, since its always INFO. We don't need the name of the logger -->
+  <appender name="AuditLogger" class="fruit.health.server.logging.LogbackToJulAppender">
+    <layout>
+      <pattern>Audit> %msg%n</pattern>
+    </layout>
+  </appender>
+
+  <turboFilter class="ch.qos.logback.classic.turbo.DynamicThresholdFilter">
+    <Key>threshold</Key>
+	  <DefaultThreshold>DEBUG</DefaultThreshold>
+	  <OnHigherOrEqual>ACCEPT</OnHigherOrEqual>
+      <OnLower>DENY</OnLower>
+      <MDCValueLevelPair>
+        <value>ALL</value>
+        <level>ALL</level>
+      </MDCValueLevelPair>
+      <MDCValueLevelPair>
+        <value>TRACE</value>
+        <level>TRACE</level>
+      </MDCValueLevelPair>
+      <MDCValueLevelPair>
+        <value>DEBUG</value>
+        <level>DEBUG</level>
+      </MDCValueLevelPair>
+      <MDCValueLevelPair>
+        <value>INFO</value>
+        <level>INFO</level>
+      </MDCValueLevelPair>
+      <!-- You can only make logging more verbose than the default, not less -->
+  </turboFilter>
+  
+  <!-- Server loggers are throttled by the dynamic filter above -->
+  <root level="ALL">
+    <appender-ref ref="Server"/>
+  </root>
+  
+  <logger name="AuditLogger" level="INFO" additivity="false">
+    <appender-ref ref="AuditLogger"/>
+  </logger>
+</configuration>

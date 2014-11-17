@@ -1,0 +1,33 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:style>		
+	</ui:style>
+
+    <g:HTMLPanel ui:field="wrapper" styleName="container">
+<div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-8">
+            <div class="contact-wrapper" ui:field="tableTable">
+                <!-- Sample
+                First n-1 rows:
+                <div class="row  border-top-dotted  contact-content">
+                    <h3 class="no-margin  col-xs-4 pull-left  text-white">Table name</h3>
+                    <h3 class="no-margin col-xs-4 pull-left text-teal">User name</h3>
+                    <h3 class="no-margin  col-xs-2 pull-right ">Table status</h3>
+                </div>
+                Nth row:
+                <div class="row  border-top-dotted  border-bottom-dotted contact-content">
+                    <h3 class="no-margin  col-xs-4 pull-left  text-white">Table name</h3>
+                    <h3 class="no-margin col-xs-4 pull-left text-teal">User name</h3>
+                    <h3 class="no-margin  col-xs-2 pull-right ">Table status</h3>
+	            </div>
+	            -->
+            </div>
+        </div>
+    </div>
+    </g:HTMLPanel>
+</ui:UiBinder> 

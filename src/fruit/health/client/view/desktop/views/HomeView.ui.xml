@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:style>
+	</ui:style>
+
+	<g:HTMLPanel>
+	    <p>
+	    Welcome to fruithealth. Blah Blah Blah.
+	   </p>
+	   <p ui:field="plansPara">
+	       Here are the plans you have added:
+	   <g:VerticalPanel ui:field="plans"/>
+	   </p>
+	   <p>
+	    <g:Anchor ui:field="enterPlan" styleName="button--heroku">
+	    Click here to add a plan.
+	   </g:Anchor>
+	   </p>
+	   <p>
+	       <g:Anchor ui:field="compare" styleName="button--heroku">Click here to compare added plans</g:Anchor>
+	   </p>
+	    	</g:HTMLPanel>
+</ui:UiBinder> 

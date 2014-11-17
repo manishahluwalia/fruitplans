@@ -1,0 +1,247 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* TODO: remove this @external */
+@external buttonLittleBlue, buttonBigBlue, buttonLittleOrange, buttonBigOrange, buttonBigGray;
+	
+/* little blue button */
+a.buttonLittleBlue {
+        color: #FFF;
+        display: block;
+        float: left;
+        height: 25px;
+        margin-right: 2px;
+        padding-right: 10px; /* sliding doors padding */
+        text-decoration: none;
+        background-attachment: scroll;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_blue_R.cache.1.png");
+        background-repeat: no-repeat;
+        background-position: right top;
+        font-family: arial, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: bold;
+        font-variant: normal;
+}
+
+a.buttonLittleBlue span {
+        display: block;
+        line-height: 15px;
+        padding: 5px 0 5px 10px;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_blue_L.cache.1.png");
+        background-repeat: no-repeat;
+} 
+a.buttonLittleBlue:hover {
+    background-position: bottom right;
+    color: #fff;
+    outline: none; /* hide dotted outline in Firefox */
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.buttonLittleBlue:hover span {
+    background-position: bottom left;
+
+} 
+/* little orange button */
+a.buttonLittleOrange {
+        color: #FFF;
+        display: block;
+        float: left;
+        height: 25px;
+        margin-right: 2px;
+        padding-right: 10px; /* sliding doors padding */
+        text-decoration: none;
+        background-attachment: scroll;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_orange_R.cache.1.png");
+        background-repeat: no-repeat;
+        background-position: right top;
+        font-family: arial, sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: bold;
+        font-variant: normal;
+}
+
+a.buttonLittleOrange span {
+        display: block;
+        line-height: 15px;
+        padding: 5px 0 5px 10px;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_orange_L.cache.1.png");
+        background-repeat: no-repeat;
+} 
+a.buttonLittleOrange:hover {
+    background-position: bottom right;
+    color: #fff;
+    outline: none; /* hide dotted outline in Firefox */
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.buttonLittleOrange:hover span {
+    background-position: bottom left;
+
+} 
+
+/* big blue button */
+a.buttonBigBlue {
+        color: #FFF;
+        display: block;
+        float: left;
+        height: 30px;
+        margin-right: 2px;
+        padding-right: 13px; /* sliding doors padding */
+        text-decoration: none;
+        background-attachment: scroll;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_big_blue_R.cache.1.png");
+        background-repeat: no-repeat;
+        background-position: right top;
+        font-family: arial, sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: bold;
+        font-variant: normal;
+}
+
+a.buttonBigBlue span {
+        display: block;
+        line-height: 20px;
+        padding: 5px 0 5px 13px;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_big_blue_L.cache.1.png");
+        background-repeat: no-repeat;
+} 
+a.buttonBigBlue:hover {
+    background-position: bottom right;
+    color: #fff;
+    outline: none; /* hide dotted outline in Firefox */
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.buttonBigBlue:hover span {
+    background-position: bottom left;
+
+} 
+/* big orange button */
+a.buttonBigOrange {
+        color: #FFF;
+        display: block;
+        float: left;
+        height: 30px;
+        margin-right: 2px;
+        padding-right: 13px; /* sliding doors padding */
+        text-decoration: none;
+        background-attachment: scroll;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_big_orange_R.cache.1.png");
+        background-repeat: no-repeat;
+        background-position: right top;
+        font-family: arial, sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: bold;
+        font-variant: normal;
+}
+a.buttonBigOrange span {
+        display: block;
+        line-height: 20px;
+        padding: 5px 0 5px 13px;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_big_orange_L.cache.1.png");
+        background-repeat: no-repeat;
+} 
+a.buttonBigOrange:hover {
+    background-position: bottom right;
+    color: #fff;
+    outline: none; /* hide dotted outline in Firefox */
+    cursor: pointer;
+    text-decoration: none;
+}
+a.buttonBigOrange:hover span {
+    background-position: bottom left;
+} 
+
+/* big gray button */
+a.buttonBigGray {
+        color: #FFF;
+        display: block;
+        float: left;
+        height: 30px;
+        margin-right: 2px;
+        padding-right: 13px; /* sliding doors padding */
+        text-decoration: none;
+        background-attachment: scroll;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_big_gray_R.cache.0.png");
+        background-repeat: no-repeat;
+        background-position: right top;
+        font-family: arial, sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: bold;
+        font-variant: normal;
+}
+a.buttonBigGray span {
+        display: block;
+        line-height: 20px;
+        padding: 5px 0 5px 13px;
+        background-color: transparent;
+        background-image: url("/images/buttons/btn_big_gray_L.cache.0.png");
+        background-repeat: no-repeat;
+        color: #ccc;
+}
+
+
+/* Big progress bar */
+.bigProgressBar {
+    height: 16px;
+    padding: 0;
+    background-position: 1px 0;
+    background-color: white;
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+
+.bigProgressBar_Blue {
+    background-image: url(/images/progressbar/progressBarBig_Blue.cache.1.png);
+}
+
+/* Little progress bar */
+/* TODO This is a copy of big progress bar. Fix */
+
+.littleProgressBar {
+    height: 12px;
+    padding: 0;
+    background-position: 1px 0;
+    background-color: white;
+    background-position: top left;
+    background-repeat: no-repeat;
+}
+
+.littleProgressBar_Blue {
+    background-image: url(/images/progressbar/progressBarLittle_Blue.cache.0.png);
+}
+
+
+/* BoxedImage */
+.boxedImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.zoomPopup {
+    border: 1px solid #666666;
+    padding: 5px;
+    background-color: white;
+    color: #666666;
+    box-shadow: 5px 5px 5px #888;
+    -moz-box-shadow: 5px 5px 5px #888;
+    -webkit-box-shadow: 5px 5px 5px #888;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.6.1//EN"
+  "http://google-web-toolkit.googlecode.com/svn/tags/2.6.1/distro-source/core/src/gwt-module.dtd">
+<module rename-to='fruitdb'>
+  <inherits name='com.google.gwt.user.User'/>
+  <inherits name="com.google.gwt.inject.Inject"/>
+  <inherits name="com.google.gwt.activity.Activity"/>
+  <inherits name="com.google.gwt.place.Place"/>
+  <inherits name="com.google.gwt.i18n.I18N"/>
+      
+  <!-- logging -->
+  <inherits name="logging.Logging"/>
+  <set-property name="gwt.logging.enabled" value="TRUE"/>
+  <set-property name="gwt.logging.logLevel" value="INFO"/>
+  <set-property name="gwt.logging.consoleHandler" value="ENABLED"/>
+  <set-property name="gwt.logging.developmentModeHandler" value="ENABLED"/>
+  <set-property name="gwt.logging.firebugHandler" value="ENABLED"/>
+  <set-property name="gwt.logging.popupHandler" value="DISABLED"/>
+  <set-property name="gwt.logging.systemHandler" value="DISABLED"/>
+  <set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED"/>
+
+  <!-- Specify the app entry point class. -->
+  <entry-point class='fruit.health.client.FruitHealth'/>
+
+  <!-- Specify the paths for translatable code -->
+  <source path='client'/>
+  <source path='shared'/>
+
+  <!-- For slightly compressed stack traces. See http://code.google.com/p/google-web-toolkit/wiki/WebModeExceptions -->
+  <set-property name="compiler.stackMode" value="native"/>
+
+  <!-- For Fat Browsers (i.e. browsers on desktops) -->
+  <replace-with class="fruit.health.client.view.desktop.DesktopBrowserViewMaster">
+    <when-type-is class="fruit.health.client.view.ViewMaster"/>
+  </replace-with>
+
+  <set-configuration-property name="UiBinder.useSafeHtmlTemplates" value="true"/>
+
+  <!-- For debugging styling -->
+  <set-configuration-property name="CssResource.style" value="stable-notype"/>    
+</module>

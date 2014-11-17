@@ -1,0 +1,251 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.inputFieldInstructions {
+        font-size: 11px;
+        color: #999;
+        margin-bottom: 7px;
+        float: right;
+}
+
+/******************************************************
+    Water Mark TextBox
+******************************************************/
+@external .waterMarkedTextInput*;
+
+.waterMarkedTextInput {
+    
+}
+
+.waterMarkedTextInput-watermark {
+    font-style: italic;
+    color: DarkGray;
+}
+
+@sprite .gradientHeaderTable tr th {
+    gwt-image: 'gradientTableHeaderBackground';
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 20px;
+    margin: 0;
+    padding: 4px 6px;
+}
+
+.gradientHeaderTable {
+	border-color: #8ccce7;
+	border-style: solid;
+	border-width: 0 1px 1px 1px;
+}
+
+.blueLine {
+	color: #40bfb4;
+	height: 1px;
+}
+
+.firstTimeDashboardButtonDesc {
+    width: 25em;
+    margin-left: 20px;
+}
+	
+@sprite .firstTimeDashboardButtonContainer {
+    gwt-image: 'background_noLogin';
+    margin-top: 20px;
+    padding: 20px 0 0 20px;
+}
+
+.firstTimeDashboardText {
+	padding: 15px 0 20px 10px;
+	color: #136736;
+	width: 20em;
+	display: block;
+	font-size: 8pt;
+}
+
+.loginViewMessage {
+	padding: 0px 0px 15px 0px;
+    color: #60006a;
+    font-size: 15pt;
+}
+
+.comeBackForMoreBargains {
+	font-weight: bold;
+	color: green;
+}
+
+.tooltipWrapper {
+	display: inline;
+}
+
+.tooltipPopup {
+    font-family: Verdana, Bitstream Vera Sans, sans-serif;
+    font-size: 11px;
+    line-height: 16px;
+    border: 1px solid #666666;
+    padding: 5px;
+    background-color: white;
+    color: #666666;
+    box-shadow: 5px 5px 5px #888;
+    -moz-box-shadow: 5px 5px 5px #888;
+    -webkit-box-shadow: 5px 5px 5px #888;
+    width: 25em;
+}
+
+.tooltipButton {
+    border: none;
+    background: none;
+    margin-left: 3px;
+    outline: none;
+    display: inline;
+}
+
+.storeInfoPopup {
+    font-family: Verdana, Bitstream Vera Sans, sans-serif;
+    font-size: 11px;
+    line-height: 16px;
+    border: 1px solid #666666;
+    padding: 10px;
+    background-color: white;
+    color: #666666;
+    box-shadow: 5px 5px 5px #888;
+    -moz-box-shadow: 5px 5px 5px #888;
+    -webkit-box-shadow: 5px 5px 5px #888;
+    max-height: 100%;
+    max-width: 50%;
+    overflow: hidden;
+}
+
+/* TODO: this needn't be @external */
+@external .imageNameCompositeCell;
+.imageNameCompositeCell {
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+/* Use to hide GWT elements when we don't need to show them.
+ * This is different from making them invisbile via GWT .setVisible()
+ */
+.hidden {
+    visibility: hidden;
+}
+
+/* Some buttons should not have an outline when focused */
+.noOutline:focus {
+    outline: none;
+}
+
+.disclosedPanel {
+    border-top: 1px solid #42BFB4;
+    color: #016699;
+    padding-bottom: 12px;
+    padding-top: 4px;
+    width: 654px; /* The "more" button has a width of 640 and appears in the "content" child div which has a left margin of 6 and left padding of 8 */
+}
+
+@external .header, .content;
+
+.disclosedPanel .header,.disclosedPanel .header a,.disclosedPanel .header td {
+    color: #016699;
+    font-size: 12pt;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    cursor: hand;
+    outline: none;
+}
+
+.disclosedPanel .content {
+    border-left: 0px none;
+    margin-left: 0px;
+    padding: 4px 0 4px 0px;
+}
+
+
+/* Base for alert and confirm dialogs */
+
+.popupDialog {
+    box-shadow: 5px 5px 5px #888;
+    -moz-box-shadow: 5px 5px 5px #888;
+    -webkit-box-shadow: 5px 5px 5px #888;
+    background-color: #ABD58B;
+    border: 1px solid yellow;
+    padding: 10px;
+}
+
+.alertOrConfirmDialog {
+    overflow: hidden;
+    position: relative;
+}
+
+.alertOrConfirmDialogTitle {
+	font-weight: bold;
+	font-size: large;
+	color: white;
+	margin-bottom: 10px;
+}
+
+.alertOrConfirmDialogText {
+    color: gray;
+	font-size: medium;
+	margin-bottom: 10px;
+	width: 275px;
+}
+
+/* Alert dialog */
+
+@sprite .alertDialog {
+	gwt-image: 'alertDialogBackground';
+}
+
+/* Confirm dialog */
+
+@sprite .confirmDialog {
+	gwt-image: 'confirmDialogBackground';
+}
+
+.bargainTableRow {
+    padding: 10px;
+    height: 100px;
+    outline: none;
+    margin-left: 14px;
+    width: 620px; /* Same as more button - 10px left and right padding */
+}
+
+.bargainTableRow:hover {
+	background: lightgray;
+}
+
+.bargainPopupPrice {
+    float: left;
+    color: purple;
+    font-weight: bold;
+    font-size: 9pt;
+}
+
+.tableEvenRow {
+    background: white;
+}
+
+.tableOddRow {
+    background: #e7f3f7;
+}
+
+.tableMoreButton {
+	margin-top: -0px;
+    margin-left: 14px;
+}
+
+.infoPage ul {
+    list-style-type: square;
+    padding-bottom: 16px;
+    padding-left: 24px;
+}
+.infoPage .steps {
+    border-top: 1px dotted #D6D6D6;
+    color: #1999CE;
+    font-family: Arial,Helvetica,sans-serif;
+    font-style: italic;
+    padding-top: 6px;
+}

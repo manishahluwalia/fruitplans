@@ -1,0 +1,14 @@
+<module>
+  <inherits name="com.google.gwt.logging.Logging"/>
+
+  <source path="client"/>
+  <source path="shared"/>
+
+  <replace-with class="logging.client.RemoteLogHandler">
+    <when-type-is class="com.google.gwt.logging.client.SimpleRemoteLogHandler"/>
+    <all>
+      <when-property-is name="gwt.logging.enabled" value="TRUE"/>
+      <when-property-is name="gwt.logging.simpleRemoteHandler" value="ENABLED"/>
+    </all>
+  </replace-with>
+</module>

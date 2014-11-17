@@ -1,0 +1,360 @@
+@charset "utf-8";
+/* CSS Document */
+
+@external gwt-Label;
+
+/* ~~ this fixed width container surrounds all other elements ~~ */
+@sprite .outer_main_div {
+	    gwt-image: 'pageBackground';
+        margin: 0;
+        padding: 0;
+        color: #000;
+        background-color: #fff;
+        background-position: top;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 100%;
+        height: 100%;
+        cursor: auto;
+        overflow: inherit;
+}
+	
+.container {
+        width: 960px;
+        margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+        overflow: hidden; /* this declaration makes the .container understand where the floated columns within ends and contain them */
+}
+
+.container .northheader {
+        width: 960px;
+        clear: both;
+}
+
+
+/* ~~ This is the layout information. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the div. The elements within this div have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the div itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design.
+
+*/
+.Homecontent {
+        padding-top: 0px;
+        padding-right: 0;
+        padding-bottom: 0px;
+        padding-left: 0;
+}
+
+.userMenu {
+        font-family: arial;
+        font-size: 11px;
+        color: #FFF;
+        text-align: right;
+        padding-right: 14px;
+        padding-bottom: 3px;
+}
+.userMenu a, .userMenu a:hover {
+        color: #ffffff;
+        font-size: 11px;
+        padding-bottom: 3px;
+        font-family: arial;
+        vertical-align: top;        
+}
+
+.storeOwner {
+        font-family: arial;
+        font-size: 11px;
+        color: #5E2369;
+        text-align: right;
+        padding-right: 14px;
+        padding-bottom: 3px;
+}
+
+.storeOwner a {
+        font-family: arial;
+        font-size: 11px;
+        color: #5E2369;
+        text-align: right;
+        background: transparent
+                url("images/subpage/jaaju_dashboard_arrow_storeOwner.cache.0.gif") left
+                center no-repeat;
+        padding-left: 8px;
+        cursor: pointer;
+}
+
+.storeOwner a:hover {
+        color: #5E2369;
+}
+
+.userMenu .gwt-Label {
+        font-family: arial;
+        font-size: 11px;
+        color: #FFF;
+}
+
+.userMenu .name .gwt-Label {
+        font-family: arial;
+        font-size: 11px;
+        color: #286d69;
+}
+.navBar {
+        color: #FFF;
+        background-image: url("images/menubar/jaaju_nav_bk_mixed.cache.0.png");
+        height: 32px;
+        width: 450px;
+        background-repeat: repeat-x;
+        vertical-align: middle;
+        line-height: 32px;
+        margin-left: 40px;
+}
+.navBarSeperator {
+        width: 1px;
+        vertical-align: middle;
+}
+@sprite .navBar_left {
+        gwt-image: 'navBarLeft';
+        color: #FFF;
+}
+@sprite .navBar_right {
+        gwt-image: 'navBarRight';
+        color: #FFF;
+}
+.navBar a {
+        color: #FFF;
+        text-decoration: none;
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 32px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        display: inline-block;
+}
+.navBar a:hover {
+        background-image: url("images/menubar/jaaju_nav_bk_mixed.cache.0.png");
+        background-position: left bottom;
+        background-repeat: repeat-x;
+        display: inline-block;
+        height: 32px;
+        cursor: pointer;
+        color: #FFF;
+        text-decoration: none;
+}
+
+.navigation {
+        text-align: right;
+}
+
+.signInLabel {
+    font-size: 14px;
+}
+
+.subpageContent {
+        padding-top: 12px;
+        padding-left: 25px;
+        border: 1px solid #339D94;
+        margin-top: -29px;
+        background-color: #FFF;
+        background-image: url("images/subpage/sub_bkg_main.cache.0.gif");
+        background-repeat: repeat-x;
+        height: 500px;
+        clear: none;
+        padding-bottom: 10px;
+        width: 960px;
+}
+
+.subpageContentSplashScreen {
+        padding-top: 12px;
+        padding-left: 25px;
+        margin-top: -29px;
+        background-repeat: repeat-x;
+        height: 350px;
+        clear: none;
+        padding-bottom: 10px;
+        width: 840px;
+}
+
+.subpageContentStoreowner {
+        padding-top: 12px;
+        padding-left: 25px;
+        border: 1px solid #339D94;
+        margin-top: -29px;
+        background-color: #FFF;
+        background-image: url("images/subpage/storeownerHeaderBkg.cache.0.png");
+        background-repeat: repeat-x;
+        clear: none;
+        padding-bottom: 10px;
+        height: 500px;
+        width: 960px;
+}
+.footer {
+        font-size: 11px;
+        color: #808080;
+        margin-top: 12px;
+        float: right;
+}
+
+.footer a {
+        font-size: 11px;
+        color: #808080;
+        cursor: pointer;
+}
+
+.footer a:hover {
+        color: #808080;
+        text-decoration: underline;
+}
+
+
+.subpageRight {
+        font-size: 10pt;
+        color: #666;
+        text-align: left;
+        width: 640px;
+        padding-right: 25px;
+        float: right;
+}
+.subpageLeft {
+        float: left;
+        width: 224px;
+        margin-top: 70px;
+        margin-right: 40px;
+        padding: 0px;
+        font-size: 10pt;
+        color: #000;
+        overflow: hidden;
+}
+.subpageLeft .storeTitle {
+        font-weight: bold;
+        color: #60007E;
+}
+
+
+.boxLeftNav {
+        background: #E1E6B7;
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+}
+.boxcontentLeftNav {
+        padding: 12px;
+}
+
+.subpageRight h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #40bfb4;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #40bfb4;
+        margin-top: 46px;
+}
+.breadcrumb .gwt-Label {
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        font-size: 10pt;
+        color: #016699;
+        padding-bottom: 4px;
+        text-decoration: none;
+        color: #016699;
+}
+.breadcrumb .gwt-Label:hover {
+        text-decoration: underline;
+        color: #016699;
+}
+.subpageRight hr {
+        color: #40bfb4;
+}
+
+
+.header_right {
+        float: right;
+        margin-top: 20px;
+}
+.logo {
+        width: 189px;
+}
+
+
+.subpageLeft hr {
+        color: #fff;
+        height:1px;
+}
+.storeownerHeader {
+        margin-top: 2px;
+        margin-left: 2px;
+        height: 88px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        color: #FFF;
+        padding-bottom: 12px;
+        width: 650px;
+}
+.storeownerHeader table tr td {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        color: #FFF;
+        padding-top: 4px;
+        padding-right: 3px;
+}
+
+.storeownerHeader select {
+        font-size: 12px;
+        color: #016699;
+        vertical-align: middle;
+        border: 1px solid #016699;
+        max-width: 20em;
+}
+.storeownerHeader input {
+        font-size: 12px;
+        color: #5E2368;
+}
+
+
+.buttonRightContainer {
+        margin-top: 8px;
+        float: right;
+}
+
+
+.storeDropDownRegisterOption {
+	color: purple;
+	border-top: 1px solid gray;
+}
+
+.storeDropDownEditOption {
+	color: purple;
+}
+
+
+.demoServerWarning {
+    border-top: 2px solid blue;
+    border-bottom: 2px solid blue;
+    color: red;
+    font-size: medium;
+    background-color: #8383c3;
+    opacity: 0.75;
+    position: absolute;
+    top: 34px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.processing_icon_container {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=50)";
+    cursor: wait;
+    text-align: center;
+}
+
+.processing_icon {
+    border: none;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px; /* half the height of the image loading icon */
+    left: 50%;
+    margin-left: -50px;
+}

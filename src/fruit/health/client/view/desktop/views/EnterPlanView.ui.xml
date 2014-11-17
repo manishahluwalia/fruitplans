@@ -1,0 +1,66 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:style>
+		
+	</ui:style>
+
+	<g:HTMLPanel>
+	    <!-- <p>
+	        Name of the plan:
+	        <g:TextBox ui:field="name"/>
+	        
+	    </p>
+	    <p>
+	        Monthly Premium:
+	        <g:TextBox ui:field="premium"/>
+	        
+	    </p>
+	    -->
+	    				Name of the plan:
+	    				&nbsp; &nbsp; &nbsp;
+                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
+                            <i class="icon-question  form-control-icon  icon-white"></i>
+                            <input ui:field="name" type="text" placeholder="What you'd like to call the plan" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="name"/>
+                        </div>
+
+	    				Monthly premium:
+	    				&nbsp; &nbsp; &nbsp;
+                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
+                            <i class="icon-dollar  form-control-icon  icon-white"></i>
+                            <input ui:field="premium" type="text" placeholder="How much your employer deducts per month" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="name"/>
+                        </div>
+	        
+	        Annual Deductible:
+	    				&nbsp; &nbsp; &nbsp;
+                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
+                            <i class="icon-dollar  form-control-icon  icon-white"></i>
+                            <input ui:field="deductible" type="text" placeholder="What is the annual deductible" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="name"/>
+                        </div>
+
+	        Co-pay %:
+	    				&nbsp; &nbsp; &nbsp;
+                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
+                            <i class="icon-percent  form-control-icon  icon-white"></i>
+                            <input ui:field="copay" type="text" placeholder="What is the % copay after you meet the deductible" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="copay"/>
+                        </div>
+
+	        Annual Out-of-pocket maximum:
+	    				&nbsp; &nbsp; &nbsp;
+                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
+                            <i class="icon-dollar  form-control-icon  icon-white"></i>
+                            <input ui:field="oopMax" type="text" placeholder="What is the annual out-of-pocket max" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="oopMax"/>
+                        </div>
+
+                        	    <p>
+	        <g:Button ui:field="done" styleName="button--heroku">Done</g:Button>
+	        &nbsp;&nbsp;&nbsp;
+	        <g:Button ui:field="addAnother" styleName="button--heroku">Add another</g:Button>
+	        &nbsp;&nbsp;&nbsp;
+	        <g:Button ui:field="compare" styleName="button--heroku">Compare Plans</g:Button>
+	        	    </p>
+	    </g:HTMLPanel>
+</ui:UiBinder> 
