@@ -8,7 +8,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import fruit.health.client.entities.PlanData;
 import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.mvp.BaseActivity;
-import fruit.health.client.places.comparePlans;
 import fruit.health.client.places.enterPlan;
 import fruit.health.client.places.home;
 import fruit.health.client.view.HomeView;
@@ -36,7 +35,12 @@ public class HomeActivity extends BaseActivity<HomeView, Presenter> implements P
     public void start (AcceptsOneWidget panel)
     {
         super.start(panel);
-        view.showPlans(plans);
+        view.prepareFor(plans.size());
+        
+        for (int i=0; i<plans.size(); i++) {
+            PlanData p = plans.get(i);
+            view.showPlan(p, i, p.planName, p.premium*12, expectToPay(p, 0), expectToPay(p, 2000), expectToPay(p, 25000));
+        }
     }
 
     @Override
@@ -46,14 +50,25 @@ public class HomeActivity extends BaseActivity<HomeView, Presenter> implements P
     }
 
     @Override
-    public void comparePlansClicked()
-    {
-        loginStateManager.goTo(new comparePlans());
-    }
-
-    @Override
     public void onPlanClicked(PlanData p)
     {
         loginStateManager.goTo(new enterPlan(p));
+    }
+
+    private int expectToPay(PlanData p, int medicalExpenses)
+    {
+        int expectedCosts = medicalExpenses;
+        int expectToPay;
+        if (expectedCosts < p.deductible) {
+            expectToPay = expectedCosts;
+        } else {
+            expectToPay = p.deductible + ( expectedCosts - p.deductible ) * p.copay / 100;
+            if (expectToPay > p.oopMax) {
+                expectToPay = p.oopMax;
+            }
+        }
+        expectToPay += p.premium * 12;
+        
+        return expectToPay;
     }
 }

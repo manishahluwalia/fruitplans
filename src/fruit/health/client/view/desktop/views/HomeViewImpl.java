@@ -1,7 +1,5 @@
 package fruit.health.client.view.desktop.views;
 
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -11,8 +9,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Widget;
 
 import fruit.health.client.entities.PlanData;
@@ -35,36 +32,41 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
 	}
 
 	@UiField ParagraphElement plansPara;
-	@UiField VerticalPanel plans;
-	@UiField Anchor compare;
-	
-	@Override
-	public void showPlans(List<PlanData> plans) {
-	    if (plans.size()==0) {
-	        compare.setVisible(false);
-	        this.plansPara.setAttribute("hidden", "hidden");
-	    } else {
-	        compare.setVisible(true);
-            this.plansPara.removeAttribute("hidden");
-            this.plans.clear();
-            
-            for (final PlanData p : plans) {
-                Label label = new Label(p.planName);
-                label.addClickHandler(new ClickHandler()
-                {
-                    @Override public void onClick(ClickEvent event)
-                    {
-                        presenter.onPlanClicked(p);
-                    }
-                });
-                this.plans.add(label);
-            }
-	    }
-	}
+
+    @UiField FlexTable table;
     
-    @UiHandler("compare")
-    public void compareClicked(ClickEvent e) {
-        presenter.comparePlansClicked();
+    @Override
+    public void prepareFor(int numPlans)
+    {
+        if (0==numPlans) {
+            this.plansPara.setAttribute("hidden", "hidden");
+        } else {
+            this.plansPara.removeAttribute("hidden");
+            table.clear();
+            table.setText(0, 0, "Name of Plan");
+            table.setText(1, 0, "Premiums");
+            table.setText(2, 0, "Use preventive care only");
+            table.setText(3, 0, "Use a few services");
+            table.setText(4, 0, "Serious medical issues");
+        }
+    }
+
+    @Override
+    public void showPlan(final PlanData plan, int planNum, String planName, int premiums, int prevOnly, int fewServices, int seriousUse)
+    {
+        Anchor link = new Anchor(planName);
+        link.addClickHandler(new ClickHandler()
+        {
+            @Override public void onClick(ClickEvent event)
+            {
+                presenter.onPlanClicked(plan);
+            }
+        });
+        table.setWidget(0, planNum+1, link);
+        table.setText(1, planNum+1, Integer.toString(premiums));
+        table.setText(2, planNum+1, Integer.toString(prevOnly));
+        table.setText(3, planNum+1, Integer.toString(fewServices));
+        table.setText(4, planNum+1, Integer.toString(seriousUse));
     }
     
     @UiHandler("enterPlan")

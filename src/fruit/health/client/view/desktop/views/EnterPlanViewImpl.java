@@ -3,7 +3,6 @@ package fruit.health.client.view.desktop.views;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -12,7 +11,6 @@ import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 import fruit.health.client.entities.PlanData;
@@ -92,35 +90,8 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
 	
 	@UiField Button done;
 	@UiField Button addAnother;
-	@UiField Button compare;
+	@UiField Button cancel;
 	
-	/*
-	@UiHandler("name")
-	public void onNameChanged(ValueChangeEvent<String> e) {
-	    presenter.onNameChanged(e.getValue());
-	}
-	
-    @UiHandler("premium")
-    public void onPremiumChanged(ValueChangeEvent<String> e) {
-        presenter.onPremiumChanged(e.getValue());
-    }
-    
-    @UiHandler("deductible")
-    public void onDeductibleChanged(ValueChangeEvent<String> e) {
-        presenter.onDeductibleChanged(e.getValue());
-    }
-    
-    @UiHandler("copay")
-    public void onCopayChanged(ValueChangeEvent<String> e) {
-        presenter.onCopayChanged(e.getValue());
-    }
-    
-    @UiHandler("oopMax")
-    public void onOopMaxChanged(ValueChangeEvent<String> e) {
-        presenter.onOopMaxChanged(e.getValue());
-    }
-    */
-    
     @UiHandler("done")
     public void onDonePressed(ClickEvent e) {
         presenter.onDonePressed();
@@ -131,9 +102,9 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
         presenter.onAddPressed();
     }
     
-    @UiHandler("compare")
+    @UiHandler("cancel")
     public void onPressed(ClickEvent e) {
-        presenter.onComparePressed();
+        presenter.onCancelPressed();
     }
 
     @Override
@@ -167,6 +138,5 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
     {
         done.setEnabled(enabled);
         addAnother.setEnabled(enabled);
-        compare.setEnabled(enabled);
     }
 }

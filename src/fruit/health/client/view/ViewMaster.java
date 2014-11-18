@@ -95,5 +95,4 @@ public interface ViewMaster
     public void getLoginView(RunnableWithArg<LoginView> viewLoadedCallback);
 
     public void getEnterPlanView(RunnableWithArg<EnterPlanView> callback);
-    public void getComparePlansView(RunnableWithArg<ComparePlansView> callback);
 }

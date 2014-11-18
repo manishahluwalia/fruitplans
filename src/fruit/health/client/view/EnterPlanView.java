@@ -12,9 +12,9 @@ public interface EnterPlanView extends BaseView<EnterPlanView.Presenter>
         void onDeductibleChanged(String val);
         void onCopayChanged(String val);
         void onOopMaxChanged(String val);
-        void onDonePressed();
+        void onCancelPressed();
         void onAddPressed();
-        void onComparePressed();
+        void onDonePressed();
     }
 
     void showData(PlanData plan);

@@ -5,23 +5,22 @@
 	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
 	<ui:style>
+      @external table-style;
+      .table-style {}
 	</ui:style>
 
 	<g:HTMLPanel>
 	    <p>
-	    Welcome to fruithealth. Blah Blah Blah.
+	    Welcome to fruithealth. We help you compare your insurance plans to see how you fare under different scenarios.
 	   </p>
 	   <p ui:field="plansPara">
-	       Here are the plans you have added:
-	   <g:VerticalPanel ui:field="plans"/>
+	    This is how much the plans will cost you over the year in various scenarios. Click on the name of a plan to edit it.
+	    <g:FlexTable ui:field="table" styleName="{style.table-style}" />
 	   </p>
 	   <p>
 	    <g:Anchor ui:field="enterPlan" styleName="button--heroku">
 	    Click here to add a plan.
 	   </g:Anchor>
-	   </p>
-	   <p>
-	       <g:Anchor ui:field="compare" styleName="button--heroku">Click here to compare added plans</g:Anchor>
 	   </p>
 	    	</g:HTMLPanel>
 </ui:UiBinder> 

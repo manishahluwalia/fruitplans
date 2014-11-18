@@ -60,7 +60,7 @@
 	        &nbsp;&nbsp;&nbsp;
 	        <g:Button ui:field="addAnother" styleName="button--heroku">Add another</g:Button>
 	        &nbsp;&nbsp;&nbsp;
-	        <g:Button ui:field="compare" styleName="button--heroku">Compare Plans</g:Button>
+	        <g:Button ui:field="cancel" styleName="button--heroku">Cancel</g:Button>
 	        	    </p>
 	    </g:HTMLPanel>
 </ui:UiBinder> 

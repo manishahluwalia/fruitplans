@@ -8,7 +8,6 @@ import fruit.health.client.entities.PlanData;
 import fruit.health.client.events.PlanAddedEvent;
 import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.mvp.BaseActivity;
-import fruit.health.client.places.comparePlans;
 import fruit.health.client.places.enterPlan;
 import fruit.health.client.places.home;
 import fruit.health.client.view.EnterPlanView;
@@ -20,6 +19,7 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
     protected static final Logger logger = Logger.getLogger(EnterPlanActivity.class.getName());
 
     private final PlanData planData;
+    private final PlanData originalPlan;
     private final boolean isAdd;
     
     public EnterPlanActivity (enterPlan place, AppGinjector injector)
@@ -29,8 +29,10 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
             planData=new PlanData();
             planData.planName = "Option " + injector.getGlobalsHolder().planNumber++;
             isAdd=true;
+            originalPlan = null;
         } else {
             planData = place.getPlan();
+            originalPlan = planData.clone(new PlanData());
             isAdd=false;
         }
     }
@@ -141,14 +143,10 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
     }
     
     @Override
-    public void onDonePressed()
+    public void onCancelPressed()
     {
-        if (!isDone()) {
-            return;
-        }
-        
-        if (isAdd) {
-            eventBus.fireEvent(new PlanAddedEvent(planData));
+        if (!isAdd) {
+            originalPlan.clone(planData);
         }
         
         loginStateManager.goTo(new home());
@@ -165,12 +163,11 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
             eventBus.fireEvent(new PlanAddedEvent(planData));
         }
         
-        eventBus.fireEvent(new PlanAddedEvent(planData));
         loginStateManager.goTo(new enterPlan(null));
     }
 
     @Override
-    public void onComparePressed()
+    public void onDonePressed()
     {
         if (!isDone()) {
             return;
@@ -180,6 +177,6 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
             eventBus.fireEvent(new PlanAddedEvent(planData));
         }
         
-        loginStateManager.goTo(new comparePlans());
+        loginStateManager.goTo(new home());
     }
 }
