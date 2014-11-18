@@ -56,11 +56,11 @@
                         </div>
 
                         	    <p>
-	        <g:Button ui:field="done" styleName="button--heroku">Done</g:Button>
-	        &nbsp;&nbsp;&nbsp;
 	        <g:Button ui:field="addAnother" styleName="button--heroku">Add another</g:Button>
 	        &nbsp;&nbsp;&nbsp;
-	        <g:Button ui:field="cancel" styleName="button--heroku">Cancel</g:Button>
+	        <g:Button ui:field="done" styleName="button--heroku">Analyze Now</g:Button>
+	        &nbsp;&nbsp;&nbsp;
+	        <g:Anchor ui:field="cancel">Cancel</g:Anchor>
 	        	    </p>
 	    </g:HTMLPanel>
 </ui:UiBinder> 

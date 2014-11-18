@@ -4818,4 +4818,8 @@ body:before {
 	content: "%";
 	display: inline-block;
 }
+.icon-number:before {
+	content: "#";
+	display: inline-block;
+}
 }

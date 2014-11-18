@@ -13,6 +13,7 @@ import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.util.FailureLoggingAsyncCallback;
 import fruit.health.client.util.TimedEvent;
 import fruit.health.client.util.Timer;
+import fruit.health.client.view.EditScenarioView;
 import fruit.health.client.view.EnterPlanView;
 import fruit.health.client.view.HomeView;
 import fruit.health.client.view.LoginView;
@@ -20,6 +21,7 @@ import fruit.health.client.view.SignupView;
 import fruit.health.client.view.ViewMaster;
 import fruit.health.client.view.desktop.resources.Resources;
 import fruit.health.client.view.desktop.views.EnterPlanViewImpl;
+import fruit.health.client.view.desktop.views.EditScenarioViewImpl;
 import fruit.health.client.view.desktop.views.HomeViewImpl;
 import fruit.health.client.view.desktop.views.LoginViewImpl;
 import fruit.health.client.view.desktop.views.SignupViewImpl;
@@ -37,6 +39,7 @@ public class DesktopBrowserViewMaster implements ViewMaster
     private FullScreen screen;
     private HomeView homeView;
     private EnterPlanView enterPlanView;
+    private EditScenarioView editScenarioView;
     
     public DesktopBrowserViewMaster()
     {
@@ -106,6 +109,19 @@ public class DesktopBrowserViewMaster implements ViewMaster
         }
 
         callback.run(enterPlanView);
+    }
+
+    @Override
+    public void getEditScenarioView(RunnableWithArg<EditScenarioView> callback)
+    {
+        if (null == editScenarioView)
+        {
+            final Timer timer = new Timer(TimedEvent.VIEW_CREATION, "DesktopBrowserViewMaster.editScenarioView");
+            editScenarioView = new EditScenarioViewImpl(this);
+            timer.end();
+        }
+
+        callback.run(editScenarioView);
     }
 
     /*

@@ -46,13 +46,21 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
             table.setText(0, 0, "Name of Plan");
             table.setText(1, 0, "Premiums");
             table.setText(2, 0, "Use preventive care only");
-            table.setText(3, 0, "Use a few services");
-            table.setText(4, 0, "Serious medical issues");
+            table.setText(3, 0, "Serious medical issues");
+            Anchor customScenario = new Anchor("Custom scenario");
+            customScenario.addClickHandler(new ClickHandler()
+            {
+                @Override public void onClick(ClickEvent event)
+                {
+                    presenter.customScenarioClicked();
+                }
+            });
+            table.setWidget(4, 0, customScenario);
         }
     }
 
     @Override
-    public void showPlan(final PlanData plan, int planNum, String planName, int premiums, int prevOnly, int fewServices, int seriousUse)
+    public void showPlan(final PlanData plan, int planNum, String planName, int premiums, int prevOnly, int seriousUse, int customScenario)
     {
         Anchor link = new Anchor(planName);
         link.addClickHandler(new ClickHandler()
@@ -65,8 +73,8 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
         table.setWidget(0, planNum+1, link);
         table.setText(1, planNum+1, Integer.toString(premiums));
         table.setText(2, planNum+1, Integer.toString(prevOnly));
-        table.setText(3, planNum+1, Integer.toString(fewServices));
-        table.setText(4, planNum+1, Integer.toString(seriousUse));
+        table.setText(3, planNum+1, Integer.toString(seriousUse));
+        table.setText(4, planNum+1, Integer.toString(customScenario));
     }
     
     @UiHandler("enterPlan")

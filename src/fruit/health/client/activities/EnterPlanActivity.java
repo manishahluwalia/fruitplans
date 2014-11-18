@@ -10,6 +10,7 @@ import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.mvp.BaseActivity;
 import fruit.health.client.places.enterPlan;
 import fruit.health.client.places.home;
+import fruit.health.client.util.InputValidation;
 import fruit.health.client.view.EnterPlanView;
 import fruit.health.client.view.EnterPlanView.Presenter;
 import fruit.health.shared.util.RunnableWithArg;
@@ -61,62 +62,29 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
     @Override
     public void onPremiumChanged(String val)
     {
-        planData.premium = readIntVal(val, "premium", 0, 10000);
+        planData.premium = InputValidation.readIntVal(val, "premium", 0, 10000, viewMaster);
         adjustButtons();
     }
 
     @Override
     public void onDeductibleChanged(String val)
     {
-        planData.deductible = readIntVal(val, "deductible", 0, 10000);
+        planData.deductible = InputValidation.readIntVal(val, "deductible", 0, 10000, viewMaster);
         adjustButtons();
     }
 
     @Override
     public void onCopayChanged(String val)
     {
-        planData.copay = readIntVal(val, "co-pay", 0, 100);
+        planData.copay = InputValidation.readIntVal(val, "co-pay", 0, 100, viewMaster);
         adjustButtons();
     }
 
     @Override
     public void onOopMaxChanged(String val)
     {
-        planData.oopMax = readIntVal(val, "out-of-pocket max", 0, 100000);
+        planData.oopMax = InputValidation.readIntVal(val, "out-of-pocket max", 0, 100000, viewMaster);
         adjustButtons();
-    }
-
-    private Integer readIntVal(String val, String field, Integer min, Integer max)
-    {
-        logger.warning("Value: " + val + " for " + field);
-        if (null==val || val.isEmpty()) {
-            return null;
-        }
-        
-        int v;
-        try
-        {
-            v = Integer.parseInt(val);
-        }
-        catch (Exception e)
-        {
-            viewMaster.alertDialog("Bad Input", "Bad value entered for " + field, null, null);
-            return null;
-        }
-        
-        if (null!=min && v<min)
-        {
-            viewMaster.alertDialog("Bad Input", "Bad value entered for " + field+ ". Must be >= " + min, null, null);
-            return null;
-        }
-        
-        if (null!=max && v>max)
-        {
-            viewMaster.alertDialog("Bad Input", "Bad value entered for " + field+ ". Must be <= " + max, null, null);
-            return null;
-        }
-
-        return v;
     }
 
     private void adjustButtons()

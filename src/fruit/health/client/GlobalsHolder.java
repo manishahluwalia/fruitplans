@@ -6,12 +6,25 @@ import java.util.List;
 import com.google.inject.Singleton;
 
 import fruit.health.client.entities.PlanData;
+import fruit.health.client.entities.Scenario;
 
 @Singleton
 public class GlobalsHolder {
 	private LoginStateManager loginStateManager;
-	private List<PlanData> plans = new LinkedList<PlanData>();
+	private final List<PlanData> plans = new LinkedList<PlanData>();
 	public int planNumber=1;
+	private final Scenario customScenario;
+	
+	public GlobalsHolder() {
+	    customScenario = new Scenario();
+	    // DEFAULTS FOR THE CUSTOM SCENARIO
+	    customScenario.isFemale = true;
+	    customScenario.age = 40;
+	    customScenario.gettingPregnant = false;
+	    customScenario.numDocVisits = 2;
+	    customScenario.numDaysInHospital = 0;
+	    customScenario.numRxs = 3;
+	}
 	
 	public LoginStateManager getLoginStateManager() {
 		return loginStateManager;
@@ -27,4 +40,9 @@ public class GlobalsHolder {
 	public List<PlanData> getPlans() {
 	    return plans;
 	}
+	
+    public Scenario getCustomScenario()
+    {
+        return customScenario;
+    }
 }

@@ -11,6 +11,7 @@ public interface HomeView extends BaseView<HomeView.Presenter>
         void enterDataClicked();
         void onPlanClicked(PlanData p);
         
+        void customScenarioClicked();
     }
 
     void prepareFor(int numPlans);

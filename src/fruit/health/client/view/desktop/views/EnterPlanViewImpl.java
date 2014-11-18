@@ -10,10 +10,12 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.EventListener;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Widget;
 
 import fruit.health.client.entities.PlanData;
+import fruit.health.client.util.InputValidation;
 import fruit.health.client.view.EnterPlanView;
 import fruit.health.client.view.EnterPlanView.Presenter;
 import fruit.health.client.view.desktop.BaseViewImpl;
@@ -90,7 +92,7 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
 	
 	@UiField Button done;
 	@UiField Button addAnother;
-	@UiField Button cancel;
+	@UiField Anchor cancel;
 	
     @UiHandler("done")
     public void onDonePressed(ClickEvent e) {
@@ -110,27 +112,11 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
     @Override
     public void showData(PlanData plan)
     {
-        name.setValue(makeEmptyStrIfNull(plan.planName));
-        premium.setValue(convertToStr(plan.premium));
-        deductible.setValue(convertToStr(plan.deductible));
-        copay.setValue(convertToStr(plan.copay));
-        oopMax.setValue(convertToStr(plan.oopMax));
-    }
-
-    private String convertToStr(Integer val)
-    {
-        if (null==val) {
-            return "";
-        }
-        return val.toString();
-    }
-
-    private String makeEmptyStrIfNull(String str)
-    {
-        if (null==str) {
-            return "";
-        }
-        return str;
+        name.setValue(InputValidation.makeEmptyStrIfNull(plan.planName));
+        premium.setValue(InputValidation.convertToStr(plan.premium));
+        deductible.setValue(InputValidation.convertToStr(plan.deductible));
+        copay.setValue(InputValidation.convertToStr(plan.copay));
+        oopMax.setValue(InputValidation.convertToStr(plan.oopMax));
     }
 
     @Override
