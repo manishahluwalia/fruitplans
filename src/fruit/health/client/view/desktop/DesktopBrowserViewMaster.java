@@ -86,13 +86,19 @@ public class DesktopBrowserViewMaster implements ViewMaster
     }
 
     @Override
-    public void getHomeView(RunnableWithArg<HomeView> callback)
+    public void getHomeView(final RunnableWithArg<HomeView> callback)
     {
         if (null == homeView)
         {
             final Timer timer = new Timer(TimedEvent.VIEW_CREATION, "DesktopBrowserViewMaster.homeView");
-            homeView = new HomeViewImpl(this);
-            timer.end();
+            homeView = new HomeViewImpl(new Runnable() {
+                @Override public void run()
+                {
+                    timer.end();
+                    callback.run(homeView);
+                }
+            });
+            return;
         }
 
         callback.run(homeView);

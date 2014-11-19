@@ -3,20 +3,21 @@ package fruit.health.client.view.desktop.views;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
-import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
+import com.google.gwt.visualization.client.DataTable;
+import com.google.gwt.visualization.client.VisualizationUtils;
+import com.google.gwt.visualization.client.visualizations.BarChart;
+import com.google.gwt.visualization.client.visualizations.BarChart.Options;
 
-import fruit.health.client.entities.PlanData;
 import fruit.health.client.view.HomeView;
 import fruit.health.client.view.HomeView.Presenter;
 import fruit.health.client.view.desktop.BaseViewImpl;
-import fruit.health.client.view.desktop.DesktopBrowserViewMaster;
 
 public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
 	
@@ -27,13 +28,14 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
 	interface HomeViewUiBinder extends UiBinder<Widget, HomeViewImpl> {
 	}
 
-	public HomeViewImpl(DesktopBrowserViewMaster desktopBrowserViewMaster) {
+	public HomeViewImpl(Runnable doneCallback) {
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		VisualizationUtils.loadVisualizationApi(doneCallback, BarChart.PACKAGE);
 	}
 
 	@UiField ParagraphElement plansPara;
-
-    @UiField FlexTable table;
+	@UiField SimplePanel chartHolder;
     
     @Override
     public void prepareFor(int numPlans)
@@ -42,39 +44,36 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
             this.plansPara.setAttribute("hidden", "hidden");
         } else {
             this.plansPara.removeAttribute("hidden");
-            table.clear();
-            table.setText(0, 0, "Name of Plan");
-            table.setText(1, 0, "Premiums");
-            table.setText(2, 0, "Use preventive care only");
-            table.setText(3, 0, "Serious medical issues");
-            Anchor customScenario = new Anchor("Custom scenario");
-            customScenario.addClickHandler(new ClickHandler()
-            {
-                @Override public void onClick(ClickEvent event)
-                {
-                    presenter.customScenarioClicked();
-                }
-            });
-            table.setWidget(4, 0, customScenario);
+            chartHolder.clear();
         }
     }
-
+    
     @Override
-    public void showPlan(final PlanData plan, int planNum, String planName, int premiums, int prevOnly, int seriousUse, int customScenario)
-    {
-        Anchor link = new Anchor(planName);
-        link.addClickHandler(new ClickHandler()
-        {
-            @Override public void onClick(ClickEvent event)
-            {
-                presenter.onPlanClicked(plan);
-            }
-        });
-        table.setWidget(0, planNum+1, link);
-        table.setText(1, planNum+1, Integer.toString(premiums));
-        table.setText(2, planNum+1, Integer.toString(prevOnly));
-        table.setText(3, planNum+1, Integer.toString(seriousUse));
-        table.setText(4, planNum+1, Integer.toString(customScenario));
+    public void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs) {
+        Options options = Options.create();
+        options.setWidth(400);
+        options.setHeight(240);
+        options.set3D(true);
+        options.setTitle("Comparision of Plans");
+        options.setTitleX("$ spent by you, per year");
+        options.setTitleY("Plan");
+        
+        DataTable table = DataTable.create();
+        table.addColumn(ColumnType.STRING, "Plan name");
+        table.addColumn(ColumnType.NUMBER, "Min");
+        table.addColumn(ColumnType.NUMBER, "Custom");
+        table.addColumn(ColumnType.NUMBER, "Max");        
+        table.addRows(planNames.length);
+        
+        for (int i=0; i<planNames.length; i++) {
+            table.setValue(i, 0, planNames[i]);
+            table.setValue(i, 1, mins[i]);
+            table.setValue(i, 2, customs[i]);
+            table.setValue(i, 3, maxs[i]);
+        }
+        
+        BarChart chart = new BarChart(table,options);
+        chartHolder.add(chart);
     }
     
     @UiHandler("enterPlan")

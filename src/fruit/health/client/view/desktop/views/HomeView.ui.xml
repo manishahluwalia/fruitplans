@@ -5,8 +5,6 @@
 	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
 	<ui:style>
-      @external table-style;
-      .table-style {}
 	</ui:style>
 
 	<g:HTMLPanel>
@@ -14,9 +12,8 @@
 	    Welcome to fruithealth. We help you compare your insurance plans to see how you fare under different scenarios.
 	   </p>
 	   <p ui:field="plansPara">
-	    This is how much the plans will cost you over the year in various scenarios. Click on the name of a plan to edit it.
-	    <g:FlexTable ui:field="table" styleName="{style.table-style}" />
-	   </p>
+	    <g:SimplePanel ui:field="chartHolder"/>
+	    	   </p>
 	   <p>
 	    <g:Anchor ui:field="enterPlan" styleName="button--heroku">
 	    Click here to add a plan.

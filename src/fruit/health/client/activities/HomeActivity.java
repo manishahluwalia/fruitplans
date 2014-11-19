@@ -41,15 +41,24 @@ public class HomeActivity extends BaseActivity<HomeView, Presenter> implements P
     public void start (AcceptsOneWidget panel)
     {
         super.start(panel);
-        view.prepareFor(plans.size());
         
-        for (int i=0; i<plans.size(); i++) {
+        int numPlans = plans.size();
+        String[] planNames = new String[numPlans];
+        int[] mins = new int[numPlans];
+        int[] maxs = new int[numPlans];
+        int[] customs = new int[numPlans];
+        
+        view.prepareFor(numPlans);
+        
+        for (int i=0; i<numPlans; i++) {
             PlanData p = plans.get(i);
-            view.showPlan(p, i, p.planName, p.premium*12,
-                    expectToPay(p, BILLABLE_MEDICAL_EXPENSES_FOR_MIN_SCENARIO),
-                    expectToPay(p, BILLABLE_MEDICAL_EXPENSES_FOR_MAX_SCENARIO),
-                    expectToPay(p, customScenario.getMedicalExpenses()));
+            planNames[i] = p.planName;
+            mins[i] = expectToPay(p, BILLABLE_MEDICAL_EXPENSES_FOR_MIN_SCENARIO);
+            maxs[i] = expectToPay(p, BILLABLE_MEDICAL_EXPENSES_FOR_MAX_SCENARIO);
+            customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
         }
+        
+        view.showChart(planNames, mins, maxs, customs);
     }
 
     @Override

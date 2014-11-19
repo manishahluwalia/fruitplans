@@ -16,5 +16,5 @@ public interface HomeView extends BaseView<HomeView.Presenter>
 
     void prepareFor(int numPlans);
 
-    public void showPlan(PlanData plan, int planNum, String planName, int premiums, int prevOnly, int fewServices, int seriousUse);
+    void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs);
 }

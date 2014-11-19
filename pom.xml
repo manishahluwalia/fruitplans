@@ -252,6 +252,13 @@
       <scope>provided</scope>
     </dependency>
 
+<dependency>
+	<groupId>com.google.gwt.google-apis</groupId>
+	<artifactId>gwt-visualization</artifactId>
+	<version>1.0.2</version>
+	<scope>provided</scope>
+</dependency>    
+
     <!-- Google APIs, for accessing Cloud Storage and Big Query -->
     <!-- 
     <dependency>
