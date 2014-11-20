@@ -1,0 +1,26 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
+	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+	<ui:style>
+	</ui:style>
+
+	<g:HTMLPanel>
+	    <p>
+	    Welcome to fruithealth. We help you compare your insurance plans to see how you fare under different scenarios.
+	   </p>
+	   <div ui:field="plansPara">
+	    <div style="float: left; width:45%; min-width: 300px; margin-right: 30px; padding-top: 20px; margin-bottom: 20px;">
+	        <div ui:field="slider"/>
+	    </div>
+	    <g:SimplePanel ui:field="chartHolder"/>
+	    	    	   </div>
+	   	   	   <p style="float: none;">
+	    <g:Anchor ui:field="enterPlan" styleName="button--heroku">
+	    Click here to add a plan.
+	   </g:Anchor>
+	   </p>
+	    	</g:HTMLPanel>
+</ui:UiBinder> 

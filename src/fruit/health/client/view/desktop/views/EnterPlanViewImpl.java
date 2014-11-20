@@ -96,7 +96,7 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
 	
     @UiHandler("done")
     public void onDonePressed(ClickEvent e) {
-        presenter.onDonePressed();
+        presenter.onComparePressed();
     }
     
     @UiHandler("addAnother")

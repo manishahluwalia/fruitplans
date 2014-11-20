@@ -96,4 +96,5 @@ public interface ViewMaster
 
     public void getEnterPlanView(RunnableWithArg<EnterPlanView> callback);
     public void getEditScenarioView(RunnableWithArg<EditScenarioView> callback);
+    public void getCompareView(RunnableWithArg<CompareView> callback);
 }

@@ -1,6 +1,7 @@
 package fruit.health.client;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,10 +28,13 @@ import com.google.web.bindery.event.shared.EventBus;
 import fruit.health.client.entities.PlanData;
 import fruit.health.client.events.PlanAddedEvent;
 import fruit.health.client.events.PlanAddedEvent.PlanAddedEventHandler;
+import fruit.health.client.events.PlanEditDoneEvent;
+import fruit.health.client.events.PlanEditDoneEvent.PlanEditDoneEventHandler;
 import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.logging.ClientFlowEvent;
 import fruit.health.client.logging.ClientFlowLogger;
 import fruit.health.client.mvp.BasePlace;
+import fruit.health.client.places.compare;
 import fruit.health.client.places.home;
 import fruit.health.client.rpc.RepeatingCsrfSafeRpcBuilder;
 import fruit.health.client.util.ConvergenceWaiter;
@@ -226,6 +230,19 @@ public class FruitHealth implements EntryPoint, Presenter
             public void onPlanAdded(PlanData plan)
             {
                 injector.getGlobalsHolder().addPlan(plan);
+            }
+        });
+        eventBus.addHandler(PlanEditDoneEvent.TYPE, new PlanEditDoneEventHandler()
+        {
+            @Override
+            public void onCancel()
+            {
+                List<PlanData> plans = injector.getGlobalsHolder().getPlans();
+                if (plans.size()>0) {
+                    injector.getLoginStateManager().goTo(new compare(plans));
+                } else {
+                    injector.getLoginStateManager().goTo(new home());
+                }
             }
         });
         

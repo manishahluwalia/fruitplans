@@ -14,7 +14,7 @@ public interface EnterPlanView extends BaseView<EnterPlanView.Presenter>
         void onOopMaxChanged(String val);
         void onCancelPressed();
         void onAddPressed();
-        void onDonePressed();
+        void onComparePressed();
     }
 
     void showData(PlanData plan);

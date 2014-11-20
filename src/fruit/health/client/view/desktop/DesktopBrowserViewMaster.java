@@ -13,6 +13,7 @@ import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.util.FailureLoggingAsyncCallback;
 import fruit.health.client.util.TimedEvent;
 import fruit.health.client.util.Timer;
+import fruit.health.client.view.CompareView;
 import fruit.health.client.view.EditScenarioView;
 import fruit.health.client.view.EnterPlanView;
 import fruit.health.client.view.HomeView;
@@ -20,8 +21,9 @@ import fruit.health.client.view.LoginView;
 import fruit.health.client.view.SignupView;
 import fruit.health.client.view.ViewMaster;
 import fruit.health.client.view.desktop.resources.Resources;
-import fruit.health.client.view.desktop.views.EnterPlanViewImpl;
+import fruit.health.client.view.desktop.views.CompareViewImpl;
 import fruit.health.client.view.desktop.views.EditScenarioViewImpl;
+import fruit.health.client.view.desktop.views.EnterPlanViewImpl;
 import fruit.health.client.view.desktop.views.HomeViewImpl;
 import fruit.health.client.view.desktop.views.LoginViewImpl;
 import fruit.health.client.view.desktop.views.SignupViewImpl;
@@ -40,6 +42,7 @@ public class DesktopBrowserViewMaster implements ViewMaster
     private HomeView homeView;
     private EnterPlanView enterPlanView;
     private EditScenarioView editScenarioView;
+    private CompareView compareView;
     
     public DesktopBrowserViewMaster()
     {
@@ -91,17 +94,30 @@ public class DesktopBrowserViewMaster implements ViewMaster
         if (null == homeView)
         {
             final Timer timer = new Timer(TimedEvent.VIEW_CREATION, "DesktopBrowserViewMaster.homeView");
-            homeView = new HomeViewImpl(new Runnable() {
+            homeView = new HomeViewImpl(this);
+            timer.end();
+        }
+
+        callback.run(homeView);
+    }
+
+    @Override
+    public void getCompareView(final RunnableWithArg<CompareView> callback)
+    {
+        if (null == compareView)
+        {
+            final Timer timer = new Timer(TimedEvent.VIEW_CREATION, "DesktopBrowserViewMaster.compareView");
+            compareView = new CompareViewImpl(new Runnable() {
                 @Override public void run()
                 {
                     timer.end();
-                    callback.run(homeView);
+                    callback.run(compareView);
                 }
             });
             return;
         }
 
-        callback.run(homeView);
+        callback.run(compareView);
     }
 
     @Override

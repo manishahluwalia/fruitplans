@@ -6,10 +6,10 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
 import fruit.health.client.entities.PlanData;
 import fruit.health.client.events.PlanAddedEvent;
+import fruit.health.client.events.PlanEditDoneEvent;
 import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.mvp.BaseActivity;
 import fruit.health.client.places.enterPlan;
-import fruit.health.client.places.home;
 import fruit.health.client.util.InputValidation;
 import fruit.health.client.view.EnterPlanView;
 import fruit.health.client.view.EnterPlanView.Presenter;
@@ -116,7 +116,7 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
             originalPlan.clone(planData);
         }
         
-        loginStateManager.goTo(new home());
+        eventBus.fireEvent(new PlanEditDoneEvent());
     }
 
     @Override
@@ -134,7 +134,7 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
     }
 
     @Override
-    public void onDonePressed()
+    public void onComparePressed()
     {
         if (!isDone()) {
             return;
@@ -144,6 +144,6 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
             eventBus.fireEvent(new PlanAddedEvent(planData));
         }
         
-        loginStateManager.goTo(new home());
+        eventBus.fireEvent(new PlanEditDoneEvent());
     }
 }
