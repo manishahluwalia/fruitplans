@@ -40,7 +40,7 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
 		slider.setId("scenarioChoosingSlider");
 	}
 
-	@UiField ParagraphElement plansPara;
+	@UiField DivElement plansPara;
 	@UiField SimplePanel chartHolder;
 	@UiField DivElement slider;
 

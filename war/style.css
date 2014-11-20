@@ -4011,7 +4011,7 @@ a.thumbnail.active {
 /* header + footer */
 .navbar {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.16);
-  padding-top: 30px;
+  padding-top: 20px;
   height: 100px;
   position: relative;
   z-index: 1030;
@@ -4824,4 +4824,7 @@ body:before {
 }
 #scenarioChoosingSlider {
 	margin-bottom: 50px;
+}
+.tagline {
+	font-size: 0.5em;
 }

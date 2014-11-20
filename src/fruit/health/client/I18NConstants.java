@@ -13,7 +13,7 @@ import com.google.gwt.i18n.client.LocalizableResource.GenerateKeys;
 public interface I18NConstants extends Constants
 {
     // page titles
-    @DefaultStringValue("FruitHealth: We help you pick the right health plan")
+    @DefaultStringValue("Pick1Plan")
     @Description("The prefix for the title of the browser window which runs the application")
     String getWindowTitlePrefix ();
 

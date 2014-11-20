@@ -15,7 +15,7 @@
         <div class="navbar navbar-header animated fadeInDown">
     <div class="container">
         <div class="row">
-            <div class="col-xs-3 media">
+            <div class="col-xs-4 media">
                 <g:Anchor styleName="pull-left pull-left-md" ui:field="logo1">
                         <i class="solve-icon-logo"></i>
                 </g:Anchor>
@@ -23,7 +23,7 @@
                     <g:Anchor ui:field="logo2">
                         <h2 class="media-heading logotype">
 
-                            FruitHealth
+                            Pick1Plan: <span class="tagline">Helping Decide 2015 Plans</span>
 
                         </h2>
                     </g:Anchor>
@@ -75,7 +75,7 @@
                   <div class="media">
                     <i class="solve-icon-nyc  icon-small  line-height-h2  pull-left  pull-left-sm  hide"></i>
                     <div class="media-body">
-                      &copy; FruitHealth, Inc · Compare your insurance
+                      &copy; Pick1Plan, Inc · Compare your insurance
                     </div>
                   </div>
                 </small>
@@ -83,14 +83,10 @@
             <div class="col-xs-2  text-center">
                <g:Anchor ui:field="logo3"><i class="solve-icon-logo"></i></g:Anchor>
             </div>
-            <div class="col-xs-4">
+            <div class="col-xs-3"> <!-- XXX Why can't this be 40% -->
                 <small class="pull-right">
                   <ul class="list-inline  pull-right">
-                      <li><g:Anchor ui:field="blog">Blog</g:Anchor></li>
-                      <li><g:Anchor ui:field="about">About</g:Anchor></li>
-                      <li><g:Anchor ui:field="jobs">Jobs</g:Anchor></li>
-                      <li><g:Anchor ui:field="contact">Contact</g:Anchor></li>
-                      <li><g:Anchor ui:field="privacyPolicy">Privacy Policy</g:Anchor></li>
+                      <li><g:Anchor ui:field="contact">Contact Us</g:Anchor></li>
                   </ul>
                 </small>
             </div>
