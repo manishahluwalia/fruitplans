@@ -26,7 +26,7 @@ public class enterPlan extends BasePlace implements ReloadingPlace
         @Override
         public enterPlan getBasePlace (String token)
         {
-            return new enterPlan(new PlanData()); // XXX tokenize
+            return new enterPlan(null); // XXX tokenize
         }
     }
 
