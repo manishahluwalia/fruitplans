@@ -20,9 +20,14 @@ public class HomeActivity extends BaseActivity<HomeView, Presenter> implements P
 {
     protected static final Logger logger = Logger.getLogger(HomeActivity.class.getName());
     private static final int BILLABLE_MEDICAL_EXPENSES_FOR_MIN_SCENARIO = 0;
-    private static final int BILLABLE_MEDICAL_EXPENSES_FOR_MAX_SCENARIO = 100000;
+    private static final int BILLABLE_MEDICAL_EXPENSES_FOR_MAX_SCENARIO = 1000000;
     private final List<PlanData> plans;
     private final Scenario customScenario;
+    private int numPlans;
+    private String[] planNames;
+    private int[] mins;
+    private int[] maxs;
+    private int[] customs;
 
     public HomeActivity (home place, AppGinjector injector)
     {
@@ -42,13 +47,11 @@ public class HomeActivity extends BaseActivity<HomeView, Presenter> implements P
     {
         super.start(panel);
         
-        int numPlans = plans.size();
-        String[] planNames = new String[numPlans];
-        int[] mins = new int[numPlans];
-        int[] maxs = new int[numPlans];
-        int[] customs = new int[numPlans];
-        
-        view.prepareFor(numPlans);
+        numPlans = plans.size();
+        planNames = new String[numPlans];
+        mins = new int[numPlans];
+        maxs = new int[numPlans];
+        customs = new int[numPlans];
         
         for (int i=0; i<numPlans; i++) {
             PlanData p = plans.get(i);
@@ -58,6 +61,15 @@ public class HomeActivity extends BaseActivity<HomeView, Presenter> implements P
             customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
         }
         
+        view.prepareFor(numPlans, new String[]{"Very Healthy","Minor Illnesses","Some major issues", "Very Sick"});
+        
+        if (numPlans>0) {
+            showData();
+            view.setScenarioIdx(1);            
+        }
+    }
+    
+    private void showData() {
         view.showChart(planNames, mins, maxs, customs);
     }
 
@@ -94,5 +106,42 @@ public class HomeActivity extends BaseActivity<HomeView, Presenter> implements P
     public void customScenarioClicked()
     {
         loginStateManager.goTo(new editScenario(customScenario));
+    }
+
+    @Override
+    public void onScenarioChange(int newIdx)
+    {
+        switch (newIdx) {
+        case 0:
+            customScenario.numDocVisits = 0;
+            customScenario.numDaysInHospital = 0;
+            customScenario.numRxs = 0;
+            break;
+            
+        case 1:
+            customScenario.numDocVisits = 2;
+            customScenario.numDaysInHospital = 1;
+            customScenario.numRxs = 4;
+            break;
+
+        case 2:
+            customScenario.numDocVisits = 4;
+            customScenario.numDaysInHospital = 3;
+            customScenario.numRxs = 8;
+            break;
+
+        case 3:
+            customScenario.numDocVisits = 20;
+            customScenario.numDaysInHospital = 100;
+            customScenario.numRxs = 100;
+            break;
+        }
+        
+        for (int i=0; i<numPlans; i++) {
+            PlanData p = plans.get(i);
+            customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
+        }
+
+        showData();
     }
 }

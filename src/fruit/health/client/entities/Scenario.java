@@ -5,6 +5,7 @@ public class Scenario
     private static final int AVG_COST_PER_DOC_VISIT = 100;
     private static final int AVG_COST_PER_DAY_IN_HOSPI = 10000;
     private static final int AVG_COST_PER_RX = 50;
+    public String name;
     public Integer age;
     public Boolean isFemale;
     public Boolean gettingPregnant;

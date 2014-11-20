@@ -1,6 +1,8 @@
 package fruit.health.client.view.desktop.views;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -15,13 +17,17 @@ import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.BarChart;
 import com.google.gwt.visualization.client.visualizations.BarChart.Options;
 
+import fruit.health.client.util.JsniUtils;
 import fruit.health.client.view.HomeView;
 import fruit.health.client.view.HomeView.Presenter;
 import fruit.health.client.view.desktop.BaseViewImpl;
 
 public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
 	
-	private static HomeViewUiBinder uiBinder = GWT
+	private static final int CHART_WIDTH = 600;
+	private static final int CHART_HEIGHT = 400;
+	
+    private static HomeViewUiBinder uiBinder = GWT
 			.create(HomeViewUiBinder.class);
 	
 	@UiTemplate("HomeView.ui.xml")
@@ -30,29 +36,55 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
 
 	public HomeViewImpl(Runnable doneCallback) {
 		initWidget(uiBinder.createAndBindUi(this));
-		
 		VisualizationUtils.loadVisualizationApi(doneCallback, BarChart.PACKAGE);
+		slider.setId("scenarioChoosingSlider");
 	}
 
 	@UiField ParagraphElement plansPara;
 	@UiField SimplePanel chartHolder;
-    
-    @Override
-    public void prepareFor(int numPlans)
+	@UiField DivElement slider;
+
+	@Override
+    public void prepareFor(int numPlans, String[] scenarios)
     {
         if (0==numPlans) {
             this.plansPara.setAttribute("hidden", "hidden");
         } else {
             this.plansPara.removeAttribute("hidden");
-            chartHolder.clear();
+            slider.removeAllChildren();
+            prepSlider(JsniUtils.toJsArray(scenarios));
         }
     }
+    
+    private void onSliderChange(int newIdx) {
+        presenter.onScenarioChange(newIdx);
+    }
+    
+    private native JavaScriptObject prepSlider(JavaScriptObject scenarios)
+    /*-{
+        var self = this;
+        var slider = $wnd.jQuery("#scenarioChoosingSlider").slider({min:0, max:scenarios.length-1, step: 1});
+        slider.slider("pips" , { rest: "label", labels: scenarios });
+        slider.on("slidechange", function (event, ui) {
+            self.@fruit.health.client.view.desktop.views.HomeViewImpl::onSliderChange(I)(ui.value);
+        });
+        return slider;
+    }-*/;
+
+    @Override
+    public void setScenarioIdx(int idx) {
+        setSliderValue(idx);
+    }
+    
+    private native void setSliderValue(int val) /*-{
+        var slider = $wnd.jQuery("#scenarioChoosingSlider").slider("value", val);
+    }-*/;
     
     @Override
     public void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs) {
         Options options = Options.create();
-        options.setWidth(400);
-        options.setHeight(240);
+        options.setWidth(CHART_WIDTH);
+        options.setHeight(CHART_HEIGHT);
         options.set3D(true);
         options.setTitle("Comparision of Plans");
         options.setTitleX("$ spent by you, per year");
@@ -60,9 +92,9 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
         
         DataTable table = DataTable.create();
         table.addColumn(ColumnType.STRING, "Plan name");
-        table.addColumn(ColumnType.NUMBER, "Min");
-        table.addColumn(ColumnType.NUMBER, "Custom");
-        table.addColumn(ColumnType.NUMBER, "Max");        
+        table.addColumn(ColumnType.NUMBER, "Perfect Health");
+        table.addColumn(ColumnType.NUMBER, "Typical");
+        table.addColumn(ColumnType.NUMBER, "Severe Illness");        
         table.addRows(planNames.length);
         
         for (int i=0; i<planNames.length; i++) {
@@ -73,6 +105,7 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
         }
         
         BarChart chart = new BarChart(table,options);
+        chartHolder.clear();
         chartHolder.add(chart);
     }
     

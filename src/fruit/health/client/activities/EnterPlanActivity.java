@@ -28,7 +28,6 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
         super(injector);
         if (null==place.getPlan()) {
             planData=new PlanData();
-            planData.planName = "Option " + injector.getGlobalsHolder().planNumber++;
             isAdd=true;
             originalPlan = null;
         } else {

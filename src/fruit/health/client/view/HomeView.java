@@ -12,9 +12,12 @@ public interface HomeView extends BaseView<HomeView.Presenter>
         void onPlanClicked(PlanData p);
         
         void customScenarioClicked();
+        void onScenarioChange(int newIdx);
     }
 
-    void prepareFor(int numPlans);
-
     void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs);
+
+    void prepareFor(int numPlans, String[] scenarios);
+
+    void setScenarioIdx(int idx);
 }

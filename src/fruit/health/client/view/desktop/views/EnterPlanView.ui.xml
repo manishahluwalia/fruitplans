@@ -24,7 +24,7 @@
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-question  form-control-icon  icon-white"></i>
-                            <input ui:field="name" type="text" placeholder="What you'd like to call the plan" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="name"/>
+                            <input ui:field="name" type="text" placeholder="What's the name of the plan (e.g. Kaiser, Blue Cross)" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="name"/>
                         </div>
 
 	    				Monthly premium:
@@ -58,7 +58,7 @@
                         	    <p>
 	        <g:Button ui:field="addAnother" styleName="button--heroku">Add another</g:Button>
 	        &nbsp;&nbsp;&nbsp;
-	        <g:Button ui:field="done" styleName="button--heroku">Analyze Now</g:Button>
+	        <g:Button ui:field="done" styleName="button--heroku">Compare Plans</g:Button>
 	        &nbsp;&nbsp;&nbsp;
 	        <g:Anchor ui:field="cancel">Cancel</g:Anchor>
 	        	    </p>

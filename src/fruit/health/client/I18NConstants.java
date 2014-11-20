@@ -13,7 +13,7 @@ import com.google.gwt.i18n.client.LocalizableResource.GenerateKeys;
 public interface I18NConstants extends Constants
 {
     // page titles
-    @DefaultStringValue("FruitHealth")
+    @DefaultStringValue("FruitHealth: We help you pick the right health plan")
     @Description("The prefix for the title of the browser window which runs the application")
     String getWindowTitlePrefix ();
 
@@ -41,7 +41,7 @@ public interface I18NConstants extends Constants
     @Description("The title of the browser when the user is in the home place")
     String getHomePlaceTitle ();
 
-    @DefaultStringValue("Enter Plan Data")
+    @DefaultStringValue("Enter Health Plan Data")
     @Description("The title of the browser when the user is in the enterPlan place")
     String getEnterPlanPlaceTitle ();
 
