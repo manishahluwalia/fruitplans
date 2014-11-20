@@ -8,14 +8,18 @@
 	</ui:style>
 
 	<g:HTMLPanel>
-		<p>
+		    <div style="text-align:center;">
+	    		<p>
 			Welcome to fruithealth. We help you compare your insurance plans to see how
 			you fare under different scenarios.
 		</p>
+		</div>
 		<p>
+		    <div style="text-align:center;">
 			<g:Anchor ui:field="enterPlan" styleName="button--heroku">
 				Click here to add a plan.
 			</g:Anchor>
+			</div>
 		</p>
 	</g:HTMLPanel>
 </ui:UiBinder> 
