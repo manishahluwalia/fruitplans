@@ -7,12 +7,13 @@
 	<ui:with type="fruit.health.client.view.desktop.resources.Resources" field="res"></ui:with>
     <g:HTMLPanel ui:field="wholeScreen" styleName="overflow_auto">
  
-<div hidden="true" class="container spinner spinner-screen" ui:field="busyOverlay">
-            <div class="spinner-icon spinner-icon-pos"></div>
-        </div>
+<div hidden="true" class="container spinner spinner-screen"
+	ui:field="busyOverlay">
+	<div class="spinner-icon spinner-icon-pos"></div>
+</div>
 
  
-        <div class="navbar navbar-header animated fadeInDown">
+<div class="navbar navbar-header animated fadeInDown">
     <div class="container">
         <div class="row">
             <div class="col-xs-4 media">
@@ -23,7 +24,7 @@
                     <g:Anchor ui:field="logo2">
                         <h2 class="media-heading logotype">
 
-                            Pick1Plan: <span class="tagline">Helping Decide 2015 Plans</span>
+                            Pick1Plan
 
                         </h2>
                     </g:Anchor>
@@ -38,14 +39,13 @@
                     <g:Anchor styleName="btn btn-faded-light pull-right" ui:field="login">Log In</g:Anchor>
                     -->
                 </div>
-
             </div>
         </div>
     </div>
-        </div>
+</div>
 
 
-<div id="ng-view" class="ng-scope" autoscroll="true" >
+<div id="ng-view" class="ng-scope" autoscroll="true">
 
     <div class="container auth-wrapper ng-scope">
         <!--
@@ -59,11 +59,10 @@
             </div>
         </div>
 
-<div class="row">
+	    <div class="row">
 
-    <g:SimplePanel ui:field="body"/>
-</div>
-
+	    	<g:SimplePanel ui:field="body" />
+	    </div>
     </div>
 </div>
 
