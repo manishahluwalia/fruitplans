@@ -23,8 +23,14 @@ public class HomeViewImpl extends BaseViewImpl<Presenter> implements HomeView {
 
 	public HomeViewImpl(DesktopBrowserViewMaster viewMaster) {
 		initWidget(uiBinder.createAndBindUi(this));
+		
+		facebookReparse();
 	}
 
+    private native void facebookReparse()
+    /*-{
+        $wnd.FB.XFBML.parse();
+    }-*/;
     
     @UiHandler("enterPlan")
     public void enterPlanClicked(ClickEvent e) {

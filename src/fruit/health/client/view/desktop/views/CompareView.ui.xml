@@ -26,9 +26,10 @@
 
 		<div style="float: none;">
 			<div style="text-align:center;" class="form-group input-box">
-				Share this link:
+			<div ui:field="fbShareButton" class="fb-share-button" data-href="http://www.pick1plan.com" data-layout="button"></div>
+				or, Share this link:
 				<input ui:field="linkToPage" class="form-control  form-contorl-faded  input-sm"
-					style="display:inline; width: 40em;" readOnly="true" />
+					style="display:inline; width: 35em;" readOnly="true" />
 			</div>
 		</div>
 	</g:HTMLPanel>

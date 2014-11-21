@@ -72,16 +72,12 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
             customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
         }
         
-        view.prepareFor(numPlans, new String[]{"Very Healthy","Minor Illnesses","Some major issues", "Very Sick"});
+        view.prepareFor(numPlans, new String[]{"Perfect Health","Minor Illnesses","Some major issues", "Very Sick"});
         
         if (numPlans>0) {
-            showData();
+            view.showChart(planNames, mins, maxs, customs);
             view.setScenarioIdx(1);            
         }
-    }
-    
-    private void showData() {
-        view.showChart(planNames, mins, maxs, customs);
     }
 
     @Override
@@ -147,6 +143,6 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
             customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
         }
 
-        showData();
+        view.updateCustomScenario(customs);
     }
 }

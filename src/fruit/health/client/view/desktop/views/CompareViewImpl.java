@@ -44,7 +44,11 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 	@UiField SimplePanel chartHolder;
 	@UiField DivElement slider;
 	
+	@UiField DivElement fbShareButton;
 	@UiField InputElement linkToPage;
+    private DataTable table;
+    private BarChart chart;
+    private Options options;
 
 	@Override
     public void prepareFor(int numPlans, String[] scenarios)
@@ -84,19 +88,23 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
     
     @Override
     public void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs) {
-        Options options = Options.create();
+        options = Options.create();
         options.setWidth(CHART_WIDTH);
         options.setHeight(CHART_HEIGHT);
         options.set3D(true);
         options.setTitle("Comparision of Plans");
         options.setTitleX("$ spent by you, per year");
         options.setTitleY("Plan");
+        options.setOption("animation.duration", 10000);
+        options.setOption("animation.easing", "inAndOut");
+        //options.setColors("green", "blue", "orange");
+        //options.setColors("blue", "red", "orange");
         
-        DataTable table = DataTable.create();
+        table = DataTable.create();
         table.addColumn(ColumnType.STRING, "Plan name");
         table.addColumn(ColumnType.NUMBER, "Perfect Health");
         table.addColumn(ColumnType.NUMBER, "Typical");
-        table.addColumn(ColumnType.NUMBER, "Severe Illness");        
+        table.addColumn(ColumnType.NUMBER, "Very Sick");        
         table.addRows(planNames.length);
         
         for (int i=0; i<planNames.length; i++) {
@@ -106,9 +114,18 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
             table.setValue(i, 3, maxs[i]);
         }
         
-        BarChart chart = new BarChart(table,options);
+        chart = new BarChart(table,options);
         chartHolder.clear();
         chartHolder.add(chart);
+    }
+
+    @Override
+    public void updateCustomScenario(int[] customs) {
+        for (int i=0; i<customs.length; i++) {
+            table.setValue(i, 2, customs[i]);
+        }
+        
+        chart.draw(table, options);
     }
     
     @UiHandler("enterPlan")
@@ -119,5 +136,12 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
     @Override
     public void setShareLink(String link) {
         linkToPage.setValue(link);
+        fbShareButton.setAttribute("data-href", link);
+        facebookReparse();
     }
+
+    private native void facebookReparse()
+    /*-{
+        $wnd.FB.XFBML.parse();
+    }-*/;
 }
