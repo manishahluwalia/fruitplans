@@ -73,7 +73,7 @@ public class RemoteLogHandler extends RemoteLogHandlerBase
         }
     }
 
-    /* XXX The following should be read from properties */
+    /* XXX The following should be read from properties, and validated here */
 
     /** The number of ms to buffer the logs before sending them to the server */
     private static final int PERIOD_TO_UPLOAD_LOGS = 10000; // in ms
@@ -87,7 +87,7 @@ public class RemoteLogHandler extends RemoteLogHandlerBase
     private LinkedList<LogRecord> logBuffer;
     private final HashMap<String, String> context = new HashMap<String, String>();
     private boolean contextInitialized = false;
-    private boolean noBuffering = false;
+    private boolean noBuffering = !GWT.isProdMode(); // Never buffer in dev mode. Buffer as long as possible in Prod mode
 
     public RemoteLogHandler ()
     {
@@ -150,7 +150,7 @@ public class RemoteLogHandler extends RemoteLogHandlerBase
 
             logBuffer.addLast(_record);
 
-            if (noBuffering
+            if (noBuffering 
                     || record.getLevel().intValue() >= FLUSH_LOG_LEVEL_THRESHOLD.intValue()
                     || logBuffer.size() >= BUFFER_SIZE_THRESHOLD)
             {
