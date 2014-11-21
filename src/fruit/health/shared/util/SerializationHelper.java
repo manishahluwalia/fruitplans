@@ -1,7 +1,7 @@
 package fruit.health.shared.util;
 
 public class SerializationHelper {
-    static final char SEPARATOR_CHAR = '.';
+    static final char SEPARATOR_CHAR = ';';
     static final int ENCODING_VERSION = 1;
 	static final long NULL_MARKER = -1;
 
@@ -12,8 +12,13 @@ public class SerializationHelper {
     	writeLong(object_version);
     }
     
-	public void writeLong(long data) {
+    public void writeLong(long data) {
         buffer.append(Long.toString(data));
+        buffer.append(SEPARATOR_CHAR);
+    }
+    
+    public void writeDouble(double data) {
+        buffer.append(Double.toString(data));
         buffer.append(SEPARATOR_CHAR);
     }
 

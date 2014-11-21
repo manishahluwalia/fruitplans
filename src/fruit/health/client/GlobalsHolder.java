@@ -11,7 +11,7 @@ import fruit.health.client.entities.Scenario;
 @Singleton
 public class GlobalsHolder {
 	private LoginStateManager loginStateManager;
-	private final List<PlanData> plans = new LinkedList<PlanData>();
+	private List<PlanData> plans = new LinkedList<PlanData>();
 	public int planNumber=1;
 	private final Scenario customScenario;
 	
@@ -44,5 +44,10 @@ public class GlobalsHolder {
     public Scenario getCustomScenario()
     {
         return customScenario;
+    }
+
+    public void setPlans(List<PlanData> plans)
+    {
+        this.plans = plans;
     }
 }

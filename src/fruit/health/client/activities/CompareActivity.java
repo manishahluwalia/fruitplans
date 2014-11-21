@@ -12,6 +12,7 @@ import fruit.health.client.mvp.BaseActivity;
 import fruit.health.client.places.compare;
 import fruit.health.client.places.editScenario;
 import fruit.health.client.places.enterPlan;
+import fruit.health.client.util.URLCreator;
 import fruit.health.client.view.CompareView;
 import fruit.health.client.view.CompareView.Presenter;
 import fruit.health.shared.util.RunnableWithArg;
@@ -23,6 +24,7 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
     private static final int BILLABLE_MEDICAL_EXPENSES_FOR_MIN_SCENARIO = 0;
     private static final int BILLABLE_MEDICAL_EXPENSES_FOR_MAX_SCENARIO = 100000000;
     
+    private final compare place;
     private final List<PlanData> plans;
     private final Scenario customScenario;
     private int numPlans;
@@ -31,11 +33,16 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
     private int[] maxs;
     private int[] customs;
 
+    private final URLCreator urlCreator;
+
     public CompareActivity (compare place, AppGinjector injector)
     {
         super(injector);
+        this.place = place;
         this.plans  = place.getPlans();
+        injector.getGlobalsHolder().setPlans(plans);
         customScenario = injector.getGlobalsHolder().getCustomScenario();
+        urlCreator = injector.getURLCreator();
     }
 
     @Override
@@ -48,6 +55,8 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
     public void start (AcceptsOneWidget panel)
     {
         super.start(panel);
+        
+        view.setShareLink(urlCreator.getLinkToPlace(place));
         
         numPlans = plans.size();
         planNames = new String[numPlans];

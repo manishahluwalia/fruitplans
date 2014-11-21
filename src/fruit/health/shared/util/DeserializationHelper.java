@@ -33,10 +33,19 @@ public class DeserializationHelper {
     public long readLong() throws IncompleteData {
         StringBuffer buf = new StringBuffer();
         char c;
-        while (SerializationHelper.SEPARATOR_CHAR!=(c = serialized[_idx++])) {
+        while (SerializationHelper.SEPARATOR_CHAR!=(c = getNextChar())) {
             buf.append(c);
         }
         return Long.parseLong(buf.toString());
+    }
+
+    public double readDouble() throws IncompleteData {
+        StringBuffer buf = new StringBuffer();
+        char c;
+        while (SerializationHelper.SEPARATOR_CHAR!=(c = getNextChar())) {
+            buf.append(c);
+        }
+        return Double.parseDouble(buf.toString());
     }
 
     public Long[] readLongArray() throws IncompleteData {
@@ -67,5 +76,13 @@ public class DeserializationHelper {
 
 	public boolean hasMore() {
 		return serialized.length!=_idx;
+	}
+	
+	private char getNextChar() throws IncompleteData {
+	    if (hasMore()) {
+	        return serialized[_idx++];
+	    } else {
+	        throw new IncompleteData();
+	    }
 	}
 }

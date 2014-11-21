@@ -17,4 +17,6 @@ public interface CompareView extends BaseView<CompareView.Presenter>
     void prepareFor(int numPlans, String[] scenarios);
 
     void setScenarioIdx(int idx);
+    
+    void setShareLink(String link);
 }

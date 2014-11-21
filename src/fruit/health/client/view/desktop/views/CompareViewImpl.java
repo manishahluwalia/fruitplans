@@ -3,6 +3,7 @@ package fruit.health.client.view.desktop.views;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -42,6 +43,8 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 	@UiField DivElement plansPara;
 	@UiField SimplePanel chartHolder;
 	@UiField DivElement slider;
+	
+	@UiField InputElement linkToPage;
 
 	@Override
     public void prepareFor(int numPlans, String[] scenarios)
@@ -111,5 +114,10 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
     @UiHandler("enterPlan")
     public void enterPlanClicked(ClickEvent e) {
         presenter.enterPlanClicked();
+    }
+    
+    @Override
+    public void setShareLink(String link) {
+        linkToPage.setValue(link);
     }
 }

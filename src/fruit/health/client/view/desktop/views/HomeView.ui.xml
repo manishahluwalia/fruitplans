@@ -21,5 +21,10 @@
 			</g:Anchor>
 			</div>
 		</p>
-	</g:HTMLPanel>
+		<p>
+		    <div style="text-align:center;">
+			<div class="fb-share-button" data-href="http://www.pick1plan.com" data-layout="button"></div>
+			</div>
+		</p>
+			</g:HTMLPanel>
 </ui:UiBinder> 
