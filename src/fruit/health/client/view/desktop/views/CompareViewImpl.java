@@ -1,5 +1,8 @@
 package fruit.health.client.view.desktop.views;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.DivElement;
@@ -23,6 +26,7 @@ import fruit.health.client.view.CompareView.Presenter;
 import fruit.health.client.view.desktop.BaseViewImpl;
 
 public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareView {
+	private static final Logger logger = Logger.getLogger(CompareViewImpl.class.getName());
 	
 	private static final int CHART_WIDTH = 600;
 	private static final int CHART_HEIGHT = 400;
@@ -137,7 +141,11 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
     public void setShareLink(String link) {
         linkToPage.setValue(link);
         fbShareButton.setAttribute("data-href", link);
-        facebookReparse();
+        try {
+            facebookReparse();
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Could not initialize facebook button", e);
+        }
     }
 
     private native void facebookReparse()
