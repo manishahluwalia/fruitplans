@@ -9,16 +9,19 @@ public interface CompareView extends BaseView<CompareView.Presenter>
         void enterPlanClicked();
         
         void customScenarioClicked();
-        void onScenarioChange(int newIdx);
+        
+        void onNumDocVisitsChanged(int numDocVisits);
+        void onNumRxsChanged(int numRxs);
+        void onNumHospiDaysChanged(int numHospiDays);
     }
 
     void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs);
 
-    void prepareFor(int numPlans, String[] scenarios);
-
-    void setScenarioIdx(int idx);
+    void setScenario(int numDocVisits, int numRxs, int numHospiDays);
     
     void setShareLink(String link);
 
     void updateCustomScenario(int[] customs);
+
+    void prepareFor(int numPlans, int maxDocVisits, int maxRxs, int maxHospiDays);
 }

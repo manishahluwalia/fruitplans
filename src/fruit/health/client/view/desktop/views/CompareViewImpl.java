@@ -20,7 +20,6 @@ import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.BarChart;
 import com.google.gwt.visualization.client.visualizations.BarChart.Options;
 
-import fruit.health.client.util.JsniUtils;
 import fruit.health.client.view.CompareView;
 import fruit.health.client.view.CompareView.Presenter;
 import fruit.health.client.view.desktop.BaseViewImpl;
@@ -41,54 +40,77 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 	public CompareViewImpl(Runnable doneCallback) {
 		initWidget(uiBinder.createAndBindUi(this));
 		VisualizationUtils.loadVisualizationApi(doneCallback, BarChart.PACKAGE);
-		slider.setId("scenarioChoosingSlider");
 	}
 
 	@UiField DivElement plansPara;
 	@UiField SimplePanel chartHolder;
-	@UiField DivElement slider;
 	
 	@UiField DivElement fbShareButton;
 	@UiField InputElement linkToPage;
+	
     private DataTable table;
     private BarChart chart;
     private Options options;
 
 	@Override
-    public void prepareFor(int numPlans, String[] scenarios)
+    public void prepareFor(int numPlans, int maxDocVisits, int maxRxs, int maxHospiDays)
     {
         if (0==numPlans) {
             this.plansPara.setAttribute("hidden", "hidden");
         } else {
             this.plansPara.removeAttribute("hidden");
-            slider.removeAllChildren();
-            prepSlider(JsniUtils.toJsArray(scenarios));
+            prepSlider(maxDocVisits, maxRxs, maxHospiDays);
         }
     }
     
-    private void onSliderChange(int newIdx) {
-        presenter.onScenarioChange(newIdx);
-    }
-    
-    private native JavaScriptObject prepSlider(JavaScriptObject scenarios)
+	private void onNumDocVisitsChanged(int numDocVisits) {
+	    presenter.onNumDocVisitsChanged(numDocVisits);
+	}
+	
+	private void onNumRxsChanged(int numRxs) {
+	    presenter.onNumRxsChanged(numRxs);
+	}
+	
+	private void onNumHospiDaysChanged(int numHospiDays) {
+	    presenter.onNumHospiDaysChanged(numHospiDays);
+	}
+	
+    private native void prepSlider(int maxDocVisits, int maxRxs, int maxHospiDays)
     /*-{
         var self = this;
-        var slider = $wnd.jQuery("#scenarioChoosingSlider").slider({min:0, max:scenarios.length-1, step: 1});
-        slider.slider("pips" , { rest: "label", labels: scenarios });
-        slider.on("slidechange", function (event, ui) {
-            self.@fruit.health.client.view.desktop.views.CompareViewImpl::onSliderChange(I)(ui.value);
+        
+        var slider1 = $wnd.jQuery("#numDocVisitsSlider").slider({min:0, max:maxDocVisits, step: 1});
+        slider1.slider("pips" , { rest: false });
+        slider1.slider("float");
+        slider1.on("slidechange", function (event, ui) {
+            self.@fruit.health.client.view.desktop.views.CompareViewImpl::onNumDocVisitsChanged(I)(ui.value);
         });
-        return slider;
+        
+        var slider2 = $wnd.jQuery("#numRxsSlider").slider({min:0, max:maxRxs, step: 1});
+        slider2.slider("pips" , { rest: false });
+        slider2.slider("float");
+        slider2.on("slidechange", function (event, ui) {
+            self.@fruit.health.client.view.desktop.views.CompareViewImpl::onNumRxsChanged(I)(ui.value);
+        });
+        
+        var slider3 = $wnd.jQuery("#numHospitalDaysSlider").slider({min:0, max:maxHospiDays, step: 1});
+        slider3.slider("pips" , { rest: false });
+        slider3.slider("float");
+        slider3.on("slidechange", function (event, ui) {
+            self.@fruit.health.client.view.desktop.views.CompareViewImpl::onNumHospiDaysChanged(I)(ui.value);
+        });
+    }-*/;
+    
+    private native void setSliderValues(int numDocVisits, int numRxs, int numHospiDays) /*-{
+        $wnd.jQuery("#numDocVisitsSlider").slider("value", numDocVisits);
+        $wnd.jQuery("#numRxsSlider").slider("value", numRxs);
+        $wnd.jQuery("#numHospitalDaysSlider").slider("value", numHospiDays);
     }-*/;
 
     @Override
-    public void setScenarioIdx(int idx) {
-        setSliderValue(idx);
+    public void setScenario(int numDocVisits, int numRxs, int numHospiDays) {
+        setSliderValues(numDocVisits, numRxs, numHospiDays);
     }
-    
-    private native void setSliderValue(int val) /*-{
-        var slider = $wnd.jQuery("#scenarioChoosingSlider").slider("value", val);
-    }-*/;
     
     @Override
     public void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs) {
@@ -98,16 +120,14 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         options.set3D(true);
         options.setTitle("Comparision of Plans");
         options.setTitleX("$ spent by you, per year");
-        options.setTitleY("Plan");
-        options.setOption("animation.duration", 10000);
-        options.setOption("animation.easing", "inAndOut");
-        //options.setColors("green", "blue", "orange");
-        //options.setColors("blue", "red", "orange");
+        //options.setTitleY("Plan");
+        options.setOption("animation", getAnimationOptions());
+        options.setOption("colors", getColors());
         
         table = DataTable.create();
         table.addColumn(ColumnType.STRING, "Plan name");
         table.addColumn(ColumnType.NUMBER, "Perfect Health");
-        table.addColumn(ColumnType.NUMBER, "Typical");
+        table.addColumn(ColumnType.NUMBER, "Your health");
         table.addColumn(ColumnType.NUMBER, "Very Sick");        
         table.addRows(planNames.length);
         
@@ -122,6 +142,16 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         chartHolder.clear();
         chartHolder.add(chart);
     }
+
+    private native JavaScriptObject getAnimationOptions()
+    /*-{
+        return {duration: 1000, easing: 'inAndOut'};
+    }-*/;
+
+    private native JavaScriptObject getColors()
+    /*-{
+        return [{color:'#008000', darker:'#005900'}, {color:'#0000ff', darker:'#0000b2'}, {color: '#800000', darker: '#590000'}];
+    }-*/;
 
     @Override
     public void updateCustomScenario(int[] customs) {

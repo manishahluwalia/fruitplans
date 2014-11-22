@@ -72,11 +72,11 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
             customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
         }
         
-        view.prepareFor(numPlans, new String[]{"Perfect Health","Minor Illnesses","Some major issues", "Very Sick"});
+        view.prepareFor(numPlans, 200, 500, 100);
         
         if (numPlans>0) {
             view.showChart(planNames, mins, maxs, customs);
-            view.setScenarioIdx(1);            
+            view.setScenario(customScenario.numDocVisits, customScenario.numRxs, customScenario.numDaysInHospital);            
         }
     }
 
@@ -109,34 +109,9 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
         loginStateManager.goTo(new editScenario(customScenario));
     }
 
-    @Override
-    public void onScenarioChange(int newIdx)
+    
+    private void customScenarioChanged()
     {
-        switch (newIdx) {
-        case 0:
-            customScenario.numDocVisits = 0;
-            customScenario.numDaysInHospital = 0;
-            customScenario.numRxs = 0;
-            break;
-            
-        case 1:
-            customScenario.numDocVisits = 2;
-            customScenario.numDaysInHospital = 1;
-            customScenario.numRxs = 4;
-            break;
-
-        case 2:
-            customScenario.numDocVisits = 4;
-            customScenario.numDaysInHospital = 3;
-            customScenario.numRxs = 8;
-            break;
-
-        case 3:
-            customScenario.numDocVisits = 20;
-            customScenario.numDaysInHospital = 100;
-            customScenario.numRxs = 100;
-            break;
-        }
         
         for (int i=0; i<numPlans; i++) {
             PlanData p = plans.get(i);
@@ -144,5 +119,26 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
         }
 
         view.updateCustomScenario(customs);
+    }
+
+    @Override
+    public void onNumDocVisitsChanged(int numDocVisits)
+    {
+        customScenario.numDocVisits = numDocVisits;
+        customScenarioChanged();
+    }
+
+    @Override
+    public void onNumRxsChanged(int numRxs)
+    {
+        customScenario.numRxs = numRxs;
+        customScenarioChanged();
+    }
+
+    @Override
+    public void onNumHospiDaysChanged(int numHospiDays)
+    {
+        customScenario.numDaysInHospital = numHospiDays;
+        customScenarioChanged();
     }
 }
