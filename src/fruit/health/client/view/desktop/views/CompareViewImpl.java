@@ -63,18 +63,6 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         }
     }
     
-	private void onNumDocVisitsChanged(int numDocVisits) {
-	    presenter.onNumDocVisitsChanged(numDocVisits);
-	}
-	
-	private void onNumRxsChanged(int numRxs) {
-	    presenter.onNumRxsChanged(numRxs);
-	}
-	
-	private void onNumHospitalizationsChanged(int numHospitalizations) {
-	    presenter.onNumHospitalizationsChanged(numHospitalizations);
-	}
-	
     private native void prepSlider(int maxDocVisits, int maxRxs, int maxHospitalizations)
     /*-{
         var self = this;
@@ -83,21 +71,21 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         slider1.slider("pips" , { rest: false });
         slider1.slider("float");
         slider1.on("slidechange", function (event, ui) {
-            self.@fruit.health.client.view.desktop.views.CompareViewImpl::onNumDocVisitsChanged(I)(ui.value);
+            self.@fruit.health.client.view.desktop.BaseViewImpl::presenter.@fruit.health.client.view.CompareView.Presenter::onNumDocVisitsChanged(I)(ui.value);
         });
         
         var slider2 = $wnd.jQuery("#numRxsSlider").slider({min:0, max:maxRxs, step: 1});
         slider2.slider("pips" , { rest: false });
         slider2.slider("float");
         slider2.on("slidechange", function (event, ui) {
-            self.@fruit.health.client.view.desktop.views.CompareViewImpl::onNumRxsChanged(I)(ui.value);
+            self.@fruit.health.client.view.desktop.BaseViewImpl::presenter.@fruit.health.client.view.CompareView.Presenter::onNumRxsChanged(I)(ui.value);
         });
         
         var slider3 = $wnd.jQuery("#numHospitalizationsSlider").slider({min:0, max:maxHospitalizations, step: 1});
         slider3.slider("pips" , { rest: false });
         slider3.slider("float");
         slider3.on("slidechange", function (event, ui) {
-            self.@fruit.health.client.view.desktop.views.CompareViewImpl::onNumHospitalizationsChanged(I)(ui.value);
+            self.@fruit.health.client.view.desktop.BaseViewImpl::presenter.@fruit.health.client.view.CompareView.Presenter::onNumHospitalizationsChanged(I)(ui.value);
         });
     }-*/;
     
