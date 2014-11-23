@@ -72,11 +72,11 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
             customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
         }
         
-        view.prepareFor(numPlans, 200, 500, 100);
+        view.prepareFor(numPlans, 200, 500, 10);
         
         if (numPlans>0) {
             view.showChart(planNames, mins, maxs, customs);
-            view.setScenario(customScenario.numDocVisits, customScenario.numRxs, customScenario.numDaysInHospital);            
+            view.setScenario(customScenario.numDocVisits, customScenario.numRxs, customScenario.numHospitalizations);            
         }
     }
 
@@ -136,9 +136,9 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
     }
 
     @Override
-    public void onNumHospiDaysChanged(int numHospiDays)
+    public void onNumHospitalizationsChanged(int numHospitalizations)
     {
-        customScenario.numDaysInHospital = numHospiDays;
+        customScenario.numHospitalizations = numHospitalizations;
         customScenarioChanged();
     }
 }

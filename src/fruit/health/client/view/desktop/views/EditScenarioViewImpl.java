@@ -103,7 +103,7 @@ public class EditScenarioViewImpl extends BaseViewImpl<Presenter> implements Edi
         age.setValue(InputValidation.convertToStr(scenario.age));
         numDocVists.setValue(InputValidation.convertToStr(scenario.numDocVisits));
         numRxs.setValue(InputValidation.convertToStr(scenario.numRxs));
-        numHospiDays.setValue(InputValidation.convertToStr(scenario.numDaysInHospital));
+        numHospiDays.setValue(InputValidation.convertToStr(scenario.numHospitalizations));
     }
 
     @Override

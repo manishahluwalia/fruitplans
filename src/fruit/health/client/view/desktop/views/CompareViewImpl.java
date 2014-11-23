@@ -71,11 +71,11 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 	    presenter.onNumRxsChanged(numRxs);
 	}
 	
-	private void onNumHospiDaysChanged(int numHospiDays) {
-	    presenter.onNumHospiDaysChanged(numHospiDays);
+	private void onNumHospitalizationsChanged(int numHospitalizations) {
+	    presenter.onNumHospitalizationsChanged(numHospitalizations);
 	}
 	
-    private native void prepSlider(int maxDocVisits, int maxRxs, int maxHospiDays)
+    private native void prepSlider(int maxDocVisits, int maxRxs, int maxHospitalizations)
     /*-{
         var self = this;
         
@@ -93,23 +93,23 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
             self.@fruit.health.client.view.desktop.views.CompareViewImpl::onNumRxsChanged(I)(ui.value);
         });
         
-        var slider3 = $wnd.jQuery("#numHospitalDaysSlider").slider({min:0, max:maxHospiDays, step: 1});
+        var slider3 = $wnd.jQuery("#numHospitalizationsSlider").slider({min:0, max:maxHospitalizations, step: 1});
         slider3.slider("pips" , { rest: false });
         slider3.slider("float");
         slider3.on("slidechange", function (event, ui) {
-            self.@fruit.health.client.view.desktop.views.CompareViewImpl::onNumHospiDaysChanged(I)(ui.value);
+            self.@fruit.health.client.view.desktop.views.CompareViewImpl::onNumHospitalizationsChanged(I)(ui.value);
         });
     }-*/;
     
-    private native void setSliderValues(int numDocVisits, int numRxs, int numHospiDays) /*-{
+    private native void setSliderValues(int numDocVisits, int numRxs, int numHospitalizations) /*-{
         $wnd.jQuery("#numDocVisitsSlider").slider("value", numDocVisits);
         $wnd.jQuery("#numRxsSlider").slider("value", numRxs);
-        $wnd.jQuery("#numHospitalDaysSlider").slider("value", numHospiDays);
+        $wnd.jQuery("#numHospitalizationsSlider").slider("value", numHospitalizations);
     }-*/;
 
     @Override
-    public void setScenario(int numDocVisits, int numRxs, int numHospiDays) {
-        setSliderValues(numDocVisits, numRxs, numHospiDays);
+    public void setScenario(int numDocVisits, int numRxs, int numHospitalizations) {
+        setSliderValues(numDocVisits, numRxs, numHospitalizations);
     }
     
     @Override

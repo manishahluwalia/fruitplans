@@ -79,7 +79,7 @@ public class EditScenarioActivity extends BaseActivity<EditScenarioView, Present
     @Override
     public void onNumHospiDaysChanged(String value)
     {
-        scenario.numDaysInHospital =  InputValidation.readIntVal(value, "number of days in hospital", 0, 365, viewMaster);
+        scenario.numHospitalizations =  InputValidation.readIntVal(value, "number of days in hospital", 0, 365, viewMaster);
         adjustButtons();
     }
 
@@ -97,7 +97,7 @@ public class EditScenarioActivity extends BaseActivity<EditScenarioView, Present
         if (null==scenario.age ||
                 null==scenario.numDocVisits ||
                 null==scenario.numRxs ||
-                null==scenario.numDaysInHospital
+                null==scenario.numHospitalizations
                 ) {
             return false;
         }

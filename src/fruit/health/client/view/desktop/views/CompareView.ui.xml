@@ -21,8 +21,8 @@
 				    <div id="numRxsSlider" style="display: block;"/>
 				</div>
 				<div style="display: block;">
-				    Number of days spent in a hospital bed:
-			        <div id="numHospitalDaysSlider" style="display: block;"/>
+				    Number of hospitalizations:
+			        <div id="numHospitalizationsSlider" style="display: block;"/>
 			    </div>
 		    </div>
 			<g:SimplePanel ui:field="chartHolder" />

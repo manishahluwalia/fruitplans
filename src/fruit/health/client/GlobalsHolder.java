@@ -22,8 +22,8 @@ public class GlobalsHolder {
 	    customScenario.age = 40;
 	    customScenario.gettingPregnant = false;
 	    customScenario.numDocVisits = 2;
-	    customScenario.numDaysInHospital = 0;
-	    customScenario.numRxs = 3;
+	    customScenario.numHospitalizations = 0;
+	    customScenario.numRxs = 6;
 	}
 	
 	public LoginStateManager getLoginStateManager() {
