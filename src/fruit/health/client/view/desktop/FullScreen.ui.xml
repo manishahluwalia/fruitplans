@@ -17,17 +17,17 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-4 media">
-                <g:Anchor styleName="pull-left pull-left-md" ui:field="logo1">
+                <a class="pull-left pull-left-md" href="/">
                         <i class="solve-icon-logo"></i>
-                </g:Anchor>
+                </a>
                 <div class="media-body">
-                    <g:Anchor ui:field="logo2">
+                    <a href="/">
                         <h2 class="media-heading logotype">
 
-                            Pick1Plan
+                            Pick1Plan <span style="font-size: 0.5em;">Beta</span>
 
                         </h2>
-                    </g:Anchor>
+                    </a>
                 </div>
             </div>
             <div class="col-xs-7">
@@ -80,12 +80,13 @@
                 </small>
             </div>
             <div class="col-xs-2  text-center">
-               <g:Anchor ui:field="logo3"><i class="solve-icon-logo"></i></g:Anchor>
+               <a href="/"><i class="solve-icon-logo"></i></a>
             </div>
             <div class="col-xs-3"> <!-- XXX Why can't this be 40% -->
                 <small class="pull-right">
                   <ul class="list-inline  pull-right">
-                      <li><g:Anchor ui:field="contact">Contact Us</g:Anchor></li>
+                      <li><a href="/contact.html">Contact Us</a></li>
+                      <li><a href="/faq.html">Frequently Asked Questions</a></li>
                   </ul>
                 </small>
             </div>

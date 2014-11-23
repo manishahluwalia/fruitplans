@@ -3,10 +3,8 @@ package fruit.health.client.view.desktop;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.HeadingElement;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.Composite;
@@ -40,14 +38,10 @@ public class FullScreen extends Composite {
 	
     @UiField HeadingElement viewName;
     
-	private final Presenter presenter;
-	
 	@UiTemplate("FullScreen.ui.xml")
 	interface FullScreenUiBinder extends UiBinder<Widget, FullScreen> {}
 
 	public FullScreen(Presenter presenter, AppGinjector injector) {
-		this.presenter = presenter;
-		
 		// Initialize ui
 		initWidget(uiBinder.createAndBindUi(this));
 		wholeScreen.getElement().setId("ng-view-wrap");
@@ -90,11 +84,5 @@ public class FullScreen extends Composite {
 	public void setViewName(String viewName)
 	{
 	    this.viewName.setInnerText(viewName);
-	}
-	
-	@UiHandler({"logo1", "logo2", "logo3"})
-	public void onLogoClicked(ClickEvent e)
-	{
-	    presenter.onLogoClicked();
 	}
 }

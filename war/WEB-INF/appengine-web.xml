@@ -10,14 +10,13 @@
 
   <!-- Configure serving/caching of GWT files -->
   <static-files>
-    <include path="**" />
-
     <include path="**.nocache.*" expiration="1s" />
-
-    <include path="fruit.html" expiration="1s" />
+    <include path="**.cache.*" expiration="5000d" />
+    
+    <include path="*.html" expiration="1s" />
     <include path="style.css" expiration="1s" />
 
-    <include path="**.cache.*" expiration="5000d" />
+    <include path="**" />
     <exclude path="/**.gwt.rpc" />
   </static-files>
 

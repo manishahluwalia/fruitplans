@@ -22,7 +22,7 @@
 </listAttribute>
 <booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.google.gwt.dev.DevMode"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-logLevel INFO -remoteUI &quot;${gwt_remote_ui_server_port}:${unique_id}&quot; -startupUrl index.html -codeServerPort 9997 -port 8888 -server com.google.appengine.tools.development.gwt.AppEngineLauncher -war ${workspace_loc:FruitHealth/war} fruit.health.FruitHealth"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-logLevel INFO -remoteUI &quot;${gwt_remote_ui_server_port}:${unique_id}&quot; -startupUrl gwt.html -codeServerPort 9997 -port 8888 -server com.google.appengine.tools.development.gwt.AppEngineLauncher -war ${workspace_loc:FruitHealth/war} fruit.health.FruitHealth"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="FruitHealth"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-ea -Xmx1024m -XX:PermSize=256m -Ddatastore.default_high_rep_job_policy_unapplied_job_pct=20 -Dappengine.user.timezone.impl=UTC -javaagent:${system_property:user.home}/.m2/repository/com/google/appengine/appengine-java-sdk/1.9.4/appengine-java-sdk-1.9.4/lib/agent/appengine-agent.jar"/>
 <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:FruitHealth/war}"/>

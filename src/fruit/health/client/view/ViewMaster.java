@@ -25,7 +25,6 @@ public interface ViewMaster
      */
     interface Presenter
     {
-        void onLogoClicked ();
         void onLogoutClicked ();
         void onProfileClicked ();
         void onLoginClicked();

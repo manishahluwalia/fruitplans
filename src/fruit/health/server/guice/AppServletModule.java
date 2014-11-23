@@ -40,7 +40,7 @@ public class AppServletModule extends ServletModule
 
     private final static Logger logger = LoggerFactory.getLogger(AppServletModule.class);
 
-    public static final String GWT_PREFIX = "/fruitdb/";
+    public static final String GWT_PREFIX = "/fruithealth/";
 
     private boolean foundErrors = false;
 

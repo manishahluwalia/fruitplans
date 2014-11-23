@@ -35,7 +35,7 @@ import fruit.health.client.logging.ClientFlowEvent;
 import fruit.health.client.logging.ClientFlowLogger;
 import fruit.health.client.mvp.BasePlace;
 import fruit.health.client.places.compare;
-import fruit.health.client.places.home;
+import fruit.health.client.places.enterPlan;
 import fruit.health.client.rpc.RepeatingCsrfSafeRpcBuilder;
 import fruit.health.client.util.ConvergenceWaiter;
 import fruit.health.client.util.FailureNotifyingCallback;
@@ -135,7 +135,7 @@ public class FruitHealth implements EntryPoint, Presenter
 
                 PlaceHistoryHandler historyHandler = injector.getPlaceHistoryHandler();
 
-                historyHandler.register(injector.getPlaceController(), eventBus, new home());
+                historyHandler.register(injector.getPlaceController(), eventBus, new enterPlan(null));
                 historyHandler.handleCurrentHistory();
                 int historyHandlingDone = Timer.getTime();
 
@@ -241,7 +241,7 @@ public class FruitHealth implements EntryPoint, Presenter
                 if (plans.size()>0) {
                     injector.getLoginStateManager().goTo(new compare(plans));
                 } else {
-                    injector.getLoginStateManager().goTo(new home());
+                    injector.getLoginStateManager().goTo(new enterPlan(null)); // XXX should go to _static_ home page
                 }
             }
         });
@@ -290,13 +290,6 @@ public class FruitHealth implements EntryPoint, Presenter
     }-*/;
 
     
-    
-    @Override
-    public void onLogoClicked()
-    {
-        // TODO Auto-generated method stub
-        
-    }
 
     @Override
     public void onLogoutClicked()
