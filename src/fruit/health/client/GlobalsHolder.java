@@ -23,7 +23,7 @@ public class GlobalsHolder {
 	    customScenario.gettingPregnant = false;
 	    customScenario.numDocVisits = 2;
 	    customScenario.numHospitalizations = 0;
-	    customScenario.numRxs = 6;
+	    customScenario.numRxs = 5;
 	}
 	
 	public LoginStateManager getLoginStateManager() {

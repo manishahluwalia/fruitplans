@@ -72,7 +72,7 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
             customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
         }
         
-        view.prepareFor(numPlans, 200, 500, 10);
+        view.prepareFor(numPlans, 24, 120, 2);
         
         if (numPlans>0) {
             view.showChart(planNames, mins, maxs, customs);

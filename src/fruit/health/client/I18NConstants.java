@@ -49,7 +49,7 @@ public interface I18NConstants extends Constants
     @Description("The title of the browser when the user is in the editScenario place")
     String getEditScenarioPlaceTitle ();
 
-    @DefaultStringValue("Comparision of Plans")
+    @DefaultStringValue("Compare Plans")
     @Description("The title of the browser when the user is in the compare place")
     String getComparePlaceTitle();
 

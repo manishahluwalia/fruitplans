@@ -6,12 +6,12 @@ import java.util.logging.Logger;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.DivElement;
-import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.visualization.client.AbstractDataTable.ColumnType;
@@ -46,7 +46,6 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 	@UiField SimplePanel chartHolder;
 	
 	@UiField DivElement fbShareButton;
-	@UiField InputElement linkToPage;
 	
     private DataTable table;
     private BarChart chart;
@@ -103,11 +102,25 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
     @Override
     public void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs) {
         options = Options.create();
+
+//        options.setOption("chartArea", getChartArea());
         options.setWidth(CHART_WIDTH);
         options.setHeight(CHART_HEIGHT);
         options.set3D(true);
-        options.setTitle("Comparision of Plans");
+        
+        String bgColor = Window.Location.getParameter("color");
+        if (null!=bgColor && !bgColor.isEmpty()) {
+            options.setBackgroundColor(bgColor);
+            logger.warning("got color: " + bgColor);
+        }
+        //options.setBackgroundColor("#2a95a2");
+        //options.setBackgroundColor("#2c7fa3");
+        //options.setBackgroundColor("#2b8fa2");
+        
+        //options.setTitle("Comparision of Plans");
+        
         options.setTitleX("$ spent by you, per year");
+        
         //options.setTitleY("Plan");
         options.setOption("animation", getAnimationOptions());
         options.setOption("colors", getColors());
@@ -115,7 +128,7 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         table = DataTable.create();
         table.addColumn(ColumnType.STRING, "Plan name");
         table.addColumn(ColumnType.NUMBER, "Perfect Health");
-        table.addColumn(ColumnType.NUMBER, "Your health");
+        table.addColumn(ColumnType.NUMBER, "Your estimate");
         table.addColumn(ColumnType.NUMBER, "Very Sick");        
         table.addRows(planNames.length);
         
@@ -130,6 +143,11 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         chartHolder.clear();
         chartHolder.add(chart);
     }
+
+    private native JavaScriptObject getChartArea()
+    /*-{
+        return {height: '100%', width: '60%', left:0, top:0};
+    }-*/;
 
     private native JavaScriptObject getAnimationOptions()
     /*-{
@@ -157,7 +175,6 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
     
     @Override
     public void setShareLink(String link) {
-        linkToPage.setValue(link);
         fbShareButton.setAttribute("data-href", link);
         try {
             facebookReparse();

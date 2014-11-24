@@ -4748,7 +4748,10 @@ body:before {
   margin: 0 0 0 2% !important;
   width: 97%;
 }
-
+#ng-view .ui-slider-pips .ui-slider-pip {
+  color: #14ca82;
+  font-weight: bold;
+}
 
 /* Manish: Adding to see if we can get the scroll bar */
 .overflow_auto {
@@ -4852,4 +4855,14 @@ body:before {
 }
 .tagline {
 	font-size: 0.5em;
+}
+.fb-share-button {
+}
+.compare-info-container {
+	display: block;
+	width: 100%;
+}
+.chart-holder {
+	height: 400px;
+	width: 600px;
 }
