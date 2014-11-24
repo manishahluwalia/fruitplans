@@ -16,7 +16,7 @@ import fruit.health.client.mvp.AuthenticatedPlace;
 import fruit.health.client.mvp.BasePlace;
 import fruit.health.client.mvp.LoginFlowPlace;
 import fruit.health.client.mvp.ReloadingPlace;
-import fruit.health.client.places.home;
+import fruit.health.client.places.enterPlan;
 import fruit.health.client.rpc.RepeatingCsrfSafeRpcBuilder;
 import fruit.health.client.view.ViewMaster;
 import fruit.health.shared.dto.LoginInfo;
@@ -31,7 +31,7 @@ public class LoginStateManager {
     {
         public BasePlace makePlace ()
         {
-            return new home();
+            return new enterPlan(null);
         }
     }
 

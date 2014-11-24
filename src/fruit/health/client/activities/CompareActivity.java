@@ -10,7 +10,6 @@ import fruit.health.client.entities.Scenario;
 import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.mvp.BaseActivity;
 import fruit.health.client.places.compare;
-import fruit.health.client.places.editScenario;
 import fruit.health.client.places.enterPlan;
 import fruit.health.client.util.URLCreator;
 import fruit.health.client.view.CompareView;
@@ -101,12 +100,6 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
         expectToPay += p.premium * 12;
         
         return expectToPay;
-    }
-
-    @Override
-    public void customScenarioClicked()
-    {
-        loginStateManager.goTo(new editScenario(customScenario));
     }
 
     

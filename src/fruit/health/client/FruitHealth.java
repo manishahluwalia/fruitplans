@@ -295,39 +295,4 @@ public class FruitHealth implements EntryPoint, Presenter
     /*-{
         return $wnd.pageStartTime.toString();
     }-*/;
-
-    
-
-    @Override
-    public void onLogoutClicked()
-    {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void onProfileClicked()
-    {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void onLoginClicked()
-    {
-        // placeController.goTo(new login(null, null, null));
-    }
-
-    @Override
-    public void onSignupClicked()
-    {
-        // placeController.goTo(new signup(null));
-    }
-
-    @Override
-    public void onForgotPasswordClicked()
-    {
-        // TODO Auto-generated method stub
-        
-    }
 }

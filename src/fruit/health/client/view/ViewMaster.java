@@ -25,11 +25,6 @@ public interface ViewMaster
      */
     interface Presenter
     {
-        void onLogoutClicked ();
-        void onProfileClicked ();
-        void onLoginClicked();
-        void onSignupClicked ();
-        void onForgotPasswordClicked ();
     }
     
 	public interface ConfirmCallback<T> {
@@ -89,11 +84,6 @@ public interface ViewMaster
 
     /* Getters for the views */
     
-    public void getSignupView(RunnableWithArg<SignupView> viewLoadedCallback);
-    public void getHomeView(RunnableWithArg<HomeView> viewLoadedCallback);
-    public void getLoginView(RunnableWithArg<LoginView> viewLoadedCallback);
-
     public void getEnterPlanView(RunnableWithArg<EnterPlanView> callback);
-    public void getEditScenarioView(RunnableWithArg<EditScenarioView> callback);
     public void getCompareView(RunnableWithArg<CompareView> callback);
 }

@@ -8,8 +8,6 @@ public interface CompareView extends BaseView<CompareView.Presenter>
     {
         void enterPlanClicked();
         
-        void customScenarioClicked();
-        
         void onNumDocVisitsChanged(int numDocVisits);
         void onNumRxsChanged(int numRxs);
         void onNumHospitalizationsChanged(int numHospiDays);

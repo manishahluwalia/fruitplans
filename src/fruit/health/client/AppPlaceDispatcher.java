@@ -12,7 +12,7 @@ import fruit.health.client.logging.ClientFlowLogger;
 import fruit.health.client.mvp.AuthenticatedPlace;
 import fruit.health.client.mvp.BasePlace;
 import fruit.health.client.mvp.LoginFlowPlace;
-import fruit.health.client.places.home;
+import fruit.health.client.places.enterPlan;
 import fruit.health.shared.util.InlineMap;
 
 public class AppPlaceDispatcher extends PlaceController
@@ -40,7 +40,7 @@ public class AppPlaceDispatcher extends PlaceController
         if (null == p)
         {
             logger.fine("target place in null; going home instead");
-            p = new home();
+            p = new enterPlan(null);
         }
 
         BasePlace place = (BasePlace)p;
@@ -86,7 +86,7 @@ public class AppPlaceDispatcher extends PlaceController
              * to reload the current place, which is, e.g. the signup place.
              * Redirect to the default place instead.
              */
-            place = new home();
+            place = new enterPlan(null);
 
             final String redirectedPlaceDesc = place.toFullString();
             ClientFlowLogger.log(ClientFlowEvent.REDIRECTED_TO_PLACE, new InlineMap() {{

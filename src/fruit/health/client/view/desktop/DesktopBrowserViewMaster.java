@@ -2,31 +2,20 @@ package fruit.health.client.view.desktop;
 
 import javax.inject.Singleton;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
 import fruit.health.client.LocaleChooser;
 import fruit.health.client.gin.AppGinjector;
-import fruit.health.client.util.FailureLoggingAsyncCallback;
 import fruit.health.client.util.TimedEvent;
 import fruit.health.client.util.Timer;
 import fruit.health.client.view.CompareView;
-import fruit.health.client.view.EditScenarioView;
 import fruit.health.client.view.EnterPlanView;
-import fruit.health.client.view.HomeView;
-import fruit.health.client.view.LoginView;
-import fruit.health.client.view.SignupView;
 import fruit.health.client.view.ViewMaster;
 import fruit.health.client.view.desktop.resources.Resources;
 import fruit.health.client.view.desktop.views.CompareViewImpl;
-import fruit.health.client.view.desktop.views.EditScenarioViewImpl;
 import fruit.health.client.view.desktop.views.EnterPlanViewImpl;
-import fruit.health.client.view.desktop.views.HomeViewImpl;
-import fruit.health.client.view.desktop.views.LoginViewImpl;
-import fruit.health.client.view.desktop.views.SignupViewImpl;
 import fruit.health.shared.entities.User;
 import fruit.health.shared.util.RunnableWithArg;
 
@@ -36,69 +25,13 @@ import fruit.health.shared.util.RunnableWithArg;
 @Singleton
 public class DesktopBrowserViewMaster implements ViewMaster
 {
-    private LoginView loginView;
-    private SignupView signupView;
     private FullScreen screen;
-    private HomeView homeView;
     private EnterPlanView enterPlanView;
-    private EditScenarioView editScenarioView;
     private CompareView compareView;
     
     public DesktopBrowserViewMaster()
     {
         BaseViewImpl.setViewMaster(this);
-    }
-    
-    private void getLazyLoadedViews(RunAsyncCallback callback)
-    {
-        GWT.runAsync(callback);
-    }
-
-    @Override
-    public void getLoginView(final RunnableWithArg<LoginView> callback)
-    {
-        if (null == loginView)
-        {
-            final Timer timer = new Timer(TimedEvent.VIEW_CREATION, "DesktopBrowserViewMaster.loginView");
-            loginView = new LoginViewImpl(this);
-            timer.end();
-        }
-
-        callback.run(loginView);
-    }
-
-    @Override
-    public void getSignupView(final RunnableWithArg<SignupView> callback)
-    {
-        if (null == signupView)
-        {
-            final Timer timer = new Timer(TimedEvent.VIEW_CREATION, "DesktopBrowserViewMaster.signupView");
-            getLazyLoadedViews(new FailureLoggingAsyncCallback() {                
-                @Override
-                public void onSuccess ()
-                {
-                    signupView = new SignupViewImpl(DesktopBrowserViewMaster.this);
-                    timer.end();
-                    callback.run(signupView);
-                }
-            });
-            return;
-        }
-
-        callback.run(signupView);
-    }
-
-    @Override
-    public void getHomeView(final RunnableWithArg<HomeView> callback)
-    {
-        if (null == homeView)
-        {
-            final Timer timer = new Timer(TimedEvent.VIEW_CREATION, "DesktopBrowserViewMaster.homeView");
-            homeView = new HomeViewImpl(this);
-            timer.end();
-        }
-
-        callback.run(homeView);
     }
 
     @Override
@@ -131,19 +64,6 @@ public class DesktopBrowserViewMaster implements ViewMaster
         }
 
         callback.run(enterPlanView);
-    }
-
-    @Override
-    public void getEditScenarioView(RunnableWithArg<EditScenarioView> callback)
-    {
-        if (null == editScenarioView)
-        {
-            final Timer timer = new Timer(TimedEvent.VIEW_CREATION, "DesktopBrowserViewMaster.editScenarioView");
-            editScenarioView = new EditScenarioViewImpl(this);
-            timer.end();
-        }
-
-        callback.run(editScenarioView);
     }
 
     /*
