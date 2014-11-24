@@ -91,6 +91,7 @@ public class FruitHealth implements EntryPoint, Presenter
     public void onModuleLoad ()
     {
         final int gwtModuleStartTime = Timer.getTime();
+        final int pageStartTime = (int) ( Long.parseLong(getPageStartTime()) % SharedConstants.TIME_MODULO_MS );
         final int jsStartTime = (int) ( Long.parseLong(getJsStartTime()) % SharedConstants.TIME_MODULO_MS );
         
         // create logger (messages are queued until we finish initialization below)
@@ -129,9 +130,10 @@ public class FruitHealth implements EntryPoint, Presenter
             {
                 // Log startup times
                 int scriptStartingDone = Timer.getTime();
-                Timer.log(TimedEvent.JS_START_TO_GWT_START, jsStartTime, gwtStartTime);
-                Timer.log(TimedEvent.JS_START_TO_MODULE_START, jsStartTime, gwtModuleStartTime);
-                Timer.log(TimedEvent.JS_START_TO_MODULE_LOAD_END, jsStartTime, scriptStartingDone);
+                Timer.log(TimedEvent.PAGE_START_TO_JS_START, pageStartTime, jsStartTime);
+                Timer.log(TimedEvent.PAGE_START_TO_GWT_START, pageStartTime, gwtStartTime);
+                Timer.log(TimedEvent.PAGE_START_TO_MODULE_START, pageStartTime, gwtModuleStartTime);
+                Timer.log(TimedEvent.PAGE_START_TO_MODULE_LOAD_END, pageStartTime, scriptStartingDone);
 
                 PlaceHistoryHandler historyHandler = injector.getPlaceHistoryHandler();
 
@@ -140,7 +142,7 @@ public class FruitHealth implements EntryPoint, Presenter
                 int historyHandlingDone = Timer.getTime();
 
                 /* Log timers */
-                Timer.log(TimedEvent.JS_START_TO_HISTORY_HANDLING, jsStartTime, historyHandlingDone);
+                Timer.log(TimedEvent.PAGE_START_TO_HISTORY_HANDLING, pageStartTime, historyHandlingDone);
             }
         };
 
@@ -151,7 +153,7 @@ public class FruitHealth implements EntryPoint, Presenter
             public void onSuccess (Pair<InitInfo, LoginInfo> result)
             {
                 int initialLoginStateGatheringDone = Timer.getTime();
-                Timer.log(TimedEvent.JS_START_TO_GATHERING_INITIAL_LOGIN_RELATED_STATE, jsStartTime, initialLoginStateGatheringDone );
+                Timer.log(TimedEvent.PAGE_START_TO_GATHERING_INITIAL_LOGIN_RELATED_STATE, pageStartTime, initialLoginStateGatheringDone );
 
                 injector.getLoginStateManager().setLoginInfo(result.getB());
                 onModuleInitialized(result.getA(), appStart);
@@ -287,6 +289,11 @@ public class FruitHealth implements EntryPoint, Presenter
     private native String getJsStartTime()
     /*-{
         return $wnd.jsStartTime.toString();
+    }-*/;
+    
+    private native String getPageStartTime()
+    /*-{
+        return $wnd.pageStartTime.toString();
     }-*/;
 
     
