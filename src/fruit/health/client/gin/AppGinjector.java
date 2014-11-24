@@ -15,8 +15,6 @@ import fruit.health.client.LocaleChooser;
 import fruit.health.client.LoginStateManager;
 import fruit.health.client.google.GoogleAnalytics;
 import fruit.health.client.rpc.InitServiceAsync;
-import fruit.health.client.rpc.TableServiceAsync;
-import fruit.health.client.rpc.UserServiceAsync;
 import fruit.health.client.util.URLCreator;
 import fruit.health.client.view.ViewMaster;
 
@@ -38,8 +36,6 @@ public interface AppGinjector extends Ginjector {
 
 	// Services
     InitServiceAsync getInitService();
-    UserServiceAsync getUserService();
-    TableServiceAsync getTableService();
 	
 	// Other stuff
 	EventBus getEventBus();

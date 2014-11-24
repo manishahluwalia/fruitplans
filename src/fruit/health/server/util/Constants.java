@@ -27,6 +27,8 @@ public class Constants
 
     public static final String REMEMBER_ME_COOKIE_NAME = "RememberMeId";
 
+    public static final int BROWSER_AUTH_TOKEN_BYTES = 16;
+
     private Constants ()
     { }
 }

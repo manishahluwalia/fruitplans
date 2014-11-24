@@ -10,16 +10,11 @@ import com.google.gwt.http.client.RequestCallback;
 import com.google.gwt.http.client.RequestException;
 import com.google.gwt.http.client.Response;
 import com.google.gwt.user.client.Cookies;
-import com.google.gwt.user.client.rpc.InvocationException;
 import com.google.gwt.user.client.rpc.RpcRequestBuilder;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 
-import fruit.health.client.I18NConstants;
-import fruit.health.client.LoginStateManager;
 import fruit.health.client.util.TimedEvent;
 import fruit.health.client.util.Timer;
-import fruit.health.client.view.ViewMaster;
-import fruit.health.shared.util.RunnableWithArg;
 import fruit.health.shared.util.SharedConstants;
 
 /**
@@ -40,28 +35,10 @@ public class RepeatingCsrfSafeRpcBuilder extends RpcRequestBuilder
 
     private static final RepeatingCsrfSafeRpcBuilder REPEATING_CSRF_SAFE_RPC_BUILDER = new RepeatingCsrfSafeRpcBuilder();
 
-    private static LoginStateManager loginStateManager = null;
-    private static I18NConstants constants = null;
-    private static ViewMaster viewMaster = null;
     private static String visitId = null;
 
     private RepeatingCsrfSafeRpcBuilder ()
     { }
-
-    public static void setLoginStateManager (LoginStateManager loginStateManager)
-    {
-        RepeatingCsrfSafeRpcBuilder.loginStateManager = loginStateManager;
-    }
-
-    public static void setViewMaster (ViewMaster viewMaster)
-    {
-        RepeatingCsrfSafeRpcBuilder.viewMaster = viewMaster;
-    }
-
-    public static void setI18NConstants (I18NConstants constants)
-    {
-        RepeatingCsrfSafeRpcBuilder.constants = constants;
-    }
 
     public static void setVisitId (String visitId)
     {
@@ -91,30 +68,6 @@ public class RepeatingCsrfSafeRpcBuilder extends RpcRequestBuilder
         public void onResponseReceived (final Request request,
                 final Response response)
         {
-            if (Response.SC_SERVICE_UNAVAILABLE == response.getStatusCode()
-                    && null != response.getHeader(SharedConstants.AUTHENTICATION_NEEDED_HEADER))
-            {
-                logger.log(Level.INFO, "RPC: " + rpcName + " Got AUTHENTICATION_NEEDED_HEADER");
-
-                requestBuilder.getTimer().cancel();
-
-                loginStateManager.loggedOutThroughAnotherTab();
-
-                viewMaster.alertDialog(constants.reloginNeededDialogTitle(),
-                        constants.reloginNeededDialogMessage(),
-                        new RunnableWithArg<Void>() {
-                            @Override
-                            public void run (Void scope)
-                            {
-                                realCallback.onError(request,
-                                        new InvocationException("Logged out in the middle of an operation"));
-                            }
-                        },
-                        null);
-
-                return;
-            }
-
             requestBuilder.getTimer().end();
 
             if (Response.SC_OK != response.getStatusCode())

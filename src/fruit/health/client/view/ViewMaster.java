@@ -2,9 +2,7 @@ package fruit.health.client.view;
 
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
-import fruit.health.client.LocaleChooser;
 import fruit.health.client.gin.AppGinjector;
-import fruit.health.shared.entities.User;
 import fruit.health.shared.util.RunnableWithArg;
 
 /**
@@ -66,19 +64,9 @@ public interface ViewMaster
 
 
     /**
-     * Set the details for the logged in user (if any). Also, set the login / sigup buttons etc appropriately.
-     * @param user null if there is no user logged in. A valid {@link User} for the logged in user otherwise
-     */
-    public void setLoggedInUser(User user);
-
-    public void setLocaleChooser(LocaleChooser localeChooser);
-
-    /**
      * @param busy If true, show the busy sign; if false, remove it
      */
     public void showBusy(boolean busy);
-    
-    public void showLoggedInMenu(boolean isAuthenticated);
 
     void setViewName(String viewName);
 

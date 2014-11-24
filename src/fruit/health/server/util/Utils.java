@@ -24,25 +24,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 
 import com.google.appengine.api.utils.SystemProperty;
 
 import fruit.health.server.auditlog.AuditEvent;
 import fruit.health.server.auditlog.AuditLogger;
-import fruit.health.shared.dto.LoginInfo;
 import fruit.health.shared.util.InlineMap;
 import fruit.health.shared.util.SharedConstants;
 
 public class Utils
 {
-    private static final Logger logger = LoggerFactory.getLogger(Utils.class);
     private static final AuditLogger auditLogger = new AuditLogger();
 
     public static final String SESSION_LOGIN_INFO_ATTRIBUTE = "login.info";
@@ -224,17 +219,6 @@ public class Utils
         {
             createBrowserCookie(request, response);
         }
-
-        LoginInfo creds = getCredsFromSession(request.getSession(false));
-        if (null != creds)
-        {
-            MDC.put("userId", Long.toString(creds.getUser().getUserId()));
-            MDC.put("session", creds.getSessionTracker());
-            if (null != creds.getAdmin())
-            {
-                MDC.put("admin", creds.getAdmin());
-            }
-        }
     }
 
     private static void createBrowserCookie (final HttpServletRequest request, HttpServletResponse response)
@@ -254,64 +238,6 @@ public class Utils
         MDC.put("browser", browserCookieVal);
     }
 
-    private static ThreadLocal<LoginInfo> credsHolder = new ThreadLocal<LoginInfo>();
-
-    public static LoginInfo getCredsFromSession (HttpSession session)
-    {
-        LoginInfo creds = credsHolder.get();
-        if (null != creds)
-        {
-            logger.trace("getCredsFromSession: returning creds from local thread");
-            return creds;
-        }
-
-        if (null == session)
-        {
-            logger.trace("getCredsFromSession: no session");
-            return null;
-        }
-
-        creds = (LoginInfo)session.getAttribute(Constants.SESSION_LOGIN_INFO_ATTRIBUTE);
-        if (null != creds)
-        {
-            // The processing of this request could modify the creds object. So
-            // we will need to put it back into the
-            // session. So, we store a pointer to it and re-store the (possibly)
-            // dirty object back in
-            // the session on the way out.
-            // Why do we need to store it in the thread? (As opposed to just
-            // getting it _again_ from the session)
-            // Because HttpSession.getAttribute(String) does not guarantee that
-            // it returns the same object instance
-            // for 2 calls with the same arguments. (It could, for instance,
-            // deserialize the stored object in the session
-            // each time you make a call).
-            credsHolder.set(creds);
-            logger.trace("getCredsFromSession: setting creds for local thread");
-        }
-        return creds;
-    }
-
-    public static void restoreCredsIfDirtyAndClear (HttpServletRequest request)
-    {
-        LoginInfo creds = credsHolder.get();
-        if (null != creds)
-        {
-            // If we get here, then we expect to have a session, at the very
-            // least
-            request.getSession(false)
-                    .setAttribute(Constants.SESSION_LOGIN_INFO_ATTRIBUTE, creds);
-            logger.trace("restoreCredsIfDirtyAndClear: Reset creds in session");
-        }
-        credsHolder.remove();
-        logger.trace("restoreCredsIfDirtyAndClear: removed creds from local thread");
-    }
-
-    public static void clearCreds ()
-    {
-        logger.trace("clearCreds: clearing local thread creds");
-        credsHolder.remove();
-    }
 
     /**
      * For debugging only. Dumps out the headers / state of the request. Returns

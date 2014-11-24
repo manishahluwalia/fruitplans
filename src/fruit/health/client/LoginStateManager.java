@@ -12,14 +12,9 @@ import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.google.GoogleAnalytics;
 import fruit.health.client.logging.ClientFlowEvent;
 import fruit.health.client.logging.ClientFlowLogger;
-import fruit.health.client.mvp.AuthenticatedPlace;
 import fruit.health.client.mvp.BasePlace;
-import fruit.health.client.mvp.LoginFlowPlace;
 import fruit.health.client.mvp.ReloadingPlace;
 import fruit.health.client.places.enterPlan;
-import fruit.health.client.rpc.RepeatingCsrfSafeRpcBuilder;
-import fruit.health.client.view.ViewMaster;
-import fruit.health.shared.dto.LoginInfo;
 import fruit.health.shared.util.InlineMap;
 
 @Singleton
@@ -35,7 +30,6 @@ public class LoginStateManager {
         }
     }
 
-	private final ViewMaster viewMaster;
     private final GoogleAnalytics googleAnalytics;
 	
 	private final PlaceController placeController;
@@ -47,33 +41,12 @@ public class LoginStateManager {
 	 */
 	private final DefaultPlaceFactory defaultPlaceFactory;
 	
-	private LoginInfo loginInfo = null;
-	
 	@Inject
 	public LoginStateManager(DefaultPlaceFactory defaultPlaceFactory, AppGinjector injector) {
 		this.defaultPlaceFactory = defaultPlaceFactory;
-		this.viewMaster = injector.getViewMaster();
 		this.placeController = injector.getPlaceController();
-		((AppPlaceDispatcher)placeController).setLoginStateManager(this);
 		this.googleAnalytics = injector.getGoogleAnalytics();
-		
-		RepeatingCsrfSafeRpcBuilder.setLoginStateManager(this);
 	}
-
-    /**
-     * called when server says we are logged out (but we thought we were logged
-     * in)
-     */
-    public void loggedOutThroughAnotherTab ()
-    {
-        // popup already shown: Your session has expired...
-
-        // TODO: override mayStop, send user to loginPlace with current place as
-        // TODO: destination place.
-
-        _logoutUser();
-        reloadCurrentPlace();
-    }
 
     /** 
      * Reload the current place where we are at. This will be a no-op if we aren't
@@ -83,18 +56,7 @@ public class LoginStateManager {
     {   
         goTo((BasePlace)placeController.getWhere());
     }   
-
-    private void _logoutUser ()
-    {
-        loginInfo = null;
-        viewMaster.setLoggedInUser(null);
-    }
 	
-	/**
-	 */
-	private void markUserAsLoggedIn() {
-		viewMaster.setLoggedInUser(loginInfo.getUser());
-	}
 
     public BasePlace getDefaultPlace ()
     {
@@ -140,66 +102,7 @@ public class LoginStateManager {
         // sent, not where we eventually sent him.
         googleAnalytics.track(placeDesc);
 
-        if (!isLoggedIn() && place instanceof AuthenticatedPlace)
-        {
-            logger.severe("GOT AN AuthenticatedPlace. Not expecting one");
-            throw new RuntimeException("Got an AuthenticatedPlace");
-            
-            /*
-            logger.fine("not authenticated; saving place: " + place);
-
-            final BasePlace realPlace = new login(place, null, null);
-            
-            ClientFlowLogger.log(ClientFlowEvent.REDIRECTED_TO_PLACE, new InlineMap() {{
-                _("placeName",realPlace.toFullString());
-            }});
-            
-            // We are not logged in, but are trying to go somewhere that needs
-            // authentication
-            // Make a note of the final destination and redirect user to the
-            // login page instead
-            placeController.goTo(realPlace);
-            return;
-            */
-        }
-
-        if (isLoggedIn() && place instanceof LoginFlowPlace)
-        {
-            /* This happens when a user logs in due to explict user intent to do so.
-             * e.g. the user clicked signup.
-             * No 'afterLoginPlace' is specified, which just results in us trying
-             * to reload the current place, which is, e.g. the signup place.
-             * Redirect to the default place instead.
-             */
-            final BasePlace realPlace = defaultPlaceFactory.makePlace();
-            
-            ClientFlowLogger.log(ClientFlowEvent.REDIRECTED_TO_PLACE, new InlineMap() {{
-                _("placeName",realPlace.toFullString());
-            }});
-            
-            placeController.goTo(realPlace);
-            return;
-        }
-
         // No special cases apply
         placeController.goTo(place);
 	}
-
-    public boolean isLoggedIn()
-    {
-        return null!=loginInfo;
-    }
-
-    public void setLoginInfo(LoginInfo loginInfo)
-    {
-        this.loginInfo = loginInfo;
-        if (isLoggedIn())
-        {
-            markUserAsLoggedIn();
-        }
-        else
-        {
-            viewMaster.setLoggedInUser(null);
-        }
-    }
 }

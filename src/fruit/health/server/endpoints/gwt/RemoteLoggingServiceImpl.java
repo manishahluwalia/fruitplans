@@ -10,7 +10,6 @@ import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import logging.shared.RPCExceptionEncodingUtil;
 import logging.shared.RemoteLoggingService;
@@ -22,7 +21,6 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Singleton;
 
 import fruit.health.server.util.Utils;
-import fruit.health.shared.dto.LoginInfo;
 import fruit.health.shared.util.SharedConstants;
 
 @SuppressWarnings("serial")
@@ -122,20 +120,6 @@ public class RemoteLoggingServiceImpl extends RemoteServiceServlet implements
         StringBuilder keys = new StringBuilder();
         keys.append("IP=");
         keys.append(request.getRemoteAddr());
-
-        HttpSession session = request.getSession(false);
-        if (null != session)
-        {
-            LoginInfo creds = Utils.getCredsFromSession(session);
-            if (null != creds)
-            {
-                keys.append(", session=");
-                keys.append(creds.getSessionTracker());
-
-                keys.append(", userId=");
-                keys.append(creds.getUser().getUserId());
-            }
-        }
 
         for (Entry<String, String> contextEntry : context.entrySet())
         {

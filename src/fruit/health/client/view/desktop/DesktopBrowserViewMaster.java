@@ -6,7 +6,6 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 
-import fruit.health.client.LocaleChooser;
 import fruit.health.client.gin.AppGinjector;
 import fruit.health.client.util.TimedEvent;
 import fruit.health.client.util.Timer;
@@ -16,7 +15,6 @@ import fruit.health.client.view.ViewMaster;
 import fruit.health.client.view.desktop.resources.Resources;
 import fruit.health.client.view.desktop.views.CompareViewImpl;
 import fruit.health.client.view.desktop.views.EnterPlanViewImpl;
-import fruit.health.shared.entities.User;
 import fruit.health.shared.util.RunnableWithArg;
 
 /**
@@ -157,24 +155,5 @@ public class DesktopBrowserViewMaster implements ViewMaster
     public void showBusy (boolean busy)
     {
         screen.showBusy(busy);
-    }
-    
-    @Override
-    public void setLoggedInUser(User user)
-    {
-        screen.showLoggedInMenu(null!=user);
-    }
-
-    @Override
-    public void setLocaleChooser(LocaleChooser localeChooser)
-    {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void showLoggedInMenu(boolean isAuthenticated)
-    {
-        screen.showLoggedInMenu(isAuthenticated);
     }
 }

@@ -9,9 +9,7 @@ import com.google.gwt.user.server.rpc.RPCRequest;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import fruit.health.client.rpc.RepeatingCsrfSafeRpcBuilder;
-import fruit.health.server.bizlogic.RequestContextHolder;
 import fruit.health.server.logging.LoggingUtils;
-import fruit.health.server.util.CommunicationChannel;
 import fruit.health.server.util.Utils;
 
 
@@ -23,8 +21,6 @@ public abstract class BaseRemoteServiceServlet extends RemoteServiceServlet
     @Override
     protected void onBeforeRequestDeserialized (String serializedRequest)
     {
-        RequestContextHolder.setCommunicationChannel(CommunicationChannel.GWT_RPC);
-
         if (logger.isTraceEnabled())
         {
             logger.trace("Beginning: " + Utils.dumpRequestMetadata(getThreadLocalRequest()) + " " + getRpcName(serializedRequest));

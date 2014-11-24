@@ -14,22 +14,17 @@ import org.slf4j.LoggerFactory;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.google.inject.persist.PersistFilter;
-import com.google.inject.persist.jpa.JpaPersistModule;
 import com.google.inject.servlet.ServletModule;
 
-import fruit.health.server.cloner.impl.RecursiveReflexiveCloner;
 import fruit.health.server.endpoints.gwt.InitServiceImpl;
 import fruit.health.server.endpoints.gwt.RemoteLoggingServiceImpl;
-import fruit.health.server.endpoints.gwt.UserServiceImpl;
 import fruit.health.server.filters.GeneralFilter;
 
 public class AppServletModule extends ServletModule
 {
     final static Set<Class<? extends RemoteServiceServlet>> gwtEndpoints = new HashSet<Class<? extends RemoteServiceServlet>>(Arrays.asList(
             InitServiceImpl.class,
-            RemoteLoggingServiceImpl.class,
-            UserServiceImpl.class
+            RemoteLoggingServiceImpl.class
         ));
 
     /*
@@ -47,15 +42,6 @@ public class AppServletModule extends ServletModule
     @Override
     protected void configureServlets ()
     {
-        bindCloner();
-
-        // Make all calls go through Guice persistence filter, that
-        // creates a "session" around each http request and gives us access
-        // to the EntityManager
-        // TODO: With a bit of work, this can be done only for GWT-RPC and JSON
-        install(new JpaPersistModule("transactions-optional")); // in persistence.xml
-        filter("/*").through(PersistFilter.class);
-
         /*
          * Make all requests go through the filter that sets MDC,
          * clears/restores creds, sets logging level, etc.
@@ -68,13 +54,6 @@ public class AppServletModule extends ServletModule
         {
             throw new RuntimeException();
         }
-    }
-
-    private void bindCloner ()
-    {
-        HashSet<Class<?>> immutableTypes = new HashSet<Class<?>>();
-        RecursiveReflexiveCloner cloner = new RecursiveReflexiveCloner(immutableTypes);
-        bind(RecursiveReflexiveCloner.class).toInstance(cloner);
     }
 
     private void setupGwtRpc ()

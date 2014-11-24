@@ -1,7 +1,6 @@
 package fruit.health.client.util;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.JsArray;
 
 public class JsniUtils
 {

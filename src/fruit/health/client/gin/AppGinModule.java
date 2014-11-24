@@ -20,10 +20,6 @@ import fruit.health.client.mvp.PlaceHistoryMapperWrapper;
 import fruit.health.client.rpc.InitService;
 import fruit.health.client.rpc.InitServiceAsync;
 import fruit.health.client.rpc.RepeatingCsrfSafeRpcBuilder;
-import fruit.health.client.rpc.TableService;
-import fruit.health.client.rpc.TableServiceAsync;
-import fruit.health.client.rpc.UserService;
-import fruit.health.client.rpc.UserServiceAsync;
 import fruit.health.client.view.ViewMaster;
 
 public class AppGinModule extends AbstractGinModule {
@@ -66,19 +62,5 @@ public class AppGinModule extends AbstractGinModule {
     InitServiceAsync getInitService()
     {
         return getWrappedService(GWT.create(InitService.class));
-    }
-
-    @Provides
-    @Singleton
-    UserServiceAsync getUserService()
-    {
-        return getWrappedService(GWT.create(UserService.class));
-    }
-
-    @Provides
-    @Singleton
-    TableServiceAsync getUploadService()
-    {
-        return getWrappedService(GWT.create(TableService.class));
     }
 }

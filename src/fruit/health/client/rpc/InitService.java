@@ -4,8 +4,6 @@ import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import fruit.health.shared.dto.InitInfo;
-import fruit.health.shared.dto.LoginInfo;
-import fruit.health.shared.util.Pair;
 import fruit.health.shared.util.SharedConstants;
 
 @RemoteServiceRelativePath(SharedConstants.GWT_SERVICE_PREFIX + "init/v0")
@@ -16,5 +14,5 @@ public interface InitService extends RemoteService
      * @param serverLogging The serverLogging query parameter
      * @return
      */
-    Pair<InitInfo, LoginInfo> initClient (String referer, String serverLogging);
+    InitInfo initClient (String referer, String serverLogging);
 }

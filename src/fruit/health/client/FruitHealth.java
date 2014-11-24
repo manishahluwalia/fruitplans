@@ -45,9 +45,7 @@ import fruit.health.client.util.Timer;
 import fruit.health.client.view.ViewMaster;
 import fruit.health.client.view.ViewMaster.Presenter;
 import fruit.health.shared.dto.InitInfo;
-import fruit.health.shared.dto.LoginInfo;
 import fruit.health.shared.util.InlineMap;
-import fruit.health.shared.util.Pair;
 import fruit.health.shared.util.RunnableWithArg;
 import fruit.health.shared.util.SharedConstants;
 
@@ -106,8 +104,6 @@ public class FruitHealth implements EntryPoint, Presenter
         
         FailureNotifyingCallback.initialize(injector);
         BasePlace.initialize(injector);
-        RepeatingCsrfSafeRpcBuilder.setI18NConstants(injector.getI18NConstants());
-        RepeatingCsrfSafeRpcBuilder.setViewMaster(viewMaster);
         
         final ConvergenceWaiter appStart = new ConvergenceWaiter(2) {
             @Override
@@ -148,15 +144,14 @@ public class FruitHealth implements EntryPoint, Presenter
 
         String serverLogging = Location.getParameter("serverLogging");
         injector.getInitService().initClient(Document.get().getReferrer(),
-                serverLogging, new AsyncCallback<Pair<InitInfo,LoginInfo>>() {
+                serverLogging, new AsyncCallback<InitInfo>() {
             @Override
-            public void onSuccess (Pair<InitInfo, LoginInfo> result)
+            public void onSuccess (InitInfo result)
             {
                 int initialLoginStateGatheringDone = Timer.getTime();
                 Timer.log(TimedEvent.PAGE_START_TO_GATHERING_INITIAL_LOGIN_RELATED_STATE, pageStartTime, initialLoginStateGatheringDone );
 
-                injector.getLoginStateManager().setLoginInfo(result.getB());
-                onModuleInitialized(result.getA(), appStart);
+                onModuleInitialized(result, appStart);
             }
 
             @Override

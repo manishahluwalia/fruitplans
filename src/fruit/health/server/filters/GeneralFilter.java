@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.MDC;
 
-import fruit.health.server.bizlogic.RequestContextHolder;
 import fruit.health.server.logging.SessionLoggingLevelTracker;
 import fruit.health.server.util.Utils;
 
@@ -33,18 +32,14 @@ public class GeneralFilter implements Filter
     {
         HttpServletRequest request = (HttpServletRequest)req;
         HttpServletResponse response = (HttpServletResponse)resp;
-        Utils.clearCreds();
         SessionLoggingLevelTracker.setLevelForRequest(request);
         Utils.setupMdc(request, response);
-        RequestContextHolder.setRequestResponse(request, response);
         try
         {
             chain.doFilter(request, response);
         }
         finally
         {
-            Utils.restoreCredsIfDirtyAndClear((HttpServletRequest)request);
-            RequestContextHolder.clear();
             MDC.clear();
         }
     }
