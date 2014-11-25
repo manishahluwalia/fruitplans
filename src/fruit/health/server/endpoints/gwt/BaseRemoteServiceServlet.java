@@ -9,7 +9,6 @@ import com.google.gwt.user.server.rpc.RPCRequest;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import fruit.health.client.rpc.RepeatingCsrfSafeRpcBuilder;
-import fruit.health.server.logging.LoggingUtils;
 import fruit.health.server.util.Utils;
 
 
@@ -35,16 +34,6 @@ public abstract class BaseRemoteServiceServlet extends RemoteServiceServlet
         if (logger.isDebugEnabled())
         {
             StringBuilder sb = new StringBuilder("Entering GWT-RPC: " + rpcRequest.getMethod().getDeclaringClass().getName() + "." + rpcRequest.getMethod().getName());
-            if (logger.isTraceEnabled())
-            {
-                sb.append("  ");
-                sb.append(Utils.dumpRequestMetadata(getThreadLocalRequest()));
-                for (Object param : rpcRequest.getParameters())
-                {
-                    sb.append("  arg: ");
-                    LoggingUtils.dumpObject(sb, param);
-                }
-            }
             logger.debug(sb.toString());
         }
         super.onAfterRequestDeserialized(rpcRequest);
