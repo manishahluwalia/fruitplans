@@ -24,35 +24,35 @@
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-question  form-control-icon  icon-white"></i>
-                            <input ui:field="name" type="text" placeholder="What's the name of the plan (e.g. Kaiser, Blue Cross)" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="name"/>
-                        </div>
+                            <g:TextBox ui:field="name" focus="true" styleName="form-control  form-contorl-faded  input-lg"/>
+                            </div>
 
 	    				Monthly premium:
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-dollar  form-control-icon  icon-white"></i>
-                            <input ui:field="premium" type="text" placeholder="How much your employer deducts per month" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="name"/>
-                        </div>
+                            <g:IntegerBox ui:field="premium" styleName="form-control  form-contorl-faded  input-lg"/>
+                            </div>
 	        
 	        Annual Deductible:
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-dollar  form-control-icon  icon-white"></i>
-                            <input ui:field="deductible" type="text" placeholder="What is the annual deductible" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="name"/>
+                            <g:IntegerBox ui:field="deductible"  styleName="form-control  form-contorl-faded  input-lg"/>
                         </div>
 
 	        Co-pay %:
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-percent  form-control-icon  icon-white"></i>
-                            <input ui:field="copay" type="text" placeholder="What is the % copay after you meet the deductible" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="copay"/>
+                            <g:DoubleBox ui:field="copay" styleName="form-control  form-contorl-faded  input-lg"/>
                         </div>
 
 	        Annual Out-of-pocket maximum:
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-dollar  form-control-icon  icon-white"></i>
-                            <input ui:field="oopMax" type="text" placeholder="What is the annual out-of-pocket max" autofocus="" required="" class="form-control  form-contorl-faded  input-lg ng-invalid ng-invalid-required" name="oopMax"/>
+                            <g:IntegerBox ui:field="oopMax" styleName="form-control  form-contorl-faded  input-lg"/>
                         </div>
 
                         	    <p>

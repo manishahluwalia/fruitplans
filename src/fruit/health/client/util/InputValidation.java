@@ -4,6 +4,48 @@ import fruit.health.client.view.ViewMaster;
 
 public class InputValidation
 {
+    public static Integer readIntVal(Integer val, String field, Integer min, Integer max, ViewMaster viewMaster)
+    {
+        if (null==val) {
+            return null;
+        }
+        
+        if (null!=min && val<min)
+        {
+            viewMaster.alertDialog("Bad Input", "Bad value entered for " + field+ ". Must be >= " + min, null, null);
+            return null;
+        }
+        
+        if (null!=max && val>max)
+        {
+            viewMaster.alertDialog("Bad Input", "Bad value entered for " + field+ ". Must be <= " + max, null, null);
+            return null;
+        }
+
+        return val;
+    }
+
+    public static Double readDoubleVal(Double val, String field, Double min, Double max, ViewMaster viewMaster)
+    {
+        if (null==val) {
+            return null;
+        }
+        
+        if (null!=min && val<min)
+        {
+            viewMaster.alertDialog("Bad Input", "Bad value entered for " + field+ ". Must be >= " + min, null, null);
+            return null;
+        }
+        
+        if (null!=max && val>max)
+        {
+            viewMaster.alertDialog("Bad Input", "Bad value entered for " + field+ ". Must be <= " + max, null, null);
+            return null;
+        }
+
+        return val;
+    }
+
     public static Integer readIntVal(String val, String field, Integer min, Integer max, ViewMaster viewMaster)
     {
         if (null==val || val.isEmpty()) {

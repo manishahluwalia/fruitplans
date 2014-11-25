@@ -92,7 +92,7 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
         if (expectedCosts < p.deductible) {
             expectToPay = expectedCosts;
         } else {
-            expectToPay = p.deductible + ( expectedCosts - p.deductible ) * p.copay / 100;
+            expectToPay = (int) ( p.deductible + ( expectedCosts - p.deductible ) * p.copay / 100. );
             if (expectToPay > p.oopMax) {
                 expectToPay = p.oopMax;
             }

@@ -59,28 +59,28 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
     }
     
     @Override
-    public void onPremiumChanged(String val)
+    public void onPremiumChanged(Integer val)
     {
         planData.premium = InputValidation.readIntVal(val, "premium", 0, 10000, viewMaster);
         adjustButtons();
     }
 
     @Override
-    public void onDeductibleChanged(String val)
+    public void onDeductibleChanged(Integer val)
     {
         planData.deductible = InputValidation.readIntVal(val, "deductible", 0, 10000, viewMaster);
         adjustButtons();
     }
 
     @Override
-    public void onCopayChanged(String val)
+    public void onCopayChanged(Double val)
     {
-        planData.copay = InputValidation.readIntVal(val, "co-pay", 0, 100, viewMaster);
+        planData.copay = InputValidation.readDoubleVal(val, "co-pay", 0., 100., viewMaster);
         adjustButtons();
     }
 
     @Override
-    public void onOopMaxChanged(String val)
+    public void onOopMaxChanged(Integer val)
     {
         planData.oopMax = InputValidation.readIntVal(val, "out-of-pocket max", 0, 100000, viewMaster);
         adjustButtons();

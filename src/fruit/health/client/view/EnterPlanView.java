@@ -8,10 +8,10 @@ public interface EnterPlanView extends BaseView<EnterPlanView.Presenter>
     public static interface Presenter
     {
         void onNameChanged(String name);
-        void onPremiumChanged(String val);
-        void onDeductibleChanged(String val);
-        void onCopayChanged(String val);
-        void onOopMaxChanged(String val);
+        void onPremiumChanged(Integer val);
+        void onDeductibleChanged(Integer val);
+        void onCopayChanged(Double val);
+        void onOopMaxChanged(Integer val);
         void onCancelPressed();
         void onAddPressed();
         void onComparePressed();

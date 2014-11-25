@@ -53,7 +53,7 @@ public class compare extends BasePlace
                     p.planName = deserializer.readString();
                     p.premium = (int) deserializer.readLong();
                     p.deductible = (int) deserializer.readLong();
-                    p.copay = (int) deserializer.readLong();
+                    p.copay = (double) deserializer.readDouble();
                     p.oopMax = (int) deserializer.readLong();
                     plans.add(p);
                 }
@@ -92,7 +92,7 @@ public class compare extends BasePlace
             serializer.writeString(p.planName);
             serializer.writeLong(p.premium);
             serializer.writeLong(p.deductible);
-            serializer.writeLong(p.copay);
+            serializer.writeDouble(p.copay);
             serializer.writeLong(p.oopMax);
         }
         return serializer.getSerialized();
