@@ -83,7 +83,7 @@ public class ValidatingInputBox<T> extends TextBox
             parser = (Parser<T>) DoubleParser.instance();
             renderer = (Renderer<T>) DoubleRenderer.instance();
             if (null==pattern || pattern.isEmpty()) {
-                pattern = "-?\\d*(\\.\\d+)?";
+                pattern = "-?\\d*\\.?\\d*";
             }
         } else if ("long".equals(type)) {
             parser = (Parser<T>) LongParser.instance();
