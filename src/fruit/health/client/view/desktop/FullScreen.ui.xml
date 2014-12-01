@@ -9,7 +9,7 @@
 	<g:HTMLPanel>
 		<div hidden="true" class="container spinner spinner-screen"
 			ui:field="busyOverlay">
-			<div class="spinner-icon spinner-icon-pos"></div>
+			<!-- <div class="spinner-icon spinner-icon-pos"></div> -->
 		</div>
 
 		<div class="fullscreen">
