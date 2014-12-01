@@ -65,6 +65,7 @@ public class ValidatingInputBox<T> extends TextBox
     protected String pattern;
     protected Boolean required;
     private RegExp regex = null;
+    private boolean isValid = true;
 
     
     @UiConstructor
@@ -105,10 +106,14 @@ public class ValidatingInputBox<T> extends TextBox
             public void onKeyDown(KeyDownEvent event)
             {
                 if (null!=regex && null!=getValue() && !getValue().isEmpty() && !regex.test(getValue())) {
-                    beep();
+                    if (isValid) {
+                        beep();
+                    }
+                    isValid = false;
                     handler.onValidValueChange(new ValidValueChangeEvent<T>(null));
                     return;
                 }
+                isValid = true;
                 if (null==parser) {
                     handler.onValidValueChange(new ValidValueChangeEvent<T>((T) getValue()));
                     return;
