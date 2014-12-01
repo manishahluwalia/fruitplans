@@ -4,96 +4,101 @@
 	ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
 	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
-	<ui:with type="fruit.health.client.view.desktop.resources.Resources" field="res"></ui:with>
-    <g:HTMLPanel>
-<div hidden="true" class="container spinner spinner-screen"
-	ui:field="busyOverlay">
-	<div class="spinner-icon spinner-icon-pos"></div>
-</div>
+	<ui:with type="fruit.health.client.view.desktop.resources.Resources"
+		field="res"></ui:with>
+	<g:HTMLPanel>
+		<div hidden="true" class="container spinner spinner-screen"
+			ui:field="busyOverlay">
+			<div class="spinner-icon spinner-icon-pos"></div>
+		</div>
 
- <div  class="fullscreen">
- 
-<div class="navbar navbar-header animated fadeInDown pickplan-icon">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-4 media">
-                <a class="pull-left pull-left-md" href="/">
-                        <i class="solve-icon-logo"></i>
-                </a>
-                <div class="media-body">
-                    <a href="/">
-                        <h2 class="media-heading logotype">
+		<div class="fullscreen">
 
-                            Pick1Plan <span style="font-size: 0.5em;">Beta</span>
+			<div class="navbar navbar-header animated fadeInDown pickplan-icon">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-4 media">
+							<a class="pull-left pull-left-md" href="/">
+								<i class="solve-icon-logo"></i>
+							</a>
+							<div class="media-body">
+								<a href="/">
+									<h2 class="media-heading logotype">
 
-                        </h2>
-                    </a>
-                </div>
-            </div>
-            <div class="col-xs-7">
-                <div class="" ui:field="isNotAuthenticated">
-                    <!-- 
-                    <li><g:Anchor ui:field="aLink">A Link</g:Anchor></li>
-                    <li><g:Anchor ui:field="bLink">B Link</g:Anchor></li>
-                    <g:Anchor styleName="btn btn-faded-dark pull-right" ui:field="signup">Signup</g:Anchor>
-                    <g:Anchor styleName="btn btn-faded-light pull-right" ui:field="login">Log In</g:Anchor>
-                    -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+										Pick1Plan
+										<span style="font-size: 0.5em;">Beta</span>
+
+									</h2>
+								</a>
+							</div>
+						</div>
+						<div class="col-xs-7">
+							<div class="" ui:field="isNotAuthenticated">
+                                <!-- 
+                                <li><g:Anchor ui:field="aLink">A Link</g:Anchor></li>
+                                <li><g:Anchor ui:field="bLink">B Link</g:Anchor></li>
+                                <g:Anchor styleName="btn btn-faded-dark pull-right" ui:field="signup">Signup</g:Anchor>
+                                <g:Anchor styleName="btn btn-faded-light pull-right" ui:field="login">Log In</g:Anchor>
+                                -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
-<div id="ng-view" class="ng-scope">
+			<div id="ng-view" class="ng-scope">
 
-    <div class="container auth-wrapper ng-scope">
-        <!--
+				<div class="container auth-wrapper ng-scope">
+					<!-- header -->
+					<div class="row auth-wrapper-content">
+						<div class="col-xs-10 text-center">
+							<h1 class="text-white" ui:field="viewName" />
+						</div>
+					</div>
 
-         header 
+					<div class="row">
 
-        -->
-        <div class="row auth-wrapper-content">
-            <div class="col-xs-10 text-center">
-                <h1 class="text-white" ui:field="viewName"/>
-            </div>
-        </div>
+						<g:SimplePanel ui:field="body" />
+					</div>
+				</div>
+			</div>
 
-	    <div class="row">
+			<div class="navbar  navbar-footer  animated  fadeInUp">
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-4">
+							<small class="line-height-h2">
+								<div class="media">
+									<i
+										class="solve-icon-nyc  icon-small  line-height-h2  pull-left  pull-left-sm  hide"></i>
+									<div class="media-body">
+										&copy; Pick1Plan, Inc · Compare your insurance
+									</div>
+								</div>
+							</small>
+						</div>
+						<div class="col-xs-2  text-center">
+							<a href="/">
+								<i class="solve-icon-logo"></i>
+							</a>
+						</div>
+						<div class="col-xs-3"> <!-- XXX Why can't this be 40% -->
+							<small class="pull-right">
+								<ul class="list-inline  pull-right">
+									<li>
+										<a href="/contact.html">Contact Us</a>
+									</li>
+									<li>
+										<a href="/faq.html">Frequently Asked Questions</a>
+									</li>
+								</ul>
+							</small>
+						</div>
+					</div>
+				</div>
+			</div>
 
-	    	<g:SimplePanel ui:field="body" />
-	    </div>
-    </div>
-</div>
-
-<div class="navbar  navbar-footer  animated  fadeInUp">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-4">
-                <small class="line-height-h2">
-                  <div class="media">
-                    <i class="solve-icon-nyc  icon-small  line-height-h2  pull-left  pull-left-sm  hide"></i>
-                    <div class="media-body">
-                      &copy; Pick1Plan, Inc · Compare your insurance
-                    </div>
-                  </div>
-                </small>
-            </div>
-            <div class="col-xs-2  text-center">
-               <a href="/"><i class="solve-icon-logo"></i></a>
-            </div>
-            <div class="col-xs-3"> <!-- XXX Why can't this be 40% -->
-                <small class="pull-right">
-                  <ul class="list-inline  pull-right">
-                      <li><a href="/contact.html">Contact Us</a></li>
-                      <li><a href="/faq.html">Frequently Asked Questions</a></li>
-                  </ul>
-                </small>
-            </div>
-        </div>
-    </div>
-</div>
-
-</div>
+		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 
