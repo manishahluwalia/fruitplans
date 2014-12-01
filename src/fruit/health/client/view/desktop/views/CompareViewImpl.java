@@ -113,9 +113,9 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
             options.setBackgroundColor(bgColor);
             logger.warning("got color: " + bgColor);
         }
-        //options.setBackgroundColor("#2a95a2");
-        //options.setBackgroundColor("#2c7fa3");
-        //options.setBackgroundColor("#2b8fa2");
+        
+        options.setTitleColor("#168C8C");
+        options.setLegendTextColor("#168C8C");
         
         //options.setTitle("Comparision of Plans");
         
@@ -156,7 +156,7 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 
     private native JavaScriptObject getColors()
     /*-{
-        return [{color:'#008000', darker:'#005900'}, {color:'#0000ff', darker:'#0000b2'}, {color: '#800000', darker: '#590000'}];
+        return [{color:'#FFC3BA', darker:'#d88c83'}, {color:'#ACEDED', darker:'#75b6b6'}, {color: '#FFE5BA', darker: '#d8ad83'}];
     }-*/;
 
     @Override
