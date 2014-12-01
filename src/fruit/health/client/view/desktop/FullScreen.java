@@ -28,7 +28,6 @@ public class FullScreen extends Composite {
 	private static FullScreenUiBinder uiBinder = GWT
 			.create(FullScreenUiBinder.class);
 
-	@UiField HTMLPanel wholeScreen;
 	@UiField DivElement busyOverlay;
 	@UiField
 	SimplePanel body;
@@ -44,9 +43,6 @@ public class FullScreen extends Composite {
 	public FullScreen(Presenter presenter, AppGinjector injector) {
 		// Initialize ui
 		initWidget(uiBinder.createAndBindUi(this));
-		wholeScreen.getElement().setId("ng-view-wrap");
-	
-		wholeScreen.setStyleName("overflow_auto");
 		
 		showLoggedInMenu(false);
 	}

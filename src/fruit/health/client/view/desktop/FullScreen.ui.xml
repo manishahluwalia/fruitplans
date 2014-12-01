@@ -5,13 +5,13 @@
 	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
 	<ui:with type="fruit.health.client.view.desktop.resources.Resources" field="res"></ui:with>
-    <g:HTMLPanel ui:field="wholeScreen" styleName="overflow_auto">
- 
+    <g:HTMLPanel>
 <div hidden="true" class="container spinner spinner-screen"
 	ui:field="busyOverlay">
 	<div class="spinner-icon spinner-icon-pos"></div>
 </div>
 
+ <div  class="fullscreen">
  
 <div class="navbar navbar-header animated fadeInDown pickplan-icon">
     <div class="container">
@@ -45,7 +45,7 @@
 </div>
 
 
-<div id="ng-view" class="ng-scope" autoscroll="true">
+<div id="ng-view" class="ng-scope">
 
     <div class="container auth-wrapper ng-scope">
         <!--
@@ -94,5 +94,6 @@
     </div>
 </div>
 
+</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 
