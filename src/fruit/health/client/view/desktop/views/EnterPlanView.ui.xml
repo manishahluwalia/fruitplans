@@ -2,7 +2,8 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
 	ui:generateKeys="com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator"
-	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	ui:generateLocales="default" xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:fruit.health.client.view.desktop.components">
 
 	<ui:style>
 		
@@ -31,28 +32,28 @@
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-dollar  form-control-icon  icon-white"></i>
-                            <g:IntegerBox ui:field="premium" styleName="form-control  form-contorl-faded  input-lg"/>
+                            <c:ValidatingInputBox type="integer" pattern="" ui:field="premium" styleName="form-control  form-contorl-faded  input-lg"/>
                             </div>
 	        
 	        Annual Deductible:
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-dollar  form-control-icon  icon-white"></i>
-                            <g:IntegerBox ui:field="deductible"  styleName="form-control  form-contorl-faded  input-lg"/>
+                            <c:ValidatingInputBox type="integer" pattern="" ui:field="deductible"  styleName="form-control  form-contorl-faded  input-lg"/>
                         </div>
 
 	        Co-pay %:
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-percent  form-control-icon  icon-white"></i>
-                            <g:DoubleBox ui:field="copay" styleName="form-control  form-contorl-faded  input-lg"/>
+                            <c:ValidatingInputBox type="double" pattern="" ui:field="copay" styleName="form-control  form-contorl-faded  input-lg"/>
                         </div>
 
 	        Annual Out-of-pocket maximum:
 	    				&nbsp; &nbsp; &nbsp;
                         <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
                             <i class="icon-dollar  form-control-icon  icon-white"></i>
-                            <g:IntegerBox ui:field="oopMax" styleName="form-control  form-contorl-faded  input-lg"/>
+                            <c:ValidatingInputBox type="integer" pattern="" ui:field="oopMax" styleName="form-control  form-contorl-faded  input-lg"/>
                         </div>
 
                         	    <p>

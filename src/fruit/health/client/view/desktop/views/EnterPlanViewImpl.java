@@ -9,8 +9,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DoubleBox;
-import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -20,6 +18,8 @@ import fruit.health.client.view.EnterPlanView;
 import fruit.health.client.view.EnterPlanView.Presenter;
 import fruit.health.client.view.desktop.BaseViewImpl;
 import fruit.health.client.view.desktop.DesktopBrowserViewMaster;
+import fruit.health.client.view.desktop.components.ValidatingInputBox;
+import fruit.health.client.view.desktop.components.ValidatingInputBox.ValidValueChangeEvent;
 
 public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterPlanView {
 	
@@ -41,10 +41,10 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
 	}
     
 	@UiField TextBox name;
-	@UiField IntegerBox premium;
-	@UiField IntegerBox deductible;
-	@UiField DoubleBox copay;
-	@UiField IntegerBox oopMax;
+	@UiField ValidatingInputBox<Integer> premium;
+	@UiField ValidatingInputBox<Integer> deductible;
+	@UiField ValidatingInputBox<Double> copay;
+	@UiField ValidatingInputBox<Integer> oopMax;
 	
 	@UiField Button done;
 	@UiField Button addAnother;
@@ -56,22 +56,22 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
 	}
     
     @UiHandler("premium")
-    public void onPremiumChanged(ValueChangeEvent<Integer> e) {
+    public void onPremiumChanged(ValidValueChangeEvent<Integer> e) {
         presenter.onPremiumChanged(e.getValue());
     }
     
     @UiHandler("deductible")
-    public void onDeductibleChanged(ValueChangeEvent<Integer> e) {
+    public void onDeductibleChanged(ValidValueChangeEvent<Integer> e) {
         presenter.onDeductibleChanged(e.getValue());
     }
     
     @UiHandler("copay")
-    public void onCopayChanged(ValueChangeEvent<Double> e) {
+    public void onCopayChanged(ValidValueChangeEvent<Double> e) {
         presenter.onCopayChanged(e.getValue());
     }
     
     @UiHandler("oopMax")
-    public void onOopMaxChanged(ValueChangeEvent<Integer> e) {
+    public void onOopMaxChanged(ValidValueChangeEvent<Integer> e) {
         presenter.onOopMaxChanged(e.getValue());
     }
 	
@@ -94,10 +94,10 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
     public void showData(PlanData plan)
     {
         name.setValue(InputValidation.makeEmptyStrIfNull(plan.planName));
-        premium.setValue(plan.premium);
-        deductible.setValue(plan.deductible);
-        copay.setValue(plan.copay);
-        oopMax.setValue(plan.oopMax);
+        premium.setValidValue(plan.premium);
+        deductible.setValidValue(plan.deductible);
+        copay.setValidValue(plan.copay);
+        oopMax.setValidValue(plan.oopMax);
     }
 
     @Override

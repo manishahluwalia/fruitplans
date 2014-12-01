@@ -88,11 +88,7 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
 
     private void adjustButtons()
     {
-        if (isDone()) {
-            view.enableButtons(true);
-        } else {
-            view.enableButtons(false);
-        }
+        view.enableButtons(isDone());
     }
     
     private boolean isDone()
