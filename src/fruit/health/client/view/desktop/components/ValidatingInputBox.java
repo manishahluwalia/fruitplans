@@ -1,6 +1,7 @@
 package fruit.health.client.view.desktop.components;
 
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.event.dom.client.KeyDownEvent;
@@ -21,6 +22,8 @@ import com.google.gwt.user.client.ui.TextBox;
 
 public class ValidatingInputBox<T> extends TextBox
 {
+    private static final Logger logger = Logger.getLogger(ValidatingInputBox.class.getName());
+    
     public static class ValidValueChangeEvent<V> extends GwtEvent<ValidValueChangeHandler<V>>
     {
 
@@ -105,9 +108,13 @@ public class ValidatingInputBox<T> extends TextBox
             @Override
             public void onKeyDown(KeyDownEvent event)
             {
-                if (null!=regex && null!=getValue() && !getValue().isEmpty() && !regex.test(getValue())) {
+                String value = getValue();
+                //logger.info("Validating : " + value);
+                if (null!=regex && null!=value && !value.isEmpty() && !regex.test(value)) {
+                    //logger.info(value + " is invalid");
                     if (isValid) {
-                        beep();
+                        //logger.info("Beep!");
+                        //beep();
                     }
                     isValid = false;
                     handler.onValidValueChange(new ValidValueChangeEvent<T>(null));
@@ -115,12 +122,12 @@ public class ValidatingInputBox<T> extends TextBox
                 }
                 isValid = true;
                 if (null==parser) {
-                    handler.onValidValueChange(new ValidValueChangeEvent<T>((T) getValue()));
+                    handler.onValidValueChange(new ValidValueChangeEvent<T>((T) value));
                     return;
                 }
                 try
                 {
-                    handler.onValidValueChange(new ValidValueChangeEvent<T>(parser.parse(getValue())));
+                    handler.onValidValueChange(new ValidValueChangeEvent<T>(parser.parse(value)));
                 }
                 catch (ParseException e)
                 {
