@@ -1386,8 +1386,8 @@ pre code {
   margin-left: auto;
   padding-left: 10px;
   padding-right: 10px;
-  min-width: 1000px !important;
-  width: 98%;
+  /* min-width: 1000px !important;
+  width: 98%; */
 }
 .container-fluid {
   margin-right: auto;
@@ -4743,7 +4743,7 @@ body:before {
   width: 100%;
 }
 .pickplan-page .ng-scope .input-box {
-  width: 50%;
+  max-width: 95%;
 }
 .form-wrap {
   float: left;
@@ -4827,6 +4827,15 @@ body:before {
   bottom: 0;
   left: 0;
   width: 100%; */
+}
+@media (max-device-width: 950px) {
+.navbar-footer .col-xs-4 , .navbar-footer .col-xs-2, .navbar-header {
+	display: none;
+}
+}
+/* Override */
+.has-feedback .form-control {
+	padding-right: 10px;
 }
 #ng-view {
 	padding-bottom: 10px;
