@@ -72,6 +72,7 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         slider1.on("slidechange", function (event, ui) {
             self.@fruit.health.client.view.desktop.BaseViewImpl::presenter.@fruit.health.client.view.CompareView.Presenter::onNumDocVisitsChanged(I)(ui.value);
         });
+        slider1.draggable();
         
         var slider2 = $wnd.jQuery("#numRxsSlider").slider({min:0, max:maxRxs, step: 1});
         slider2.slider("pips" , { rest: false });
@@ -79,6 +80,7 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         slider2.on("slidechange", function (event, ui) {
             self.@fruit.health.client.view.desktop.BaseViewImpl::presenter.@fruit.health.client.view.CompareView.Presenter::onNumRxsChanged(I)(ui.value);
         });
+        slider2.draggable();
         
         var slider3 = $wnd.jQuery("#numHospitalizationsSlider").slider({min:0, max:maxHospitalizations, step: 1});
         slider3.slider("pips" , { rest: false });
@@ -86,6 +88,7 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         slider3.on("slidechange", function (event, ui) {
             self.@fruit.health.client.view.desktop.BaseViewImpl::presenter.@fruit.health.client.view.CompareView.Presenter::onNumHospitalizationsChanged(I)(ui.value);
         });
+        slider3.draggable();
     }-*/;
     
     private native void setSliderValues(int numDocVisits, int numRxs, int numHospitalizations) /*-{
