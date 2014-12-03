@@ -9,7 +9,12 @@
 
 	<g:HTMLPanel>
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-6 col-md-push-6">
+			    <div class="chart-wrapper">
+				<g:SimplePanel styleName="chart-holder" ui:field="chartHolder" />
+				</div>
+			</div>
+			<div class="col-md-6 col-md-pull-6">
 				<div class="compare-info-container">
 					Enter Estimate:
 					<div style="display: block;">
@@ -26,12 +31,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-			    <div class="chart-wrapper">
-				<g:SimplePanel styleName="chart-holder" ui:field="chartHolder" />
-				</div>
-			</div>
-		</div>
+					</div>
 		<p style="float: none;">
 			<div style="text-align:center;">
 				<g:Anchor ui:field="enterPlan" styleName="button--heroku">
