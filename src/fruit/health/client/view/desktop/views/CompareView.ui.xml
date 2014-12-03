@@ -8,27 +8,27 @@
 	</ui:style>
 
 	<g:HTMLPanel>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-6">
-					<div class="compare-info-container">
-						Enter Estimate:
-						<div style="display: block;">
-							Doctor's visits (per year):
-							<div id="numDocVisitsSlider" style="display: block;" />
-						</div>
-						<div style="display: block;">
-							Prescriptions (per year):
-							<div id="numRxsSlider" style="display: block;" />
-						</div>
-						<div style="display: block;">
-							Hospitalizations (per year):
-							<div id="numHospitalizationsSlider" style="display: block;" />
-						</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="compare-info-container">
+					Enter Estimate:
+					<div style="display: block;">
+						Doctor's visits (per year):
+						<div id="numDocVisitsSlider" style="display: block;" />
+					</div>
+					<div style="display: block;">
+						Prescriptions (per year):
+						<div id="numRxsSlider" style="display: block;" />
+					</div>
+					<div style="display: block;">
+						Hospitalizations (per year):
+						<div id="numHospitalizationsSlider" style="display: block;" />
 					</div>
 				</div>
-				<div class="col-md-6">
-					<g:SimplePanel styleName="chart-holder" ui:field="chartHolder" />
+			</div>
+			<div class="col-md-6">
+			    <div class="chart-wrapper">
+				<g:SimplePanel styleName="chart-holder" ui:field="chartHolder" />
 				</div>
 			</div>
 		</div>

@@ -134,4 +134,9 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
         customScenario.numHospitalizations = numHospitalizations;
         customScenarioChanged();
     }
+    
+    @Override
+    public void onStop() {
+    	view.stopRedrawingChart();
+    }
 }

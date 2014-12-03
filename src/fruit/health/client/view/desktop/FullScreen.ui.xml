@@ -11,52 +11,45 @@
 			<!-- <div class="spinner-icon spinner-icon-pos"></div> -->
 		</div>
 
-		<div class="fullscreen">
+		<div class="fullscreen container-fluid">
 
-			<div id="main-viewport">
-
-				<div class="container auth-wrapper">
-					<!-- header -->
-					<div class="row auth-wrapper-content">
-						<div class="col-xs-12 text-center">
-							<h1 ui:field="viewName" />
-						</div>
+			<div id="main-viewport" class="row auth-wrapper">
+				<!-- header -->
+				<div class="col-xs-12 auth-wrapper-content">
+					<div class="text-center">
+						<h1 ui:field="viewName" />
 					</div>
-
 				</div>
-				<g:SimplePanel ui:field="body" />
-			</div>
 
-			<div class="footer">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-xs-4 hidden-sm hidden-xs">
-							<small class="line-height-h2">
-								<div class="media">
-									<div class="media-body">
-										&copy; Pick1Plan, Inc · Compare your insurance
-									</div>
-								</div>
-							</small>
+			</div>
+			<g:SimplePanel ui:field="body" />
+
+			<div class="row footer">
+				<div class="col-xs-4 hidden-sm hidden-xs">
+					<small class="line-height-h2">
+						<div class="media">
+							<div class="media-body">
+								&copy; Pick1Plan, Inc · Compare your insurance
+							</div>
 						</div>
-						<div class="col-xs-4  hidden-sm hidden-xs text-center">
-							<a href="/">
-								Pick1Plan
-							</a>
-						</div>
-						<div class="col-xs-4"> <!-- XXX Why can't this be 40% -->
-							<small class="pull-right">
-								<ul class="list-inline  pull-right">
-									<li>
-										<a href="/contact.html">Contact Us</a>
-									</li>
-									<li>
-										<a href="/faq.html">Frequently Asked Questions</a>
-									</li>
-								</ul>
-							</small>
-						</div>
-					</div>
+					</small>
+				</div>
+				<div class="col-xs-4  hidden-sm hidden-xs text-center">
+					<a href="/">
+						Pick1Plan
+					</a>
+				</div>
+				<div class="col-xs-4">
+					<small class="pull-right">
+						<ul class="list-inline  pull-right">
+							<li>
+								<a href="/contact.html">Contact Us</a>
+							</li>
+							<li>
+								<a href="/faq.html">Frequently Asked Questions</a>
+							</li>
+						</ul>
+					</small>
 				</div>
 			</div>
 

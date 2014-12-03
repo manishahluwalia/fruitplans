@@ -22,4 +22,6 @@ public interface CompareView extends BaseView<CompareView.Presenter>
     void updateCustomScenario(int[] customs);
 
     void prepareFor(int numPlans, int maxDocVisits, int maxRxs, int maxHospitalizations);
+
+	void stopRedrawingChart();
 }

@@ -7,10 +7,13 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.logical.shared.ResizeEvent;
+import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -27,9 +30,6 @@ import fruit.health.client.view.desktop.BaseViewImpl;
 public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareView {
 	private static final Logger logger = Logger.getLogger(CompareViewImpl.class.getName());
 	
-	private static final int CHART_WIDTH = 600;
-	private static final int CHART_HEIGHT = 400;
-	
     private static HomeViewUiBinder uiBinder = GWT
 			.create(HomeViewUiBinder.class);
 	
@@ -40,6 +40,21 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 	public CompareViewImpl(Runnable doneCallback) {
 		initWidget(uiBinder.createAndBindUi(this));
 		VisualizationUtils.loadVisualizationApi(doneCallback, BarChart.PACKAGE);
+
+        Window.addResizeHandler(new ResizeHandler() {
+        	Timer resizeTimer = new Timer() {  
+        		@Override
+        		public void run() {
+        			onWindowResize();
+        		}
+        	};
+
+        	@Override
+        	public void onResize(ResizeEvent event) {
+        		resizeTimer.cancel();
+        		resizeTimer.schedule(250);
+        	}
+        });
 	}
 
 	@UiField SimplePanel chartHolder;
@@ -49,6 +64,7 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
     private DataTable table;
     private BarChart chart;
     private Options options;
+    private boolean reDrawChart = false;
 
 	@Override
     public void prepareFor(int numPlans, int maxDocVisits, int maxRxs, int maxHospiDays)
@@ -100,9 +116,9 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
     public void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs) {
         options = Options.create();
 
-//        options.setOption("chartArea", getChartArea());
-        options.setWidth(CHART_WIDTH);
-        options.setHeight(CHART_HEIGHT);
+        options.setWidth(chartHolder.getOffsetWidth());
+        options.setHeight(chartHolder.getOffsetHeight());
+        logger.warning("setting height and width to " + chartHolder.getOffsetHeight() + " " + chartHolder.getOffsetWidth());
         options.set3D(true);
         
         String bgColor = Window.Location.getParameter("color");
@@ -139,12 +155,9 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         chart = new BarChart(table,options);
         chartHolder.clear();
         chartHolder.add(chart);
+        
+        reDrawChart = true;
     }
-
-    private native JavaScriptObject getChartArea()
-    /*-{
-        return {height: '100%', width: '60%', left:0, top:0};
-    }-*/;
 
     private native JavaScriptObject getAnimationOptions()
     /*-{
@@ -180,6 +193,20 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         }
     }
 
+    public void onWindowResize() {
+    	if (reDrawChart) {
+    		options.setWidth(chartHolder.getOffsetWidth());
+    		options.setHeight(chartHolder.getOffsetHeight());
+    		logger.warning("changing height and width to " + chartHolder.getOffsetHeight() + " " + chartHolder.getOffsetWidth());
+    		chart.draw(table, options);
+    	}
+    }
+    
+    @Override
+    public void stopRedrawingChart() {
+    	reDrawChart = false;
+    }
+    
     private native void facebookReparse()
     /*-{
         $wnd.FB.XFBML.parse();
