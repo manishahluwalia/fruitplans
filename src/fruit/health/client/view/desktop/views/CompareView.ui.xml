@@ -8,36 +8,42 @@
 	</ui:style>
 
 	<g:HTMLPanel>
-		<div ui:field="plansPara" class="compare-info-container">
-			<div
-				style="float: left; width:45%; min-width: 300px; margin-right: 30px; padding-top: 20px; margin-bottom: 20px;">
-				Enter Estimate:
-				<div style="display: block;">
-				    Doctor's visits (per year):
-				    <div id="numDocVisitsSlider" style="display: block;"/>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="compare-info-container">
+						Enter Estimate:
+						<div style="display: block;">
+							Doctor's visits (per year):
+							<div id="numDocVisitsSlider" style="display: block;" />
+						</div>
+						<div style="display: block;">
+							Prescriptions (per year):
+							<div id="numRxsSlider" style="display: block;" />
+						</div>
+						<div style="display: block;">
+							Hospitalizations (per year):
+							<div id="numHospitalizationsSlider" style="display: block;" />
+						</div>
+					</div>
 				</div>
-				<div style="display: block;">
-				    Prescriptions (per year):
-				    <div id="numRxsSlider" style="display: block;"/>
+				<div class="col-md-6">
+					<g:SimplePanel styleName="chart-holder" ui:field="chartHolder" />
 				</div>
-				<div style="display: block;">
-				    Hospitalizations (per year):
-			        <div id="numHospitalizationsSlider" style="display: block;"/>
-			    </div>
-		    </div>
-			<g:SimplePanel styleName="xxx-chart-holder" ui:field="chartHolder" />
+			</div>
 		</div>
 		<p style="float: none;">
 			<div style="text-align:center;">
 				<g:Anchor ui:field="enterPlan" styleName="button--heroku">
-					Click here to add a plan.
+					Click here to add
+					a plan.
 				</g:Anchor>
 			</div>
 		</p>
 
-	<div style="float: none; text-align:center;">
-		<div ui:field="fbShareButton" class="fb-share-button" data-href="http://www.pick1plan.com"
-			data-layout="button"></div>
-	</div>
+		<div style="float: none; text-align:center;">
+			<div ui:field="fbShareButton" class="fb-share-button" data-href="http://www.pick1plan.com"
+				data-layout="button"></div>
+		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

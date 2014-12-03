@@ -31,9 +31,6 @@ public class FullScreen extends Composite {
 	@UiField
 	SimplePanel body;
 	
-	// Login / Action menu stuff
-	@UiField DivElement isNotAuthenticated;
-	
     @UiField HeadingElement viewName;
     
 	@UiTemplate("FullScreen.ui.xml")
@@ -65,14 +62,10 @@ public class FullScreen extends Composite {
 	public void showLoggedInMenu(boolean isAuthenticated) {
 	    if (!isAuthenticated)
 	    {
-	        // this.isAuthenticated.setAttribute("hidden", "true");
-	        this.isNotAuthenticated.removeAttribute("hidden");
 	    }
 	    else
 	    {
 	        throw new RuntimeException("Not expecting to be authenticated");
-	        //this.isNotAuthenticated.setAttribute("hidden", "true");
-            //this.isAuthenticated.removeAttribute("hidden");
 	    }
 	}
 

@@ -6,62 +6,73 @@
 	xmlns:c="urn:import:fruit.health.client.view.desktop.components">
 
 	<ui:style>
-		
+
 	</ui:style>
 
-	<g:HTMLPanel>
-	    <!-- <p>
-	        Name of the plan:
-	        <g:TextBox ui:field="name"/>
-	        
-	    </p>
-	    <p>
-	        Monthly Premium:
-	        <g:TextBox ui:field="premium"/>
-	        
-	    </p>
-	    -->
-	    				Name of the plan:
-	    				&nbsp; &nbsp; &nbsp;
-                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
-                            <i class="icon-question  form-control-icon  icon-white"></i>
-                            <g:TextBox ui:field="name" focus="true" styleName="form-control  form-contorl-faded  input-lg"/>
-                            </div>
+	<g:HTMLPanel styleName="container">
+		<!-- <p> Name of the plan: <g:TextBox ui:field="name"/> </p> <p> Monthly 
+			Premium: <g:TextBox ui:field="premium"/> </p> -->
+		<div class="row">
+			<div class="col-xs-12">Name of the plan:</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 form-group    has-icon  icon-lg   input-box">
+				<i class="icon-question  form-control-icon  icon-white"></i>
+				<g:TextBox ui:field="name" focus="true"
+					styleName="form-control  form-contorl-faded  input-lg" />
+			</div>
+		</div>
 
-	    				Monthly premium:
-	    				&nbsp; &nbsp; &nbsp;
-                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
-                            <i class="icon-dollar  form-control-icon  icon-white"></i>
-                            <c:ValidatingInputBox type="integer" pattern="" ui:field="premium" styleName="form-control  form-contorl-faded  input-lg"/>
-                            </div>
-	        
-	        Annual Deductible:
-	    				&nbsp; &nbsp; &nbsp;
-                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
-                            <i class="icon-dollar  form-control-icon  icon-white"></i>
-                            <c:ValidatingInputBox type="integer" pattern="" ui:field="deductible"  styleName="form-control  form-contorl-faded  input-lg"/>
-                        </div>
+		<div class="row">
+			<div class="col-xs-12">Monthly premium:</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 form-group    has-icon  icon-lg   input-box">
+				<i class="icon-dollar  form-control-icon  icon-white"></i>
+				<c:ValidatingInputBox type="integer" pattern=""
+					ui:field="premium" styleName="form-control  form-contorl-faded  input-lg" />
+			</div>
+		</div>
 
-	        Co-pay %:
-	    				&nbsp; &nbsp; &nbsp;
-                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
-                            <i class="icon-percent  form-control-icon  icon-white"></i>
-                            <c:ValidatingInputBox type="double" pattern="" ui:field="copay" styleName="form-control  form-contorl-faded  input-lg"/>
-                        </div>
+		<div class="row">
+			<div class="col-xs-12">Annual Deductible:</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 form-group    has-icon  icon-lg   input-box">
+				<i class="icon-dollar  form-control-icon  icon-white"></i>
+				<c:ValidatingInputBox type="integer" pattern=""
+					ui:field="deductible" styleName="form-control  form-contorl-faded  input-lg" />
+			</div>
+		</div>
 
-	        Annual Out-of-pocket maximum:
-	    				&nbsp; &nbsp; &nbsp;
-                        <div class="form-group  has-feedback  has-icon  icon-lg   input-box">
-                            <i class="icon-dollar  form-control-icon  icon-white"></i>
-                            <c:ValidatingInputBox type="integer" pattern="" ui:field="oopMax" styleName="form-control  form-contorl-faded  input-lg"/>
-                        </div>
+		<div class="row">
+			<div class="col-xs-12">Co-pay %:</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 form-group    has-icon  icon-lg   input-box">
+				<i class="icon-percent  form-control-icon  icon-white"></i>
+				<c:ValidatingInputBox type="double" pattern=""
+					ui:field="copay" styleName="form-control  form-contorl-faded  input-lg" />
+			</div>
+		</div>
 
-                        	    <p>
-	        <g:Button ui:field="addAnother" styleName="button--heroku">Add another</g:Button>
-	        &nbsp;&nbsp;&nbsp;
-	        <g:Button ui:field="done" styleName="button--heroku">Compare Plans</g:Button>
-	        &nbsp;&nbsp;&nbsp;
-	        <g:Anchor ui:field="cancel">Cancel</g:Anchor>
-	        	    </p>
-	    </g:HTMLPanel>
+		<div class="row">
+			<div class="col-xs-12">Annual Out-of-pocket maximum:</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 form-group    has-icon  icon-lg   input-box">
+				<i class="icon-dollar  form-control-icon  icon-white"></i>
+				<c:ValidatingInputBox type="integer" pattern=""
+					ui:field="oopMax" styleName="form-control  form-contorl-faded  input-lg" />
+			</div>
+		</div>
+
+		<div class="row">
+			<g:Button ui:field="addAnother" styleName="col-md-5 button--heroku">Add another</g:Button>
+			&nbsp;&nbsp;&nbsp;
+			<g:Button ui:field="done" styleName="col-md-5 button--heroku">Compare Plans</g:Button>
+			&nbsp;&nbsp;&nbsp;
+			<g:Anchor ui:field="cancel" styleName="col-md-2">Cancel</g:Anchor>
+		</div>
+	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -42,7 +42,6 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 		VisualizationUtils.loadVisualizationApi(doneCallback, BarChart.PACKAGE);
 	}
 
-	@UiField DivElement plansPara;
 	@UiField SimplePanel chartHolder;
 	
 	@UiField DivElement fbShareButton;
@@ -54,12 +53,7 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 	@Override
     public void prepareFor(int numPlans, int maxDocVisits, int maxRxs, int maxHospiDays)
     {
-        if (0==numPlans) {
-            this.plansPara.setAttribute("hidden", "hidden");
-        } else {
-            this.plansPara.removeAttribute("hidden");
-            prepSlider(maxDocVisits, maxRxs, maxHospiDays);
-        }
+		prepSlider(maxDocVisits, maxRxs, maxHospiDays);
     }
     
     private native void prepSlider(int maxDocVisits, int maxRxs, int maxHospitalizations)
