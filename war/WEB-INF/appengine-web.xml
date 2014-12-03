@@ -14,7 +14,7 @@
     <include path="**.cache.*" expiration="5000d" />
     
     <include path="*.html" expiration="1s" />
-    <include path="style.css" expiration="1s" />
+    <include path="fruit.css" expiration="1s" />
 
     <include path="**" />
     <exclude path="/**.gwt.rpc" />
