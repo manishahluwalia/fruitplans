@@ -7,8 +7,7 @@
 	<ui:with type="fruit.health.client.view.desktop.resources.Resources"
 		field="res"></ui:with>
 	<g:HTMLPanel>
-		<div hidden="true" class="spinner spinner-screen"
-			ui:field="busyOverlay">
+		<div hidden="true" class="spinner spinner-screen" ui:field="busyOverlay">
 			<!-- <div class="spinner-icon spinner-icon-pos"></div> -->
 		</div>
 
@@ -24,12 +23,12 @@
 						</div>
 					</div>
 
-						    <g:SimplePanel ui:field="body" />
 				</div>
+				<g:SimplePanel ui:field="body" />
 			</div>
 
 			<div class="footer">
-				<div class="container">
+				<div class="container-fluid">
 					<div class="row">
 						<div class="col-xs-4 hidden-sm hidden-xs">
 							<small class="line-height-h2">
