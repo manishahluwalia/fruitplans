@@ -1,33 +1,52 @@
 <!doctype html>
-<html lang="en-US" class="ng-scope, wf-ffenzoweb-n6-active, wf-ffenzoweb-n7-active, wf-opensans-n3-active, wf-opensans-n4-active, wf-opensans-n7-active, wf-sourcecodepro-n4-active, wf-sourcecodepro-n7-active, wf-active">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.cache.0.ico"/>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-    <meta name="viewport" content="width=980, initial-scale=1.0"/>
-    <title>Pick1Plan</title>
-  </head>
-  <body class="ng-scope pickplan-page">
-  
-<!-- Include facebook javascript sdk -->  
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=330452940460665&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<!--  back to our code -->
+<html lang="en-US">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="/favicon.cache.0.ico" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <noscript>
-      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled in order for Pick1Plan to be displayed correctly.
-      </div>
-    </noscript>
+    <!-- Begin bootstrap -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-<!-- Page content goes here -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- End bootstrap -->
+    
+    <link rel="stylesheet" type="text/css" href="fruit.css"/>
+
+<title>Pick1Plan</title>
+</head>
+<body class="pickplan-page">
+
+	<!-- Include facebook javascript sdk -->
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=330452940460665&version=v2.0";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!--  back to our code -->
+
+	<noscript>
+		<div
+			style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
+			Your web browser must have JavaScript enabled in order for Pick1Plan
+			to work correctly.</div>
+	</noscript>
+
+	<!-- Page content goes here -->
 
 	<div
 		style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
@@ -36,88 +55,76 @@
 		<div
 			style="position: absolute; overflow: hidden; left: 0px; top: 0px; right: 0px; bottom: 0px;">
 			<div
-				style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;"
-				id="ng-view-wrap" class="overflow_auto">
-				
-				<!-- Header -->
-				<div class="navbar navbar-header animated fadeInDown pickplan-icon">
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-4 media">
-								<a class="pull-left pull-left-md" href="/"><i class="solve-icon-logo"></i></a>
-								<div class="media-body">
-									<a href="/"><h2 class="media-heading logotype">
-											Pick1Plan <span style="font-size: 0.5em;">Beta</span></h2></a>
+				style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px;">
+
+
+				<div class="fullscreen">
+					<div id="main-viewport">
+						<div class="container">
+							<div class="row auth-wrapper-content">
+								<div class="col-xs-12 text-center">
+									<h1>
+										<!-- Header goes here -->
+										Welcome to Fruithealth
+										<!-- End header -->
+									</h1>
 								</div>
 							</div>
-							<div class="col-xs-7">
-								<div class=""></div>
+						</div>
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-12">
+									<!-- Main body goes here -->
+									<div>
+										<div style="text-align: center;">
+											<p>Welcome to fruithealth. We help you compare your
+												insurance plans to see how you fare under different
+												scenarios.</p>
+										</div>
+										<p></p>
+										<div style="text-align: center;">
+											<a class="button--heroku" href="/gwt.html#!enterPlan:">Click
+												here to add a plan.</a>
+										</div>
+										<p></p>
+										<p></p>
+										<div style="text-align: center;">
+											<div class="fb-share-button"
+												data-href="http://www.pick1plan.com" data-layout="button"></div>
+										</div>
+										<p></p>
+									</div>
+									<!-- End body -->
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div autoscroll="true" class="ng-scope" id="ng-view">
-					<div class="container auth-wrapper ng-scope">
-						<div class="row auth-wrapper-content">
-							<div class="col-xs-10 text-center">
-								<h1 class="text-white">
-								    <!-- Header goes here -->
-								    Welcome to Fruithealth
-								    <!-- End header -->
-								</h1>
-							</div>
-						</div>
-						<div class="row">
-							<div>
-							    <!-- Main body goes here -->
-								<div>
-									<div style="text-align: center;">
-										<p>Welcome to fruithealth. We help you compare your
-											insurance plans to see how you fare under different
-											scenarios.</p>
-									</div>
-									<p></p>
-									<div style="text-align: center;">
-										<a class="button--heroku" href="/gwt.html#!enterPlan:">Click here to add a plan.</a>
-									</div>
-									<p></p>
-									<p></p>
-									<div style="text-align: center;">
-                    		            <div class="fb-share-button" data-href="http://www.pick1plan.com" data-layout="button"></div>
-									</div>
-									<p></p>
+
+					<!-- Footer  -->
+					<div class="footer">
+						<div class="container">
+							<div class="row">
+								<div class="col-xs-4 hidden-sm hidden-xs">
+									<small class="line-height-h2">
+										<div class="media">
+											<i
+												class="solve-icon-nyc icon-small line-height-h2 pull-left pull-left-sm hide"></i>
+											<div class="media-body">© Pick1Plan, Inc · Compare your
+												insurance</div>
+										</div>
+									</small>
 								</div>
-								<!-- End body -->
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<!-- Footer  -->
-				<div class="navbar navbar-footer animated fadeInUp">
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-4">
-								<small class="line-height-h2">
-									<div class="media">
-										<i
-											class="solve-icon-nyc icon-small line-height-h2 pull-left pull-left-sm hide"></i>
-										<div class="media-body">© Pick1Plan, Inc · Compare your
-											insurance</div>
-									</div>
-								</small>
-							</div>
-							<div class="col-xs-2 text-center">
-								<a href="/"><i class="solve-icon-logo"></i></a>
-							</div>
-							<div class="col-xs-3">
-								<small class="pull-right">
-									<ul class="list-inline pull-right">
-										<li><a href="/contact.html">Contact Us</a></li>
-										<li><a href="/faq.html">Frequently Asked Questions</a></li>
-									</ul>
-								</small>
+								<div class="col-xs-4 hidden-xs hidden-sm text-center">
+									<a href="/">Pick1Plan</i></a>
+								</div>
+								<div class="col-xs-4">
+									<small class="pull-right">
+										<ul class="list-inline pull-right">
+											<li><a href="/contact.html">Contact Us</a></li>
+											<li><a href="/faq.html">Frequently Asked Questions</a></li>
+										</ul>
+									</small>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -125,13 +132,14 @@
 			</div>
 		</div>
 	</div>
-	
-<!-- End page content -->
 
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setSiteSpeedSampleRate', 100]);
-      _gaq.push(['_trackPageview']);
-    </script>
-  </body>
+
+	<!-- End page content -->
+
+	<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push([ '_setSiteSpeedSampleRate', 100 ]);
+			_gaq.push([ '_trackPageview' ]);
+		</script>
+</body>
 </html>
