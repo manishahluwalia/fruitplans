@@ -132,7 +132,7 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         
         //options.setTitle("Comparision of Plans");
         
-        options.setTitleX("Estimated Expenses from your Pocket");
+        options.setTitleX("Total Cost to You from your pocket");
         
         //options.setTitleY("Plan");
         options.setOption("animation", getAnimationOptions());
