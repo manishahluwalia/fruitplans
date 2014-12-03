@@ -1,4 +1,4 @@
 eclipse.preferences.version=1
-jarsExcludedFromWebInfLib=
+jarsExcludedFromWebInfLib=/Users/manish/eclipse-workspace/FruitHealth/gwt-libs/gin-2.1.2.jar|/Users/manish/eclipse-workspace/FruitHealth/gwt-libs/gwt-visualization-1.0.2.jar
 warSrcDir=war
 warSrcDirIsOutput=true
