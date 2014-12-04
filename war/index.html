@@ -8,17 +8,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Begin bootstrap -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<!-- Begin bootstrap -->
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
       <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!-- End bootstrap -->
-    
-    <link rel="stylesheet" type="text/css" href="fruit.css"/>
+<!-- End bootstrap -->
+
+<link rel="stylesheet" type="text/css" href="fruit.css" />
 
 <title>Pick1Plan</title>
 </head>
@@ -71,20 +72,56 @@
 								</div>
 							</div>
 						</div>
-						<div class="container">
+						<div class="container-fluid">
+
+
 							<div class="row">
 								<div class="col-xs-12">
-									<!-- Main body goes here -->
 									<div>
 										<div style="text-align: center;">
-											<p>Welcome to fruithealth. We help you compare your
-												insurance plans to see how you fare under different
-												scenarios.</p>
+											<p>We help you compare your insurance plans to see how
+												you fare under different scenarios. For example:</p>
 										</div>
-										<p></p>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 col-md-push-5">
+									<div class="chart-wrapper">
+										<div class="chart-holder">
+											<img style="height: 100%; width: 100%;" src="images/sample-chart.cache.0.png"/>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-md-pull-5">
+									<div class="compare-info-container">
+										Your Estimate:
+										<div style="display: block;" class="form-group input-box">
+											Doctor's visits (per year): <span 
+												class="form-control form-contorl-faded" >2</span>
+										</div>
+										<div style="display: block;" class="form-group input-box">
+											Prescriptions (per year): <span 
+												class="form-control form-contorl-faded" >5</span>
+											<div style="display: block;" id="numRxsSlider"></div>
+										</div>
+										<div style="display: block;" class="form-group input-box">
+											Hospitalizations (per year): <span 
+												class="form-control form-contorl-faded" >0</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-xs-12">
+									<div>
+										<p/>
 										<div style="text-align: center;">
 											<a class="button--heroku" href="/gwt.html#!enterPlan:">Click
-												here to add a plan.</a>
+												here to get started</a>
 										</div>
 										<p></p>
 										<p></p>
@@ -94,7 +131,6 @@
 										</div>
 										<p></p>
 									</div>
-									<!-- End body -->
 								</div>
 							</div>
 						</div>

@@ -14,9 +14,9 @@
 				<g:SimplePanel styleName="chart-holder" ui:field="chartHolder" />
 				</div>
 			</div>
-			<div class="col-md-3 col-md-pull-5">
+			<div class="col-md-4 col-md-pull-5">
 				<div class="compare-info-container">
-					Enter Estimate:
+					Your Estimate:
 					<div style="display: block;" class="form-group input-box">
 						Doctor's visits (per year):
 						<input type="number" ui:field="numDocVisitsInput" class="form-control form-contorl-faded" inputmode="numeric" pattern="[0-9]*"/>
