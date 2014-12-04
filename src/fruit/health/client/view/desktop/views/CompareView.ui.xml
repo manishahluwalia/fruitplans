@@ -9,29 +9,30 @@
 
 	<g:HTMLPanel>
 		<div class="row">
-			<div class="col-md-6 col-md-push-6">
+			<div class="col-md-6 col-md-push-5">
 			    <div class="chart-wrapper">
 				<g:SimplePanel styleName="chart-holder" ui:field="chartHolder" />
 				</div>
 			</div>
-			<div class="col-md-6 col-md-pull-6">
+			<div class="col-md-3 col-md-pull-5">
 				<div class="compare-info-container">
 					Enter Estimate:
-					<div style="display: block;">
+					<div style="display: block;" class="form-group input-box">
 						Doctor's visits (per year):
-						<div id="numDocVisitsSlider" style="display: block;" />
+						<input type="number" ui:field="numDocVisitsInput" class="form-control form-contorl-faded" inputmode="numeric" pattern="[0-9]*"/>
 					</div>
-					<div style="display: block;">
+					<div style="display: block;" class="form-group input-box">
 						Prescriptions (per year):
+						<input type="number" ui:field="numRxsInput" class="form-control form-contorl-faded" inputmode="numeric" pattern="[0-9]*"/>
 						<div id="numRxsSlider" style="display: block;" />
 					</div>
-					<div style="display: block;">
+					<div style="display: block;" class="form-group input-box">
 						Hospitalizations (per year):
-						<div id="numHospitalizationsSlider" style="display: block;" />
+						<input type="number" ui:field="numHospitalizationsInput" class="form-control form-contorl-faded" inputmode="numeric" pattern="[0-9]*"/>
 					</div>
 				</div>
 			</div>
-					</div>
+								</div>
 		<p style="float: none;">
 			<div style="text-align:center;">
 				<g:Anchor ui:field="enterPlan" styleName="button--heroku">

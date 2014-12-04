@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.DivElement;
+import com.google.gwt.dom.client.InputElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.logical.shared.ResizeEvent;
 import com.google.gwt.event.logical.shared.ResizeHandler;
@@ -13,6 +14,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.EventListener;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -41,6 +45,36 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 		initWidget(uiBinder.createAndBindUi(this));
 		VisualizationUtils.loadVisualizationApi(doneCallback, BarChart.PACKAGE);
 
+		DOM.sinkEvents(numDocVisitsInput, Event.ONCHANGE);
+        DOM.setEventListener(numDocVisitsInput, new EventListener()
+        {   
+            @Override
+            public void onBrowserEvent(Event event)
+            {   
+                presenter.onNumDocVisitsChanged(readVal(numDocVisitsInput));
+            }
+        });
+
+		DOM.sinkEvents(numRxsInput, Event.ONCHANGE);
+        DOM.setEventListener(numRxsInput, new EventListener()
+        {   
+            @Override
+            public void onBrowserEvent(Event event)
+            {   
+                presenter.onNumRxsChanged(readVal(numRxsInput));
+            }
+        });
+
+		DOM.sinkEvents(numHospitalizationsInput, Event.ONCHANGE);
+        DOM.setEventListener(numHospitalizationsInput, new EventListener()
+        {   
+            @Override
+            public void onBrowserEvent(Event event)
+            {   
+                presenter.onNumHospitalizationsChanged(readVal(numHospitalizationsInput));
+            }
+        });
+        
         Window.addResizeHandler(new ResizeHandler() {
         	Timer resizeTimer = new Timer() {  
         		@Override
@@ -57,6 +91,25 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
         });
 	}
 
+	private Integer readVal(InputElement input) {
+		String val = readElementVal(input);
+		if (null==val || val.isEmpty()) {
+			return null;
+		}
+		try {
+			return Integer.parseInt(val);
+		} catch (NumberFormatException e) {
+			return null;
+		}
+	}
+	
+	private native String readElementVal(InputElement input) /*-{
+		return input.value;
+	}-*/;   
+
+	@UiField InputElement numDocVisitsInput;
+	@UiField InputElement numRxsInput;
+	@UiField InputElement numHospitalizationsInput;
 	@UiField SimplePanel chartHolder;
 	
 	@UiField DivElement fbShareButton;
@@ -69,47 +122,21 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 	@Override
     public void prepareFor(int numPlans, int maxDocVisits, int maxRxs, int maxHospiDays)
     {
-		prepSlider(maxDocVisits, maxRxs, maxHospiDays);
+		numDocVisitsInput.setAttribute("min", "0");
+		numDocVisitsInput.setAttribute("max", Integer.toString(maxDocVisits));
+
+		numRxsInput.setAttribute("min", "0");
+		numRxsInput.setAttribute("max", Integer.toString(maxRxs));
+
+		numHospitalizationsInput.setAttribute("min", "0");
+		numHospitalizationsInput.setAttribute("max", Integer.toString(maxHospiDays));
     }
     
-    private native void prepSlider(int maxDocVisits, int maxRxs, int maxHospitalizations)
-    /*-{
-        var self = this;
-        
-        var slider1 = $wnd.jQuery("#numDocVisitsSlider").slider({min:0, max:maxDocVisits, step: 1});
-        slider1.slider("pips" , { rest: false });
-        slider1.slider("float");
-        slider1.on("slidechange", function (event, ui) {
-            self.@fruit.health.client.view.desktop.BaseViewImpl::presenter.@fruit.health.client.view.CompareView.Presenter::onNumDocVisitsChanged(I)(ui.value);
-        });
-        slider1.draggable();
-        
-        var slider2 = $wnd.jQuery("#numRxsSlider").slider({min:0, max:maxRxs, step: 1});
-        slider2.slider("pips" , { rest: false });
-        slider2.slider("float");
-        slider2.on("slidechange", function (event, ui) {
-            self.@fruit.health.client.view.desktop.BaseViewImpl::presenter.@fruit.health.client.view.CompareView.Presenter::onNumRxsChanged(I)(ui.value);
-        });
-        slider2.draggable();
-        
-        var slider3 = $wnd.jQuery("#numHospitalizationsSlider").slider({min:0, max:maxHospitalizations, step: 1});
-        slider3.slider("pips" , { rest: false });
-        slider3.slider("float");
-        slider3.on("slidechange", function (event, ui) {
-            self.@fruit.health.client.view.desktop.BaseViewImpl::presenter.@fruit.health.client.view.CompareView.Presenter::onNumHospitalizationsChanged(I)(ui.value);
-        });
-        slider3.draggable();
-    }-*/;
-    
-    private native void setSliderValues(int numDocVisits, int numRxs, int numHospitalizations) /*-{
-        $wnd.jQuery("#numDocVisitsSlider").slider("value", numDocVisits);
-        $wnd.jQuery("#numRxsSlider").slider("value", numRxs);
-        $wnd.jQuery("#numHospitalizationsSlider").slider("value", numHospitalizations);
-    }-*/;
-
     @Override
     public void setScenario(int numDocVisits, int numRxs, int numHospitalizations) {
-        setSliderValues(numDocVisits, numRxs, numHospitalizations);
+		numDocVisitsInput.setAttribute("value", Integer.toString(numDocVisits));
+		numRxsInput.setAttribute("value", Integer.toString(numRxs));
+		numHospitalizationsInput.setAttribute("value", Integer.toString(numHospitalizations));
     }
     
     @Override

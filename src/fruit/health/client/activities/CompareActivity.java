@@ -115,22 +115,34 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
     }
 
     @Override
-    public void onNumDocVisitsChanged(int numDocVisits)
+    public void onNumDocVisitsChanged(Integer numDocVisits)
     {
+    	if (null==numDocVisits) {
+    		// TODO: display error
+    		return;
+    	}
         customScenario.numDocVisits = numDocVisits;
         customScenarioChanged();
     }
 
     @Override
-    public void onNumRxsChanged(int numRxs)
+    public void onNumRxsChanged(Integer numRxs)
     {
+    	if (null==numRxs) {
+    		// TODO: display error
+    		return;
+    	}
         customScenario.numRxs = numRxs;
         customScenarioChanged();
     }
 
     @Override
-    public void onNumHospitalizationsChanged(int numHospitalizations)
+    public void onNumHospitalizationsChanged(Integer numHospitalizations)
     {
+    	if (null==numHospitalizations) {
+    		// TODO: display error
+    		return;
+    	}
         customScenario.numHospitalizations = numHospitalizations;
         customScenarioChanged();
     }

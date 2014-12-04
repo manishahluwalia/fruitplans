@@ -8,9 +8,9 @@ public interface CompareView extends BaseView<CompareView.Presenter>
     {
         void enterPlanClicked();
         
-        void onNumDocVisitsChanged(int numDocVisits);
-        void onNumRxsChanged(int numRxs);
-        void onNumHospitalizationsChanged(int numHospiDays);
+        void onNumDocVisitsChanged(Integer numDocVisits);
+        void onNumRxsChanged(Integer numRxs);
+        void onNumHospitalizationsChanged(Integer numHospiDays);
     }
 
     void showChart(String[] planNames, int[] mins, int[] maxs, int[] customs);

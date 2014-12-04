@@ -48,6 +48,10 @@ a:focus {
   top: 5px;
   padding-left: 10px;
 }
+.compare-info-container .form-control {
+	width: 3em;
+	display: inline-block;
+}
 .form-control.form-contorl-faded {
   color: white;
   background-color: rgba(255, 255, 255, 0.12);
@@ -69,11 +73,6 @@ a:focus {
 }
 .form-control.form-contorl-faded::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.4);
-}
-
-#main-viewport .ui-slider-pips .ui-slider-pip {
-  color: #14ca82;
-  font-weight: bold;
 }
 
 .fullscreen {
@@ -167,7 +166,7 @@ a:focus {
 .fb-share-button {
 }
 .compare-info-container {
-	padding-right: 30px; padding-top: 20px; padding-bottom: 20px;
+	padding: 20px 30px 20px 20px;
 	display: block;
 	width: 100%;
 }
