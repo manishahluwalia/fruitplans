@@ -145,14 +145,7 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
 
         options.setWidth(chartHolder.getOffsetWidth());
         options.setHeight(chartHolder.getOffsetHeight());
-        logger.warning("setting height and width to " + chartHolder.getOffsetHeight() + " " + chartHolder.getOffsetWidth());
         options.set3D(true);
-        
-        String bgColor = Window.Location.getParameter("color");
-        if (null!=bgColor && !bgColor.isEmpty()) {
-            options.setBackgroundColor(bgColor);
-            logger.warning("got color: " + bgColor);
-        }
         
         options.setTitleColor("#168C8C");
         options.setLegendTextColor("#168C8C");
@@ -224,7 +217,6 @@ public class CompareViewImpl extends BaseViewImpl<Presenter> implements CompareV
     	if (reDrawChart) {
     		options.setWidth(chartHolder.getOffsetWidth());
     		options.setHeight(chartHolder.getOffsetHeight());
-    		logger.warning("changing height and width to " + chartHolder.getOffsetHeight() + " " + chartHolder.getOffsetWidth());
     		chart.draw(table, options);
     	}
     }
