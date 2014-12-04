@@ -144,8 +144,8 @@ a:focus {
 .input-box {
 	/* width: 40em; */
 }
-.icon-question:before {
-	content: "?";
+.icon-hash:before {
+	content: "#";
 	display: inline-block;
 }
 .icon-dollar:before {

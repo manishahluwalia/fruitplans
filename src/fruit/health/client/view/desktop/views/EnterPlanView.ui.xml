@@ -17,7 +17,7 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 form-group    has-icon  icon-lg   input-box">
-				<i class="icon-question  form-control-icon  icon-white"></i>
+				<i class="icon-hash  form-control-icon  icon-white"></i>
 				<g:TextBox ui:field="name" focus="true"
 					styleName="form-control  form-contorl-faded  input-lg" />
 			</div>
