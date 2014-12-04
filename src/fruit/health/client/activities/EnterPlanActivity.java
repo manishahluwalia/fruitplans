@@ -105,6 +105,15 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
         return true;
     }
     
+    private boolean isValid() {
+    	if (planData.deductible > planData.oopMax) {
+    		viewMaster.alertDialog("Invalid values", "Out-of-pocket-max cannot be less than the deductible", null, null);
+    		return false;
+    	}
+    	
+    	return true;
+    }
+    
     @Override
     public void onCancelPressed()
     {
@@ -119,7 +128,13 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
     public void onAddPressed()
     {
         if (!isDone()) {
+        	// XXX this shouldn't happen.
             return;
+        }
+        
+        if (!isValid()) {
+        	// Error has been shown
+        	return;
         }
         
         if (isAdd) {
@@ -133,7 +148,13 @@ public class EnterPlanActivity extends BaseActivity<EnterPlanView, Presenter> im
     public void onComparePressed()
     {
         if (!isDone()) {
+        	// XXX this shouldn't happen.
             return;
+        }
+        
+        if (!isValid()) {
+        	// Error has been shown
+        	return;
         }
         
         if (isAdd) {
