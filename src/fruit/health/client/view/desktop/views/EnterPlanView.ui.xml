@@ -68,11 +68,7 @@
 		</div>
 
 		<div class="row">
-			<g:Button ui:field="addAnother" styleName="col-md-5 button--heroku">Add another</g:Button>
-			&nbsp;&nbsp;&nbsp;
-			<g:Button ui:field="done" styleName="col-md-5 button--heroku">Compare Plans</g:Button>
-			&nbsp;&nbsp;&nbsp;
-			<g:Anchor ui:field="cancel" styleName="col-md-2">Cancel</g:Anchor>
+			<g:Button ui:field="done" styleName="col-md-12 button--heroku">Compare Plans</g:Button>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 

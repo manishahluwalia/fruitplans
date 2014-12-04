@@ -13,11 +13,11 @@
 
 		<div class="fullscreen container-fluid">
 
-			<div id="main-viewport" class="row auth-wrapper">
+			<div id="main-viewport" class="hidden-sm hidden-xs row auth-wrapper">
 				<!-- header -->
 				<div class="col-xs-12 auth-wrapper-content">
 					<div class="text-center">
-						<h1 ui:field="viewName" />
+						<h3 ui:field="viewName" />
 					</div>
 				</div>
 
@@ -25,7 +25,7 @@
 			<g:SimplePanel ui:field="body" />
 
 			<div class="row footer">
-				<div class="col-xs-4 hidden-sm hidden-xs">
+				<div class="col-md-4 hidden-sm hidden-xs">
 					<small class="line-height-h2">
 						<div class="media">
 							<div class="media-body">
@@ -34,12 +34,12 @@
 						</div>
 					</small>
 				</div>
-				<div class="col-xs-4  hidden-sm hidden-xs text-center">
+				<div class="col-md-4  hidden-sm hidden-xs text-center">
 					<a href="/">
 						Pick1Plan
 					</a>
 				</div>
-				<div class="col-xs-4">
+				<div class="col-sm-12 col-md-4">
 					<small class="pull-right">
 						<ul class="list-inline  pull-right">
 							<li>

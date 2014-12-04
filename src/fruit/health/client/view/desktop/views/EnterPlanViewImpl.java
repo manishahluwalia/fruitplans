@@ -7,7 +7,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiTemplate;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -33,11 +32,11 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
 	public EnterPlanViewImpl(DesktopBrowserViewMaster desktopBrowserViewMaster) {
 		initWidget(uiBinder.createAndBindUi(this));
 
-		name.getElement().setAttribute("placeholder", "What's the name of the plan (e.g. Kaiser, Blue Cross)");
-		premium.getElement().setAttribute("placeholder", "How much your employer deducts per month");
-        deductible.getElement().setAttribute("placeholder", "What is the annual deductible");
-        copay.getElement().setAttribute("placeholder", "What is the % copay after you meet the deductible");
-        oopMax.getElement().setAttribute("placeholder", "What is the annual out-of-pocket max");
+		name.getElement().setAttribute("placeholder", "Blue Cross (example)");
+		premium.getElement().setAttribute("placeholder", "100 (example)");
+        deductible.getElement().setAttribute("placeholder", "2000 (example)");
+        copay.getElement().setAttribute("placeholder", "15 (example)");
+        oopMax.getElement().setAttribute("placeholder", "5000 (example)");
 	}
     
 	@UiField TextBox name;
@@ -47,8 +46,6 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
 	@UiField ValidatingInputBox<Integer> oopMax;
 	
 	@UiField Button done;
-	@UiField Button addAnother;
-	@UiField Anchor cancel;
 	
 	@UiHandler("name")
 	public void onNameChanged(ValueChangeEvent<String> e) {
@@ -79,16 +76,6 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
     public void onDonePressed(ClickEvent e) {
         presenter.onComparePressed();
     }
-    
-    @UiHandler("addAnother")
-    public void onAddAnotherPressed(ClickEvent e) {
-        presenter.onAddPressed();
-    }
-    
-    @UiHandler("cancel")
-    public void onPressed(ClickEvent e) {
-        presenter.onCancelPressed();
-    }
 
     @Override
     public void showData(PlanData plan)
@@ -104,6 +91,5 @@ public class EnterPlanViewImpl extends BaseViewImpl<Presenter> implements EnterP
     public void enableButtons(boolean enabled)
     {
         done.setEnabled(enabled);
-        addAnother.setEnabled(enabled);
     }
 }
