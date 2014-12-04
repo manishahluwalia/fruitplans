@@ -21,7 +21,6 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
     protected static final Logger logger = Logger.getLogger(CompareActivity.class.getName());
     
     private static final int BILLABLE_MEDICAL_EXPENSES_FOR_MIN_SCENARIO = 0;
-    private static final int BILLABLE_MEDICAL_EXPENSES_FOR_MAX_SCENARIO = 100000000;
     
     private final compare place;
     private final List<PlanData> plans;
@@ -67,7 +66,7 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
             PlanData p = plans.get(i);
             planNames[i] = p.planName;
             mins[i] = expectToPay(p, BILLABLE_MEDICAL_EXPENSES_FOR_MIN_SCENARIO);
-            maxs[i] = expectToPay(p, BILLABLE_MEDICAL_EXPENSES_FOR_MAX_SCENARIO);
+            maxs[i] = maxPay(p);
             customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
         }
         
@@ -79,12 +78,19 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
         }
     }
 
-    @Override
+	@Override
     public void enterPlanClicked()
     {
         loginStateManager.goTo(new enterPlan(null));
     }
 
+	private int maxPay (PlanData p) {
+		int toPay = p.oopMax;
+		toPay += p.premium * 12;
+		
+		return toPay;
+	}
+	
     private int expectToPay(PlanData p, int medicalExpenses)
     {
         int expectedCosts = medicalExpenses;
@@ -105,7 +111,6 @@ public class CompareActivity extends BaseActivity<CompareView, Presenter> implem
     
     private void customScenarioChanged()
     {
-        
         for (int i=0; i<numPlans; i++) {
             PlanData p = plans.get(i);
             customs[i] = expectToPay(p, customScenario.getMedicalExpenses());
