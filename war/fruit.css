@@ -75,6 +75,12 @@ a:focus {
   color: rgba(255, 255, 255, 0.4);
 }
 
+@media (min-width: 1200px) {
+    .pull-right-md {
+        float: right;
+    }
+}
+
 .fullscreen {
     background: linear-gradient(75deg, #2c7ba3, #29bba1) repeat scroll 0 0 rgba(0, 0, 0, 0);
 	overflow: auto;

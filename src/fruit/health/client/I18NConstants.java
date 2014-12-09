@@ -41,7 +41,7 @@ public interface I18NConstants extends Constants
     @Description("The title of the browser when the user is in the home place")
     String getHomePlaceTitle ();
 
-    @DefaultStringValue("Enter Health Plan Data")
+    @DefaultStringValue("Health Plan Info")
     @Description("The title of the browser when the user is in the enterPlan place")
     String getEnterPlanPlaceTitle ();
 
