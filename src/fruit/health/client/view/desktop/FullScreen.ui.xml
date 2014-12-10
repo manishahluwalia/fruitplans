@@ -7,6 +7,7 @@
 	<ui:with type="fruit.health.client.view.desktop.resources.Resources"
 		field="res"></ui:with>
 	<g:HTMLPanel>
+	    <div class="wrapEverything">
 		<div hidden="true" class="spinner spinner-screen" ui:field="busyOverlay">
 			<!-- <div class="spinner-icon spinner-icon-pos"></div> -->
 		</div>
@@ -53,6 +54,7 @@
 				</div>
 			</div>
 
+		</div>
 		</div>
 	</g:HTMLPanel>
 </ui:UiBinder> 
